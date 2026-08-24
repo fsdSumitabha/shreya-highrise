@@ -4,6 +4,9 @@ export type Office = {
     lines: string[];
     email: string;
     mapQuery: string;
+    purpose: string;
+    hours: string;
+    mapLabel: string;
 };
 export type Phone = { display: string; tel: string };
 
@@ -44,6 +47,9 @@ export const offices: Office[] = [
         ],
         email: site.emails.sales,
         mapQuery: "97 Rabindra Sarani, New Barrackpur, Kolkata 700131",
+        purpose: "Company records, agreements and registration paperwork. Where the first building stands, and still the registered address of the company.",
+        hours: "Mon – Sat, 11:00 – 18:00",
+        mapLabel: "Map — New Barrackpur registered office",
     },
     {
         label: "Head Office",
@@ -54,24 +60,45 @@ export const offices: Office[] = [
         ],
         email: site.emails.projects,
         mapQuery: "BB-102 Street No. 152, New Town, Kolkata 700156",
+        purpose: "Sales, site-visit coordination and the project team. Come here for price sheets, floor plans and anything to do with a flat you have booked.",
+        hours: "Mon – Sun, 10:00 – 19:00",
+        mapLabel: "Map — New Town head office",
     },
 ];
 
-export const leadership = [
+export type Leader = {
+    name: string;
+    role: string;
+    focus: string;
+    since: string;
+    bio: string;
+    portrait: string;
+};
+
+export const leadership: Leader[] = [
     {
         name: "Ranjeet Roy",
         role: "Managing Director",
         focus: "Land acquisition & project finance",
+        since: "Founder, 2006",
+        bio: "Signed for the first plot on Rabindra Sarani and has negotiated every acquisition since. Sets the price sheet, approves each cost revision before it reaches a buyer, and is the reason the company has never taken construction finance against a project it had not already sold out of its own books.",
+        portrait: "Ranjeet Roy — portrait",
     },
     {
         name: "Sampa Roy",
         role: "Managing Director",
         focus: "Design, interiors & customer experience",
+        since: "Founder, 2006",
+        bio: "Runs the drawing desk and the handover desk — the two ends of the same conversation. Reviews every unit layout for light, cross-ventilation and Vaastu before it is sanctioned, and personally signs off the snag list on each flat before the keys are released.",
+        portrait: "Sampa Roy — portrait",
     },
     {
         name: "Partha Roy Chowdhury",
         role: "Managing Director",
         focus: "Construction, quality & handover",
+        since: "Joined 2009",
+        bio: "Holds the specification. Approves the pile design, walks each slab before the pour, and keeps procurement tied to brand and grade rather than to the lowest quotation. The delay-compensation clause in our agreement exists because he was willing to stand behind it.",
+        portrait: "Partha Roy Chowdhury — portrait",
     },
 ];
 

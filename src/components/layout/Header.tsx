@@ -20,7 +20,7 @@ export default function Header() {
                         </Link>
                     ))}
                 </nav>
-                <ActionLink href={`tel:${site.phones[0].tel}`} className="hidden lg:inline-flex">
+                <ActionLink href={`tel:${site.phones[0].tel}`} className="max-lg:hidden">
                     {site.phones[0].display}
                 </ActionLink>
                 <MobileNav />
