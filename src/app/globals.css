@@ -25,3 +25,109 @@
     --text-mega--line-height: 0.86;
     --text-mega--letter-spacing: -0.03em;
 }
+
+/* ── Logo draw-on ─────────────────────────────────────────────────────────
+   Drives <AnimatedLogoMark>. Each contour is stroked with a full-length dash
+   that retracts, so the line appears to be drawn; the fills then settle in
+   underneath and the drawn lines are lifted off. Timings arrive as fractions
+   of --logo-duration, so one knob retimes the whole sequence. */
+
+@keyframes logo-draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes logo-settle {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes logo-lift {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes logo-nib {
+    0% {
+        offset-distance: 0%;
+        opacity: 0;
+    }
+    8%,
+    88% {
+        opacity: 1;
+    }
+    100% {
+        offset-distance: 100%;
+        opacity: 0;
+    }
+}
+
+.logo-draw {
+    --logo-duration: 2.6s;
+    --logo-delay: 0s;
+    --logo-ease: cubic-bezier(0.4, 0, 0.25, 1);
+    --logo-stroke: currentColor;
+}
+
+/* Resting state: the finished logo. This is what no-JS, reduced-motion and
+   pre-hydration render, so the mark is never missing. */
+.logo-draw [data-ink="line"],
+.logo-draw [data-ink="nib"] {
+    display: none;
+}
+
+.logo-draw:is([data-logo="armed"], [data-logo="drawing"]) [data-ink="line"] {
+    display: inline;
+    fill: none;
+    stroke: var(--logo-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    vector-effect: non-scaling-stroke;
+}
+
+.logo-draw:is([data-logo="armed"], [data-logo="drawing"]) [data-ink="nib"] {
+    display: inline;
+    fill: var(--logo-nib, var(--logo-stroke));
+    opacity: 0;
+}
+
+.logo-draw:is([data-logo="armed"], [data-logo="drawing"]) [data-ink="fill"] {
+    opacity: 0;
+}
+
+.logo-draw[data-logo="drawing"] [data-ink="line"] {
+    animation:
+        logo-draw calc(var(--logo-duration) * var(--seg-duration)) var(--logo-ease)
+            calc(var(--logo-delay) + var(--logo-duration) * var(--seg-start)) both,
+        logo-lift calc(var(--logo-duration) * 0.18) ease-out
+            calc(var(--logo-delay) + var(--logo-duration) * var(--logo-dry)) both;
+}
+
+.logo-draw[data-logo="drawing"] [data-ink="nib"] {
+    animation: logo-nib calc(var(--logo-duration) * var(--seg-duration)) var(--logo-ease)
+        calc(var(--logo-delay) + var(--logo-duration) * var(--seg-start)) both;
+}
+
+.logo-draw[data-logo="drawing"] [data-ink="fill"] {
+    animation: logo-settle calc(var(--logo-duration) * 0.22) ease-out
+        calc(var(--logo-delay) + var(--logo-duration) * var(--seg-start)) both;
+}
+
+/* Doubled class keeps these above the state rules. The component also declines
+   to arm when reduced motion is set, so this is the second line of defence. */
+@media (prefers-reduced-motion: reduce) {
+    .logo-draw.logo-draw [data-ink="line"],
+    .logo-draw.logo-draw [data-ink="nib"] {
+        display: none;
+    }
+
+    .logo-draw.logo-draw [data-ink="fill"] {
+        opacity: 1;
+        animation: none;
+    }
+}
