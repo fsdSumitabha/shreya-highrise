@@ -1,25 +1,52 @@
 import type { ReactNode } from "react";
+import SplitText from "@/components/motion/SplitText";
 
 type Props = {
-    id: string; eyebrow: string; title: ReactNode; lede?: string;
-    align?: "left" | "center"; tone?: "light" | "dark"; className?: string;
+    id: string;
+    eyebrow: string;
+    /** Plain heading. Ignored when `lines` is given. */
+    title?: ReactNode;
+    /** Heading split into masked lines that climb in one after another. */
+    lines?: (string | ReactNode)[];
+    lede?: string;
+    align?: "left" | "center";
+    tone?: "light" | "dark";
+    className?: string;
 };
 
 export default function SectionHeading({
-    id, eyebrow, title, lede, align = "left", tone = "light", className = "",
+    id, eyebrow, title, lines, lede, align = "left", tone = "light", className = "",
 }: Props) {
-    const alignment = align === "center" ? "items-center text-center" : "items-start";
+    const centred = align === "center";
     const ledeTone = tone === "dark" ? "text-stone-100/70" : "text-slate-600 dark:text-stone-100/70";
+    const heading = "font-display text-4xl font-light leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl";
+
     return (
-        <div className={`flex max-w-3xl flex-col gap-5 ${alignment} ${align === "center" ? "mx-auto" : ""} ${className}`}>
-            <p className="font-display text-xs uppercase tracking-luxe text-champagne-400 dark:text-champagne-300">
+        <div
+            className={`flex max-w-3xl flex-col gap-5 ${centred ? "mx-auto items-center text-center" : "items-start"} ${className}`}>
+            <p data-reveal={centred ? "up" : "left"}
+                className="flex items-center gap-3 font-display text-xs uppercase tracking-luxe text-champagne-400 dark:text-champagne-300">
+                <span aria-hidden="true" className="size-1.5 rotate-45 bg-current" />
                 {eyebrow}
             </p>
-            <h2 id={id}
-                className="font-display text-4xl font-light leading-none tracking-tight sm:text-5xl lg:text-6xl">
-                {title}
+
+            <h2 id={id} className={heading}>
+                {lines ? (
+                    <SplitText lines={lines} delay={40} />
+                ) : (
+                    <span data-reveal="up" className="block"
+                        style={{ "--rv-delay": "60ms" } as React.CSSProperties}>
+                        {title}
+                    </span>
+                )}
             </h2>
-            {lede ? <p className={`text-base leading-relaxed sm:text-lg ${ledeTone}`}>{lede}</p> : null}
+
+            {lede ? (
+                <p data-reveal="up" style={{ "--rv-delay": "180ms" } as React.CSSProperties}
+                    className={`text-base leading-relaxed sm:text-lg ${ledeTone}`}>
+                    {lede}
+                </p>
+            ) : null}
         </div>
     );
 }

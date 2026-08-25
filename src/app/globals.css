@@ -131,3 +131,297 @@
         animation: none;
     }
 }
+
+/* ── Motion tokens ────────────────────────────────────────────────────── */
+
+@theme {
+    --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* Native accordion open/close, where the browser supports it. */
+:root {
+    interpolate-size: allow-keywords;
+}
+
+details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+        block-size 0.45s var(--ease-soft),
+        content-visibility 0.45s var(--ease-soft);
+    transition-behavior: allow-discrete;
+}
+
+details[open]::details-content {
+    block-size: auto;
+}
+
+/* ── Scroll reveal ────────────────────────────────────────────────────────
+   <MotionRoot> stamps data-motion="on" on <html> once it has mounted and
+   confirmed motion is welcome. Every rule below hangs off that flag, so a
+   page with no JS — or a reader who asked for reduced motion — renders the
+   finished layout with nothing hidden and nothing to wait for.
+
+   An element opts in with data-reveal="<variant>"; the observer adds
+   data-shown when it scrolls into view. Variants only set custom properties,
+   so one transition declaration covers all of them. */
+
+[data-motion="on"] [data-reveal]:not([data-reveal="mask"]) {
+    opacity: 0;
+    transform: translate3d(var(--rv-x, 0), var(--rv-y, 1.75rem), 0) scale(var(--rv-scale, 1));
+    filter: blur(var(--rv-blur, 0));
+    transition:
+        opacity 0.8s var(--ease-soft) var(--rv-delay, 0ms),
+        transform 1s var(--ease-luxe) var(--rv-delay, 0ms),
+        filter 0.9s var(--ease-soft) var(--rv-delay, 0ms);
+}
+
+[data-motion="on"] [data-reveal]:not([data-reveal="mask"])[data-shown] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+
+[data-motion="on"] [data-reveal="fade"] {
+    --rv-y: 0;
+}
+
+[data-motion="on"] [data-reveal="left"] {
+    --rv-x: -2.25rem;
+    --rv-y: 0;
+}
+
+[data-motion="on"] [data-reveal="right"] {
+    --rv-x: 2.25rem;
+    --rv-y: 0;
+}
+
+[data-motion="on"] [data-reveal="rise"] {
+    --rv-y: 3.5rem;
+    --rv-blur: 8px;
+}
+
+[data-motion="on"] [data-reveal="zoom"] {
+    --rv-y: 0;
+    --rv-scale: 0.94;
+}
+
+/* Wipes open from the top edge — for images and full-bleed panels. The clip
+   sits on the child, never on the observed element: an element clipped to
+   nothing reports an empty intersection rect, so it would wait forever for the
+   observer to notice it. Wrap a single child. */
+[data-motion="on"] [data-reveal="curtain"] {
+    --rv-y: 0;
+}
+
+[data-motion="on"] [data-reveal="curtain"] > * {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.1s var(--ease-luxe) var(--rv-delay, 0ms);
+}
+
+[data-motion="on"] [data-reveal="curtain"][data-shown] > * {
+    clip-path: inset(0 0 0 0);
+}
+
+/* Draws a rule or divider out from its start edge. */
+[data-motion="on"] [data-reveal="rule"][data-reveal="rule"] {
+    --rv-y: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 1;
+}
+
+[data-motion="on"] [data-reveal="rule"][data-shown] {
+    transform: scaleX(1);
+}
+
+/* Type that climbs out from behind a mask — see <SplitText>. */
+[data-motion="on"] [data-reveal="mask"] > span {
+    display: inline-block;
+    transform: translate3d(0, 110%, 0) rotate(2deg);
+    transition: transform 1.05s var(--ease-luxe) var(--rv-delay, 0ms);
+}
+
+[data-motion="on"] [data-reveal="mask"][data-shown] > span {
+    transform: none;
+}
+
+/* ── Parallax ─────────────────────────────────────────────────────────── */
+
+[data-parallax] {
+    transform: translate3d(0, var(--parallax-y, 0px), 0);
+    will-change: transform;
+}
+
+/* ── Pointer spotlight ────────────────────────────────────────────────── */
+
+[data-spotlight] {
+    --mx: 50%;
+    --my: 0%;
+}
+
+/* Negative z-index inside the element's own stacking context paints the glow
+   above its background but below its text. */
+[data-spotlight]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s var(--ease-soft);
+    background: radial-gradient(
+        22rem 22rem at var(--mx) var(--my),
+        color-mix(in oklab, var(--color-champagne-300) 26%, transparent),
+        transparent 70%
+    );
+}
+
+[data-spotlight]:hover::after {
+    opacity: 1;
+}
+
+/* ── Marquee ──────────────────────────────────────────────────────────── */
+
+.marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 45s) linear infinite;
+}
+
+.marquee-viewport:hover .marquee {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+/* ── Ambient decoration ───────────────────────────────────────────────── */
+
+/* Slow-drifting colour fields behind dark sections. */
+.aurora {
+    animation: aurora-drift var(--aurora-duration, 26s) ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift {
+    from {
+        transform: translate3d(-4%, -3%, 0) scale(1);
+    }
+    to {
+        transform: translate3d(5%, 4%, 0) scale(1.18);
+    }
+}
+
+/* Film grain — one tiled SVG turbulence, no network request. */
+.grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Surveyor's grid, fading out as it rises. */
+.blueprint-grid {
+    background-image:
+        linear-gradient(to right, color-mix(in oklab, currentColor 8%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in oklab, currentColor 8%, transparent) 1px, transparent 1px);
+    background-size: var(--grid-size, 5.5rem) var(--grid-size, 5.5rem);
+    mask-image: linear-gradient(to top, #000 10%, transparent 85%);
+}
+
+/* Champagne sweeping through a headline word. */
+.text-shimmer {
+    background: linear-gradient(
+        100deg,
+        var(--color-champagne-400) 20%,
+        var(--color-champagne-100) 42%,
+        var(--color-champagne-300) 58%,
+        var(--color-champagne-400) 80%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 7s var(--ease-soft) infinite;
+}
+
+@keyframes shimmer {
+    0%,
+    100% {
+        background-position: 130% 50%;
+    }
+    50% {
+        background-position: -30% 50%;
+    }
+}
+
+/* Scroll cue — a bead of light falling down a hairline. */
+@keyframes cue-fall {
+    0% {
+        transform: translateY(-100%) scaleY(0.4);
+        opacity: 0;
+    }
+    35%,
+    65% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%) scaleY(1);
+        opacity: 0;
+    }
+}
+
+.cue-bead {
+    animation: cue-fall 2.4s var(--ease-soft) infinite;
+}
+
+/* Window lights in the hero skyline, drifting on and off. */
+@keyframes window-glow {
+    0%,
+    100% {
+        opacity: var(--lit-min, 0.15);
+    }
+    50% {
+        opacity: var(--lit-max, 0.9);
+    }
+}
+
+.window-lit {
+    animation: window-glow var(--lit-duration, 6s) ease-in-out var(--lit-delay, 0s) infinite;
+}
+
+/* ── Reading progress ─────────────────────────────────────────────────── */
+
+.scroll-progress {
+    transform: scaleX(var(--scroll-progress, 0));
+    transform-origin: left;
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────
+   MotionRoot already declines to set data-motion, which disarms every reveal.
+   This stops the decorative loops that run without it. */
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee,
+    .aurora,
+    .text-shimmer,
+    .cue-bead,
+    .window-lit {
+        animation: none;
+    }
+
+    .text-shimmer {
+        background-position: 50% 50%;
+    }
+
+    details::details-content {
+        transition: none;
+    }
+}

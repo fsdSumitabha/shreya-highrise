@@ -1,49 +1,116 @@
 import Container from "@/components/ui/Container";
 import ActionLink from "@/components/ui/ActionLink";
-import ImageFrame from "@/components/ui/ImageFrame";
+import SplitText from "@/components/motion/SplitText";
+import Skyline from "@/components/art/Skyline";
 import { site } from "@/data/site";
 
-const marks = ["WBRERA registered", "Est. 2006", "10 addresses in Kolkata", "1,450 families"];
+const marks = [
+    { value: "WBRERA", note: "Registered, every project" },
+    { value: "Est. 2006", note: "Eighteen years building" },
+    { value: "10", note: "Addresses across Kolkata" },
+    { value: "1,450", note: "Families handed keys" },
+];
 
 export default function Hero() {
     return (
         <section aria-labelledby="hero-heading"
-            className="relative isolate flex min-h-svh flex-col justify-end overflow-hidden bg-navy-950 text-stone-100">
-            <ImageFrame label="Hero — twin towers at dusk, New Town skyline" tone="dark" ratio="aspect-auto"
-                bordered={false} className="absolute inset-0 -z-20" />
+            className="grain relative isolate flex min-h-svh flex-col overflow-hidden bg-navy-950 text-stone-100">
+            {/* Dusk sky. */}
             <div aria-hidden="true"
-                className="absolute inset-0 -z-10 bg-linear-to-t from-navy-950 via-navy-950/85 to-navy-950/40" />
+                className="absolute inset-0 -z-30 bg-[radial-gradient(130%_85%_at_50%_-10%,#173d5f_0%,#0d2740_38%,#071523_78%)]" />
 
-            <Container className="flex flex-col gap-10 pb-14 pt-32 sm:pb-20">
-                <p className="font-display text-xs uppercase tracking-luxe text-champagne-300">
-                    {site.locality}
-                </p>
-                <h1 id="hero-heading"
-                    className="font-display text-6xl font-light leading-none tracking-tight sm:text-8xl lg:text-9xl xl:text-mega">
-                    Homes that
-                    <br />
-                    <span className="text-champagne-300">rise</span> with the city
-                </h1>
-                <div className="flex flex-col gap-8 border-t border-stone-100/15 pt-8 lg:flex-row lg:items-end lg:justify-between">
-                    <p className="max-w-xl text-base leading-relaxed text-stone-100/75 sm:text-lg">
-                        {site.intro}
+            {/* Two slow colour fields, drifting out of step with each other. */}
+            <div aria-hidden="true" className="absolute inset-0 -z-30 overflow-hidden">
+                <div className="aurora absolute -left-40 top-[-20%] size-[46rem] rounded-full bg-[radial-gradient(circle,rgba(200,169,107,0.20),transparent_65%)] blur-3xl [--aurora-duration:30s]" />
+                <div className="aurora absolute -right-52 top-[6%] size-[52rem] rounded-full bg-[radial-gradient(circle,rgba(60,130,190,0.22),transparent_65%)] blur-3xl [--aurora-duration:38s]" />
+            </div>
+
+            {/* Skyline, drifting slower than the page. */}
+            <div aria-hidden="true" data-parallax="0.18" className="absolute inset-x-0 bottom-[-12%] -z-20 h-[78svh]">
+                <Skyline className="size-full" />
+            </div>
+
+            {/* Site-plan grid over the lower half. */}
+            <div aria-hidden="true"
+                className="blueprint-grid absolute inset-x-0 bottom-0 -z-20 h-[60svh] text-stone-100/60" />
+
+            {/* Scrim, so the type always sits on ink. */}
+            <div aria-hidden="true"
+                className="absolute inset-0 -z-10 bg-linear-to-t from-navy-950 via-navy-950/65 to-navy-950/10" />
+
+            {/* Left rail: a bead of light falling down a hairline. */}
+            <div aria-hidden="true"
+                className="absolute bottom-52 left-6 hidden flex-col items-center gap-4 lg:flex xl:left-8">
+                <span className="font-display text-[10px] uppercase tracking-luxe text-stone-100/40 [writing-mode:vertical-rl]">
+                    Scroll
+                </span>
+                <span className="relative block h-24 w-px overflow-hidden bg-stone-100/15">
+                    <span className="cue-bead absolute inset-x-0 top-0 block h-10 bg-linear-to-b from-transparent via-champagne-300 to-transparent" />
+                </span>
+            </div>
+
+            <Container className="relative z-10 flex flex-1 flex-col justify-between gap-16 pb-16 pt-32 sm:pb-20">
+                {/* Datum line across the top of the fold, so the sky reads as framed
+                    rather than merely empty. */}
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                    <p data-reveal="left"
+                        className="flex items-center gap-3 font-display text-xs uppercase tracking-luxe text-champagne-300">
+                        <span aria-hidden="true" className="size-1.5 rotate-45 bg-champagne-300" />
+                        {site.locality}
                     </p>
-                    <div className="flex flex-wrap gap-3">
-                        <ActionLink href="/projects">View live projects</ActionLink>
-                        <ActionLink href="/contact" variant="outlineLight">
-                            Book a site visit
-                        </ActionLink>
+                    <p data-reveal="right" style={{ "--rv-delay": "120ms" } as React.CSSProperties}
+                        className="font-display text-xs uppercase tracking-luxe text-stone-100/45">
+                        Four addresses open for booking
+                    </p>
+                </div>
+
+                <div className="flex flex-col gap-9 sm:gap-10">
+                    <h1 id="hero-heading"
+                        className="font-display text-6xl font-light leading-[0.9] tracking-tight sm:text-8xl lg:text-9xl xl:text-mega">
+                        <SplitText delay={180} step={150}
+                            lines={["Homes that", <><span className="text-shimmer">rise</span> with the city</>]} />
+                    </h1>
+
+                    <div data-reveal="rule" style={{ "--rv-delay": "560ms" } as React.CSSProperties}
+                        className="h-px w-full bg-linear-to-r from-champagne-300/70 via-stone-100/20 to-transparent" />
+
+                    <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+                        <p data-reveal="up" style={{ "--rv-delay": "640ms" } as React.CSSProperties}
+                            className="max-w-xl text-base leading-relaxed text-stone-100/75 sm:text-lg">
+                            {site.intro}
+                        </p>
+                        <div className="flex flex-wrap gap-3">
+                            <span data-reveal="up" style={{ "--rv-delay": "760ms" } as React.CSSProperties}>
+                                <ActionLink href="/projects">View live projects</ActionLink>
+                            </span>
+                            <span data-reveal="up" style={{ "--rv-delay": "860ms" } as React.CSSProperties}>
+                                <ActionLink href="/contact" variant="outlineLight">
+                                    Book a site visit
+                                </ActionLink>
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <ul className="flex flex-wrap gap-x-8 gap-y-3">
-                    {marks.map((mark) => (
-                        <li key={mark}
-                            className="font-display text-xs uppercase tracking-luxe text-stone-100/55">
-                            {mark}
-                        </li>
-                    ))}
-                </ul>
             </Container>
+
+            {/* Credential strip pinned to the foot of the fold. */}
+            <div className="relative z-10 border-t border-stone-100/12 backdrop-blur-sm">
+                <Container>
+                    <ul data-stagger="90" className="grid grid-cols-2 gap-px bg-stone-100/10 sm:grid-cols-4">
+                        {marks.map((mark) => (
+                            <li key={mark.value} data-reveal="up"
+                                className="flex flex-col gap-1 bg-navy-950/70 px-5 py-6 sm:py-7">
+                                <span className="font-display text-xl font-light tracking-tight text-champagne-300 sm:text-2xl">
+                                    {mark.value}
+                                </span>
+                                <span className="font-display text-[10px] uppercase tracking-luxe text-stone-100/50 sm:text-xs">
+                                    {mark.note}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </Container>
+            </div>
         </section>
     );
 }

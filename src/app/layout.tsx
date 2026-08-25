@@ -2,6 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Jost, Instrument_Sans } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ScrollProgress from "@/components/layout/ScrollProgress";
+import BackToTop from "@/components/layout/BackToTop";
+import MobileCallBar from "@/components/layout/MobileCallBar";
+import MotionRoot from "@/components/motion/MotionRoot";
 import { site } from "@/data/site";
 import "./globals.css";
 
@@ -52,14 +56,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     return (
         <html lang="en-IN"
             className={`${jost.variable} ${instrumentSans.variable} h-full scroll-smooth antialiased`}>
-            <body className="flex min-h-full flex-col bg-slate-100 font-sans text-slate-900 selection:bg-champagne-300 selection:text-navy-950 dark:bg-navy-950 dark:text-stone-100">
+            <body className="flex min-h-full flex-col bg-slate-100 pb-[4.25rem] font-sans lg:pb-0 text-slate-900 selection:bg-champagne-300 selection:text-navy-950 dark:bg-navy-950 dark:text-stone-100">
                 <a href="#main"
                     className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:bg-navy-900 focus:px-4 focus:py-2 focus:text-stone-100">
                     Skip to main content
                 </a>
+                <MotionRoot />
+                <ScrollProgress />
                 <Header />
                 <main id="main" className="flex-1">{children}</main>
                 <Footer />
+                <BackToTop />
+                <MobileCallBar />
             </body>
         </html>
     );
