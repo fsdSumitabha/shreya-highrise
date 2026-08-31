@@ -1,0 +1,354 @@
+/* Hero — blueprint to skyline.
+
+   Only what Tailwind cannot say: the scroll runway, the projected annotation
+   layer, and the handful of elements whose transforms are written from the
+   render loop. Everything those elements do per frame is transform and
+   opacity, so nothing here can trigger layout while the tower is building. */
+
+.hero3d {
+    /* The visible hero is one viewport. This is the runway that drives it —
+       240svh of scroll, spent entirely on the construction sequence. */
+    position: relative;
+    height: 340svh;
+    background-color: var(--color-navy-950);
+}
+
+@media (max-width: 767px) {
+    .hero3d {
+        height: 300svh;
+    }
+}
+
+/* No runway, and no construction chrome, when there is no construction to
+   drive — the drawn fallback, or a reader who asked for reduced motion. */
+.hero3d[data-static] {
+    height: 100svh;
+}
+
+.hero3d[data-static] .hero3d-progressive {
+    display: none;
+}
+
+.hero3d-stage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Positioning is set inline on the Canvas — react-three-fiber writes its own
+   inline position, and a stylesheet cannot outrank it. */
+.hero3d-canvas {
+    display: block;
+}
+
+/* Dusk over a site: a low warm bloom where the plinth lights sit, a cool
+   wash above it, and the void everywhere else. Painted in CSS rather than
+   the scene so the canvas can stay alpha and the gradient costs nothing. */
+.hero3d-backdrop {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(120% 62% at 62% 84%, rgba(29, 58, 86, 0.55) 0%, transparent 62%),
+        radial-gradient(70% 44% at 64% 96%, rgba(200, 169, 107, 0.13) 0%, transparent 70%),
+        radial-gradient(135% 100% at 50% -20%, #10293f 0%, #0a1c2e 42%, #071523 78%);
+}
+
+/* Haze on the horizon. Kept to a single soft band — anything wider starts to
+   read as weather rather than distance. */
+.hero3d-haze {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    pointer-events: none;
+    height: 46%;
+    background: linear-gradient(to top, rgba(7, 21, 35, 0.92) 12%, rgba(11, 31, 51, 0.25) 58%, transparent);
+}
+
+/* On a phone the copy sits under the tower rather than beside it, so the
+   scrim has to carry more of the contrast. */
+@media (max-width: 767px) {
+    .hero3d-haze {
+        height: 58%;
+        background: linear-gradient(to top, rgba(7, 21, 35, 0.96) 18%, rgba(8, 24, 39, 0.6) 52%, transparent);
+    }
+}
+
+/* ── Projected annotations ───────────────────────────────────────────────
+   Each label is placed once and then only ever written to by the render
+   loop: transform, opacity, visibility. */
+
+.hero3d-labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.hero3d-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    will-change: transform, opacity;
+}
+
+/* `transform` carries the projected anchor point, written from the render
+   loop; `translate` then parks the box against it. Both are pure
+   translations, so the order they compose in does not matter. */
+.hero3d-label[data-side="left"] {
+    flex-direction: row-reverse;
+    translate: calc(-100% - 0.5rem) -50%;
+}
+
+.hero3d-label[data-side="right"] {
+    translate: 0.5rem -50%;
+}
+
+.hero3d-label-node {
+    width: 0.3rem;
+    height: 0.3rem;
+    flex: none;
+    rotate: 45deg;
+    background: var(--color-champagne-300);
+}
+
+.hero3d-label-rule {
+    width: 2.25rem;
+    height: 1px;
+    flex: none;
+    background: linear-gradient(to right, rgba(200, 169, 107, 0.7), rgba(200, 169, 107, 0.15));
+}
+
+.hero3d-label[data-side="left"] .hero3d-label-rule {
+    background: linear-gradient(to left, rgba(200, 169, 107, 0.7), rgba(200, 169, 107, 0.15));
+}
+
+.hero3d-label-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.hero3d-label[data-side="left"] .hero3d-label-text {
+    align-items: flex-end;
+}
+
+.hero3d-label-title {
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    letter-spacing: var(--tracking-luxe);
+    text-transform: uppercase;
+    color: rgba(243, 233, 213, 0.82);
+}
+
+.hero3d-label-sub {
+    font-family: var(--font-sans);
+    font-size: 0.5625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(143, 164, 186, 0.6);
+}
+
+/* Less room beside the tower on a phone, so the leader shortens and the
+   type steps down with it. */
+@media (max-width: 767px) {
+    .hero3d-label-rule {
+        width: 1.1rem;
+    }
+
+    .hero3d-label-title {
+        font-size: 0.5625rem;
+    }
+
+    .hero3d-label-sub {
+        font-size: 0.5rem;
+    }
+}
+
+/* Follows the pointer while the tower is hovered. */
+.hero3d-hover-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    translate: 1.25rem 0.75rem;
+    border-left: 1px solid rgba(200, 169, 107, 0.55);
+    padding: 0.35rem 0 0.35rem 0.6rem;
+    white-space: nowrap;
+    will-change: transform, opacity;
+}
+
+/* ── Typography ─────────────────────────────────────────────────────────── */
+
+.hero3d-mega {
+    font-size: clamp(3.6rem, 14.5vw, var(--text-mega));
+    line-height: var(--text-mega--line-height);
+    letter-spacing: var(--text-mega--letter-spacing);
+}
+
+/* An architectural rule, not a button: the line is the affordance. */
+.hero3d-cta {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-bottom: 0.1rem;
+}
+
+.hero3d-cta-line {
+    position: relative;
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: rgba(243, 233, 213, 0.28);
+    overflow: hidden;
+}
+
+.hero3d-cta-line::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-champagne-300);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.65s var(--ease-luxe);
+}
+
+.hero3d-cta:hover .hero3d-cta-line::after,
+.hero3d-cta:focus-visible .hero3d-cta-line::after {
+    transform: scaleX(1);
+}
+
+/* ── Scroll indicator ───────────────────────────────────────────────────── */
+
+.hero3d-scroll-track {
+    position: relative;
+    display: block;
+    width: 1px;
+    height: 4.5rem;
+    background: rgba(243, 233, 213, 0.16);
+    overflow: hidden;
+}
+
+.hero3d-scroll-fill {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background: linear-gradient(to bottom, var(--color-champagne-300), rgba(200, 169, 107, 0.25));
+    transform: scaleY(0);
+    transform-origin: top;
+    will-change: transform;
+}
+
+/* ── Loading ────────────────────────────────────────────────────────────── */
+
+.hero3d-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    background: var(--color-navy-950);
+    transition:
+        opacity 0.7s var(--ease-soft),
+        visibility 0.7s;
+}
+
+.hero3d-loading[data-ready] {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hero3d-loading-bar {
+    position: relative;
+    width: 7rem;
+    height: 1px;
+    overflow: hidden;
+    background: rgba(243, 233, 213, 0.14);
+}
+
+.hero3d-loading-bar::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    width: 45%;
+    background: var(--color-champagne-300);
+    animation: hero3d-survey 1.5s var(--ease-soft) infinite;
+}
+
+@keyframes hero3d-survey {
+    0% {
+        transform: translateX(-110%);
+    }
+    100% {
+        transform: translateX(230%);
+    }
+}
+
+/* ── Fallback elevation ──────────────────────────────────────────────────
+   No WebGL: a drawn elevation, on the same grid and the same palette. It is
+   meant to look like a decision, not a failure. */
+
+.hero3d-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    /* Sized off the height, not the width — the drawing is 2.3 times taller
+       than it is wide, and letting the width lead overflows the stage. */
+    padding: 0 26% 9% 0;
+    pointer-events: none;
+}
+
+.hero3d-fallback svg {
+    height: 66%;
+    width: auto;
+}
+
+@media (max-width: 767px) {
+    .hero3d-fallback {
+        align-items: flex-start;
+        justify-content: center;
+        padding: 14% 0 0;
+    }
+
+    .hero3d-fallback svg {
+        height: 44%;
+    }
+}
+
+/* Reduced motion is served the finished tower, so it gets none of the
+   runway either — scrolling three viewports past a static building is worse
+   than not having had the effect at all. */
+@media (prefers-reduced-motion: reduce) {
+    .hero3d {
+        height: 100svh;
+    }
+
+    .hero3d-progressive {
+        display: none;
+    }
+
+    .hero3d-loading-bar::after {
+        animation: none;
+        width: 100%;
+    }
+
+    .hero3d-cta-line::after {
+        transition: none;
+    }
+}
