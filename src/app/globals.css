@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* ── Theme switching ──────────────────────────────────────────────
+   The site does not follow the device preference: it opens light for
+   everyone. <ThemeToggle> in the footer is the only thing that turns the
+   lights down, and its choice is remembered in localStorage and re-applied
+   by a blocking script in the root layout before first paint.
+
+   Redefining `dark` detaches every dark: utility on the site from
+   prefers-color-scheme and hangs it off data-theme on <html> instead. */
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
     --font-display: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
     --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
@@ -142,6 +153,13 @@
 /* Native accordion open/close, where the browser supports it. */
 :root {
     interpolate-size: allow-keywords;
+    /* Form controls, scrollbars and the rest follow the chosen theme, not the
+       OS — same rule as the dark: variant above. */
+    color-scheme: light;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
 }
 
 details::details-content {
