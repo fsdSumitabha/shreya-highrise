@@ -48,9 +48,9 @@ named beside it.
 
 ## 1. Company basics
 
-- [ ] 🔴 **Year founded** — site says **2006**, used in the hero, stats, About page timeline and footer copyright · `src/data/site.ts`
+- [x] ✅ **Year founded** — confirmed **2021**, used in the hero, stats, About page timeline and footer copyright · `src/data/site.ts`
 - [ ] 🔴 **Domain name** — assumed `https://shreyahighrise.in`, used in canonical URLs, OG tags and JSON-LD · `src/data/site.ts`
-- [ ] 🔴 **CIN (company registration number)** — not shown anywhere yet; ask whether it should be in the footer · `src/data/site.ts`
+- [x] ✅ **CIN** — confirmed **U70109WB2021PTC246677**, printed in the footer legal line, the contact page legal note and the JSON-LD `identifier` · `src/data/site.ts`
 - [ ] 🟡 **Which email is public sales, which is internal** — we treat `shreyahighrise@gmail.com` as sales and `royconstruction@gmail.com` as projects/handover · `src/data/site.ts`
 - [ ] 🟡 **Are both phone numbers public, and which is primary?** — `8910355765` is primary (it's the header button), `9836649276` secondary · `src/data/site.ts`
 - [ ] 🟡 **Office hours per office** — we invented Head Office Mon–Sun 10:00–19:00 and Registered Office Mon–Sat 11:00–18:00 · `src/data/site.ts`
@@ -72,6 +72,7 @@ almost everything below is already printed on it.
 - [ ] 🟡 **Three selling points** per project · `projects.ts` → `highlights`
 - [ ] 🟡 For completed projects: **handover year and number of families** living there · `projects.ts`
 - [ ] 🟡 **Floor plans and brochure PDFs** — needed for the Projects page
+- [ ] 🔴 **Placeholder projects that predate the 2021 founding** — Spriha Heights (WBHIRA 2018, handed over 2019) and Shreya Greens (WBHIRA 2019) can't exist for a company incorporated in 2021. Left as-is pending the real project list · `src/data/projects.ts`
 
 ---
 
@@ -82,9 +83,9 @@ each other **and** with the project list. If the client says "8 projects", the c
 have to add up to 8.
 
 - [ ] 🟡 **Total projects / addresses** (completed + ongoing) — we say **10** · `src/data/stats.ts`, `src/data/corridors.ts`
-- [ ] 🟡 **Total families / flats handed over** — we say **1,450** · `src/data/stats.ts`
-- [ ] 🟡 **Total sq. ft. developed** — we say **1.6M** · `src/data/stats.ts`
-- [ ] 🟡 **Years in business** — the stats band says **18+** but 2006 to today is 20. Fix once the founding year is confirmed · `src/data/stats.ts`
+- [ ] 🔴 **Total families / flats handed over** — we say **1,450**, which is a very large number for a company founded in 2021. Needs the real figure · `src/data/stats.ts`
+- [ ] 🔴 **Total sq. ft. developed** — we say **1.6M**; same problem as the family count against a 2021 founding · `src/data/stats.ts`
+- [ ] 🟡 **Years in business** — stats band now says **5** (2021 to today). Confirm the count is how they want it phrased · `src/data/stats.ts`
 - [ ] 🟡 **Which areas of Kolkata they actually build in** — we assume four corridors: New Town, Rajarhat, North Kolkata, South Kolkata · `src/data/corridors.ts`
 - [ ] 🟡 **Project count per corridor** — we assume New Town 3, Rajarhat 1, North Kolkata 5, South Kolkata 1 · `src/data/corridors.ts`
 
@@ -124,10 +125,10 @@ Each of these is stated on the site as a fact. If it isn't true, it has to come 
 The narrative is deliberately specific (dates, numbers, a founding anecdote) — which is what
 makes it good copy and also what makes it risky if the details are wrong.
 
-- [ ] 🔴 **The founding story** — we wrote that the family bought a plot on Rabindra Sarani in New Barrackpur in 2006, in a neighbourhood they already lived in, and that the first building there still houses the registered office. Is any of that true? · `src/data/about.ts` → `story`
-- [ ] 🔴 **The timeline** — 11 dated milestones, all invented. Which ones are real, and what should replace the rest? · `src/data/about.ts` → `milestones`
-  - 2006 first plot · 2010 first building, 16 families · 2014 incorporated as Pvt Ltd · 2016 delay clause introduced · 2018 first piled high-rise · 2019 Spriha Heights handover · 2021 first New Town project · 2022 Shreya Greens handover · 2024 Verdant Court OC + 1,000th home · 2025 Skyline One launch · 2029 Narendrapur
-- [ ] 🔴 **Year of incorporation as a private limited company** — we guessed 2014 · `src/data/about.ts`
+- [ ] 🔴 **The founding story** — we wrote that the family bought a plot on Rabindra Sarani in New Barrackpur (now dated 2021), in a neighbourhood they already lived in, and that the first building there still houses the registered office. Is any of that true? · `src/data/about.ts` → `story`
+- [ ] 🔴 **The timeline** — re-anchored to the confirmed 2021 founding, but the six milestones are still invented. Which ones are real, and what should replace the rest? · `src/data/about.ts` → `milestones`
+  - 2021 incorporated + first plot · 2022 delay clause introduced + Shreya Greens handover · 2023 first piled high-rise · 2024 Verdant Court OC, first New Town address · 2025 Skyline One launch · 2029 Narendrapur
+- [x] ✅ **Year of incorporation as a private limited company** — **2021**, per the CIN · `src/data/about.ts`
 - [ ] 🔴 **Director biographies** — a paragraph each, all invented, including specific claims ("has negotiated every acquisition since", "personally signs off the snag list on each flat") · `src/data/site.ts` → `leadership`
 - [ ] 🔴 **"We have never franchised the brand or sold a development-management licence"** — stated as fact · `src/data/about.ts` → `principles`
 - [ ] 🔴 **"Funded out of projects already delivered"** / never taken construction finance — a claim about how the company is financed · `src/data/about.ts`
@@ -136,7 +137,7 @@ makes it good copy and also what makes it risky if the details are wrong.
 - [ ] 🟡 **The six in-house desks** and which director leads each — invented org structure · `src/data/about.ts` → `desks`
 - [ ] 🟡 **"Occupancy certificate before keys"** — stated as standard practice · `src/data/about.ts`
 - [ ] 🟡 **The pull quote** ("sixty homes we can stand in front of…") — our words, presented as the company's. Keep, rewrite or drop · `src/data/about.ts` → `story.pullQuote`
-- [ ] 🟡 **Director start years** — Ranjeet and Sampa Roy as founders in 2006, Partha Roy Chowdhury joining 2009 · `src/data/site.ts`
+- [ ] 🟡 **Director start years** — now Ranjeet and Sampa Roy as founders in 2021 and Partha Roy Chowdhury as "Director since 2021". Confirm who was on the board at incorporation and who joined later · `src/data/site.ts`
 - [ ] 🟡 **Page headline** — "One family, ten addresses, no shortcuts". Are they comfortable leading with family ownership? · `src/data/about.ts`
 
 ---

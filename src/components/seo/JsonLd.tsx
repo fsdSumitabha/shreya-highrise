@@ -6,6 +6,7 @@ const organization = {
     "@type": "RealEstateAgent",
     name: site.name,
     legalName: site.legalName,
+    identifier: site.cin,
     url: site.url,
     foundingDate: String(site.founded),
     description: site.intro,

@@ -22,7 +22,7 @@ export const corridors: Corridor[] = [
         name: "North Kolkata",
         blurb: "New Barrackpur and Madhyamgram — established neighbourhoods on the Jessore Road spine where we started out.",
         projectCount: "5 projects",
-        since: "Since 2006",
+        since: "Since 2021",
     },
     {
         name: "South Kolkata",

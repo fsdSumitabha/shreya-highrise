@@ -15,7 +15,7 @@ export const story = {
     heading: "It begins on a road we already lived on",
     paragraphs: [
         "Shreya High Rise starts the way most Kolkata builders do — with a single plot and a family name. The Roys bought a strip of land on Rabindra Sarani in New Barrackpur: a road they had lived on, in a neighbourhood where they knew which stretch floods in August and which one stays dry. The building that went up there still carries the company's registered office on its ground floor.",
-        "For the first decade the work was deliberately small. Four floors, sixteen families, a contractor's crew, and three people doing everything else between them. What changed was never the ambition — it was the method. The company stopped quoting prices that could be revised later, started printing a delay clause into its own agreements, and hired an engineer whose entire job was to say no to the site.",
+        "For the first years the work was deliberately small. Four floors, sixteen families, a contractor's crew, and three people doing everything else between them. What changed was never the ambition — it was the method. The company stopped quoting prices that could be revised later, started printing a delay clause into its own agreements, and hired an engineer whose entire job was to say no to the site.",
         "The high-rise came after that. Piled foundations, gearless lifts, a fire system signed off to the National Building Code — none of it is remarkable elsewhere in India, and all of it was a decision here. Ten addresses now carry the name: north along the Jessore Road spine where we started, east into Rajarhat and New Town, and by the end of this decade, south towards Narendrapur.",
         "The company is still private. It is still funded out of projects it has already delivered, and it is still run day to day by the three people who signed for that first plot. That is the whole story. We are not planning a different one.",
     ],
@@ -27,49 +27,24 @@ export const story = {
 
 export const milestones: Milestone[] = [
     {
-        year: "2006",
-        title: "The first plot",
-        body: "The family registers the firm and buys a strip of land on Rabindra Sarani, New Barrackpur. Everything since has been funded out of what came before it.",
+        year: "2021",
+        title: "The company is registered",
+        body: "Shreya Highrise Private Limited is incorporated in West Bengal and buys a strip of land on Rabindra Sarani, New Barrackpur. Everything since has been funded out of what came before it.",
     },
     {
-        year: "2010",
-        title: "Four floors, sixteen families",
-        body: "The first completed building is handed over. Every buyer was someone who already lived within two kilometres of the site.",
-    },
-    {
-        year: "2014",
-        title: "Incorporated",
-        body: "The firm becomes Shreya Highrise Private Limited, with an in-house drawing desk in place of a retained draughtsman.",
-    },
-    {
-        year: "2016",
+        year: "2022",
         title: "The delivery promise",
-        body: "A dated possession clause and a delay-compensation term go into the standard agreement. Every project since has been handed over on or before that date.",
+        body: "A dated possession clause and a delay-compensation term go into the standard agreement. Shreya Greens is handed over the same year — ninety-six homes in Madhyamgram, transferred to a resident association after two years of estate support.",
     },
     {
-        year: "2018",
+        year: "2023",
         title: "Into high-rise",
         body: "First piled foundation, first gearless lift bank, and the first project engineered to the delta's soil profile rather than a generic Zone III template.",
     },
     {
-        year: "2019",
-        title: "Spriha Heights handed over",
-        body: "Sixty-four homes across two blocks, on the road where the company began. Fully occupied inside the year.",
-    },
-    {
-        year: "2021",
-        title: "New Town",
-        body: "The first Action Area address, and the move from neighbourhood developer to a company building on the city's planned edge.",
-    },
-    {
-        year: "2022",
-        title: "Shreya Greens handed over",
-        body: "Ninety-six homes in Madhyamgram, transferred to a resident association in 2024 after two years of estate support.",
-    },
-    {
         year: "2024",
         title: "Verdant Court receives its OC",
-        body: "One hundred and forty-eight families take possession in Action Area I, carrying the company past a thousand homes delivered.",
+        body: "One hundred and forty-eight families take possession in Action Area I — the first New Town address, and the move from neighbourhood developer to a company building on the city's planned edge.",
     },
     {
         year: "2025",

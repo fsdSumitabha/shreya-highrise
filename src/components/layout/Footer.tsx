@@ -73,7 +73,7 @@ export default function Footer() {
                 <p>
                     © {site.founded}–{new Date().getFullYear()} {site.legalName}. All rights reserved.
                 </p>
-                <p>GSTIN {site.gstin}</p>
+                <p>CIN {site.cin} · GSTIN {site.gstin}</p>
             </Container>
             <Container className="pb-10">
                 <p className="max-w-4xl text-xs leading-relaxed text-slate-500 dark:text-stone-100/40">

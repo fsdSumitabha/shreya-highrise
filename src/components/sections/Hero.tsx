@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 
 const marks = [
     { value: "WBRERA", note: "Registered, every project" },
-    { value: "Est. 2006", note: "Eighteen years building" },
+    { value: `Est. ${site.founded}`, note: "Five years building" },
     { value: "10", note: "Addresses across Kolkata" },
     { value: "1,450", note: "Families handed keys" },
 ];

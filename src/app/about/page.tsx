@@ -13,7 +13,7 @@ import { aboutIntro } from "@/data/about";
 import { site } from "@/data/site";
 
 const description =
-    "Shreya High Rise is a privately held, family-run Kolkata developer building RERA-registered high-rise homes since 2006 — ten addresses across New Town, Rajarhat, North and South Kolkata. Our history, our directors, and the specification we build every project to.";
+    "Shreya High Rise is a privately held, family-run Kolkata developer building RERA-registered high-rise homes since 2021 — ten addresses across New Town, Rajarhat, North and South Kolkata. Our history, our directors, and the specification we build every project to.";
 
 export const metadata: Metadata = {
     title: "About Us — Our Story, Directors & Build Standard",

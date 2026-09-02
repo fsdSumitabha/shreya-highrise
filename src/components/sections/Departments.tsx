@@ -37,7 +37,7 @@ export default function Departments() {
                 </ul>
 
                 <p className="max-w-3xl border-l border-champagne-400/50 pl-6 text-sm leading-relaxed text-slate-500 dark:border-champagne-300/40 dark:text-stone-100/55">
-                    {site.legalName} · GSTIN {site.gstin}. For a complaint under the West Bengal Real Estate
+                    {site.legalName} · CIN {site.cin} · GSTIN {site.gstin}. For a complaint under the West Bengal Real Estate
                     (Regulation and Development) rules, write to the grievance desk above with your project name,
                     unit number and WBRERA registration number. You will have a written acknowledgement within
                     three working days.

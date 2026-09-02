@@ -17,7 +17,7 @@ import JsonLd from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
     title: "High-Rise Flats in New Town, Rajarhat & Kolkata",
     description:
-        "Shreya High Rise builds RERA-registered 2, 3 and 4 BHK high-rise apartments at ten addresses across Kolkata — New Town, Rajarhat, Madhyamgram and Narendrapur. Transparent pricing, on-time possession, 1,450 families since 2006.",
+        "Shreya High Rise builds RERA-registered 2, 3 and 4 BHK high-rise apartments at ten addresses across Kolkata — New Town, Rajarhat, Madhyamgram and Narendrapur. Transparent pricing, on-time possession, 1,450 families since 2021.",
     alternates: { canonical: "/" },
 };
 
