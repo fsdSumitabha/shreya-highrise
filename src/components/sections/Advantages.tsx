@@ -4,7 +4,13 @@ import { advantages } from "@/data/advantages";
 
 export default function Advantages() {
     return (
-        <section aria-labelledby="advantages-heading" className="relative overflow-hidden py-20 sm:py-28">
+        <section aria-labelledby="advantages-heading"
+            className="relative isolate overflow-hidden py-20 sm:py-28">
+            {/* A working floor plan pinned to the top-right corner, running off
+                both edges the way a sheet does when it is bigger than the desk. */}
+            <span aria-hidden="true"
+                className="plan-plate pointer-events-none absolute -right-20 -top-24 -z-10 aspect-1008/1043 w-[min(46rem,120vw)] text-navy-900/22 sm:-right-14 dark:text-champagne-200/26" />
+
             <Container className="flex flex-col gap-14">
                 <SectionHeading id="advantages-heading" eyebrow="Why buyers choose us"
                     lines={["Six commitments", "we put in writing"]}

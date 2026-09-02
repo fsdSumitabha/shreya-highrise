@@ -358,6 +358,24 @@ details[open]::details-content {
     mask-image: linear-gradient(to top, #000 10%, transparent 85%);
 }
 
+/* An architect's plan tucked behind a section corner. The drawing is a
+   transparent PNG of bare linework, so it arrives as a mask rather than an
+   image: the ink is painted here in currentColor, which keeps the sheet
+   readable on paper and on navy without a second asset or an invert filter.
+   The wash underneath fades the sheet out as it travels away from the corner
+   it is pinned to, so the linework never reaches the text it sits behind. */
+.plan-plate {
+    background-image: radial-gradient(
+        130% 130% at 100% 0%,
+        currentColor 0%,
+        currentColor 24%,
+        transparent 70%
+    );
+    mask-image: url("/bg_drawing.png");
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+}
+
 /* Champagne sweeping through a headline word. */
 .text-shimmer {
     --shimmer-base: var(--color-champagne-500);
@@ -486,6 +504,125 @@ details[open]::details-content {
     --lit-max: 1;
 }
 
+/* ── WhatsApp desk ────────────────────────────────────────────────────────
+   Drives <WhatsAppCta>. Two rings leaving the button on a long cycle, and the
+   arrow that keeps redrawing itself alongside. Both are decoration only — the
+   button is a plain anchor and works with every animation here switched off. */
+
+@keyframes wa-halo {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+    70% {
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1.85);
+        opacity: 0;
+    }
+}
+
+.wa-halo {
+    animation: wa-halo 3s var(--ease-soft) infinite;
+}
+
+.wa-halo-late {
+    animation-delay: 1.5s;
+}
+
+/* The pointer redraws itself on a loop, the way public/right-arrow.gif does:
+   one stroke retracting its dash while the head rides the same path through
+   offset-path, so the two can never drift apart. Both animations run on the
+   same clock with linear timing — the pen moves at a constant rate along the
+   path, which is what keeps the head welded to the wet end of the line. */
+
+@keyframes wa-draw {
+    0%,
+    3% {
+        stroke-dashoffset: 1;
+        opacity: 0;
+    }
+    12% {
+        opacity: 1;
+    }
+    52%,
+    82% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes wa-tip {
+    0%,
+    3% {
+        offset-distance: 0%;
+        opacity: 0;
+    }
+    12% {
+        opacity: 1;
+    }
+    52%,
+    82% {
+        offset-distance: 100%;
+        opacity: 1;
+    }
+    100% {
+        offset-distance: 100%;
+        opacity: 0;
+    }
+}
+
+/* The doodle is drawn over whatever the page happens to be showing — a
+   champagne button, a photograph — so every stroke is laid down twice: a wide
+   veil in the page's own background colour, then the line on top of it. Cheaper
+   and softer than boxing the arrow in, and it keeps the ink readable on both
+   themes. */
+.wa-arrow {
+    --wa-veil: color-mix(in oklab, var(--color-slate-100) 92%, transparent);
+}
+
+[data-theme="dark"] .wa-arrow {
+    --wa-veil: color-mix(in oklab, var(--color-navy-950) 92%, transparent);
+}
+
+.wa-arrow-veil {
+    stroke: var(--wa-veil);
+}
+
+.wa-arrow-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: wa-draw var(--wa-loop, 4.2s) linear infinite;
+}
+
+/* Anchored on the head's own tip rather than the default, which for an SVG
+   child is the centre of the whole view box — that would hang the arrowhead a
+   long way off the line it is meant to be leading. */
+.wa-arrow-tip {
+    transform-box: fill-box;
+    offset-anchor: 100% 50%;
+    offset-rotate: auto;
+    /* The head carries its own veil, painted under its fill. */
+    stroke: var(--wa-veil);
+    stroke-width: 2.8;
+    stroke-linejoin: round;
+    paint-order: stroke fill;
+    animation: wa-tip var(--wa-loop, 4.2s) linear infinite;
+}
+
+/* Without motion paths the head has no position of its own — park it on the
+   tip of the drawn line instead of at the origin. */
+@supports not (offset-path: path("M 0 0")) {
+    .wa-arrow-tip {
+        transform: translate(258px, 44px) rotate(-3deg);
+    }
+}
+
 /* ── Reading progress ─────────────────────────────────────────────────── */
 
 .scroll-progress {
@@ -502,8 +639,26 @@ details[open]::details-content {
     .aurora,
     .text-shimmer,
     .cue-bead,
-    .window-lit {
+    .window-lit,
+    .wa-halo,
+    .wa-arrow-line,
+    .wa-arrow-tip {
         animation: none;
+    }
+
+    /* The rings are only legible in motion; held still they are two flat
+       discs sitting on the button. The arrow, on the other hand, still has a
+       job to do — it just does it as a finished drawing. */
+    .wa-halo {
+        opacity: 0;
+    }
+
+    .wa-arrow-line {
+        stroke-dashoffset: 0;
+    }
+
+    .wa-arrow-tip {
+        offset-distance: 100%;
     }
 
     .text-shimmer {

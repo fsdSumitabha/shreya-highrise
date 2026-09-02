@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import BackToTop from "@/components/layout/BackToTop";
 import MobileCallBar from "@/components/layout/MobileCallBar";
+import WhatsAppCta from "@/components/layout/WhatsAppCta";
 import MotionRoot from "@/components/motion/MotionRoot";
 import { DEFAULT_THEME, THEME_COLOR, themeBootScript } from "@/components/layout/theme";
 import { site } from "@/data/site";
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <main id="main" className="flex-1">{children}</main>
                 <Footer />
                 <BackToTop />
+                <WhatsAppCta />
                 <MobileCallBar />
             </body>
         </html>
