@@ -6,16 +6,17 @@ import { enquiryFields, responsePromise } from "@/data/contact";
 import { site } from "@/data/site";
 
 const control =
-    "w-full border border-stone-100/20 bg-navy-950/50 px-4 py-3.5 text-base text-stone-100 outline-none transition-colors [color-scheme:dark] placeholder:text-stone-100/30 focus:border-champagne-300 focus:ring-1 focus:ring-champagne-300";
-const labelText = "font-display text-xs uppercase tracking-luxe text-stone-100/55";
+    "w-full border border-slate-900/20 bg-white px-4 py-3.5 text-base text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-champagne-500 focus:ring-1 focus:ring-champagne-500 dark:border-stone-100/20 dark:bg-navy-950/50 dark:text-stone-100 dark:placeholder:text-stone-100/30 dark:focus:border-champagne-300 dark:focus:ring-champagne-300";
+const labelText =
+    "font-display text-xs uppercase tracking-luxe text-slate-500 dark:text-stone-100/55";
 
 export default function EnquiryForm() {
     return (
         <section id="enquiry" aria-labelledby="enquiry-heading"
-            className="scroll-mt-24 bg-navy-900 py-20 text-stone-100 sm:py-28">
+            className="scroll-mt-24 border-y border-slate-900/10 bg-slate-200/60 py-20 text-slate-900 sm:py-28 dark:border-stone-100/10 dark:bg-navy-900 dark:text-stone-100">
             <Container className="grid gap-14 lg:grid-cols-12 lg:gap-16">
                 <div className="flex flex-col gap-10 lg:col-span-7">
-                    <SectionHeading id="enquiry-heading" tone="dark" eyebrow="Send an enquiry"
+                    <SectionHeading id="enquiry-heading" eyebrow="Send an enquiry"
                         title="Tell us what you are looking for"
                         lede="Two fields are compulsory. Everything else just makes the first call shorter — and lets us send the right price sheet before you spend a Sunday travelling." />
 
@@ -48,16 +49,16 @@ export default function EnquiryForm() {
                                 className={`${control} resize-y`} />
                         </Field>
 
-                        <details className="group border border-stone-100/15">
+                        <details className="group border border-slate-900/15 bg-white dark:border-stone-100/15 dark:bg-transparent">
                             <summary
-                                className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-display text-xs uppercase tracking-luxe text-stone-100/70 transition-colors hover:text-champagne-300 [&::-webkit-details-marker]:hidden">
+                                className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-display text-xs uppercase tracking-luxe text-slate-600 transition-colors hover:text-champagne-500 dark:text-stone-100/70 dark:hover:text-champagne-300 [&::-webkit-details-marker]:hidden">
                                 Add detail — it makes the first call shorter
                                 <span aria-hidden="true"
-                                    className="font-display text-xl leading-none text-champagne-300 transition-transform group-open:rotate-45">
+                                    className="font-display text-xl leading-none text-champagne-500 transition-transform group-open:rotate-45 dark:text-champagne-300">
                                     +
                                 </span>
                             </summary>
-                            <div className="grid gap-6 border-t border-stone-100/15 p-5 sm:grid-cols-2 sm:p-6">
+                            <div className="grid gap-6 border-t border-slate-900/15 p-5 sm:grid-cols-2 sm:p-6 dark:border-stone-100/15">
                                 <Field htmlFor="configuration" label={enquiryFields.configuration.label}>
                                     <Select id="configuration" name="configuration"
                                         options={enquiryFields.configuration.options} />
@@ -78,9 +79,9 @@ export default function EnquiryForm() {
                         </details>
 
                         <label htmlFor="consent"
-                            className="flex cursor-pointer items-start gap-3.5 border-t border-stone-100/15 pt-7 text-sm leading-relaxed text-stone-100/65">
+                            className="flex cursor-pointer items-start gap-3.5 border-t border-slate-900/15 pt-7 text-sm leading-relaxed text-slate-600 dark:border-stone-100/15 dark:text-stone-100/65">
                             <input id="consent" name="consent" type="checkbox" value="yes" required
-                                className="mt-1 size-4 shrink-0 accent-champagne-300 [color-scheme:dark]" />
+                                className="mt-1 size-4 shrink-0 accent-champagne-400 dark:accent-champagne-300" />
                             <span>
                                 I would like {site.name} to contact me about this enquiry by phone, WhatsApp or
                                 email. My details will not be sold or passed to a third party.
@@ -92,7 +93,7 @@ export default function EnquiryForm() {
                                 className="inline-flex items-center justify-center gap-2 bg-champagne-300 px-9 py-4 font-display text-xs uppercase tracking-luxe text-navy-950 transition-colors hover:bg-champagne-200">
                                 Send enquiry
                             </button>
-                            <p className="font-display text-xs uppercase tracking-luxe text-stone-100/45">
+                            <p className="font-display text-xs uppercase tracking-luxe text-slate-500 dark:text-stone-100/45">
                                 Or call {site.phones[0].display}
                             </p>
                         </div>
@@ -100,7 +101,7 @@ export default function EnquiryForm() {
                 </div>
 
                 <aside className="flex flex-col gap-8 lg:col-span-5 lg:pl-8">
-                    <div className="flex flex-col gap-8 border border-stone-100/15 p-8 sm:p-10">
+                    <div className="flex flex-col gap-8 border border-slate-900/12 bg-white p-8 sm:p-10 dark:border-stone-100/15 dark:bg-transparent">
                         <h3 className="font-display text-2xl font-light leading-tight tracking-tight sm:text-3xl">
                             {responsePromise.heading}
                         </h3>
@@ -108,34 +109,36 @@ export default function EnquiryForm() {
                             {responsePromise.steps.map((step, index) => (
                                 <li key={step.title} className="flex gap-5">
                                     <span aria-hidden="true"
-                                        className="mt-0.5 font-display text-sm tracking-luxe text-champagne-300">
+                                        className="mt-0.5 font-display text-sm tracking-luxe text-champagne-500 dark:text-champagne-300">
                                         {String(index + 1).padStart(2, "0")}
                                     </span>
                                     <div className="flex flex-col gap-1.5">
                                         <p className="font-display text-lg font-medium tracking-tight">
                                             {step.title}
                                         </p>
-                                        <p className="text-sm leading-relaxed text-stone-100/65">{step.body}</p>
+                                        <p className="text-sm leading-relaxed text-slate-600 dark:text-stone-100/65">
+                                            {step.body}
+                                        </p>
                                     </div>
                                 </li>
                             ))}
                         </ol>
-                        <p className="border-t border-stone-100/15 pt-6 text-xs leading-relaxed text-stone-100/45">
+                        <p className="border-t border-slate-900/12 pt-6 text-xs leading-relaxed text-slate-500 dark:border-stone-100/15 dark:text-stone-100/45">
                             {responsePromise.footnote}
                         </p>
                     </div>
 
-                    <div className="flex flex-col gap-3 border-l-2 border-champagne-300 pl-6">
-                        <p className="font-display text-xs uppercase tracking-luxe text-champagne-300">
+                    <div className="flex flex-col gap-3 border-l-2 border-champagne-400 pl-6 dark:border-champagne-300">
+                        <p className="font-display text-xs uppercase tracking-luxe text-champagne-500 dark:text-champagne-300">
                             Would rather just talk?
                         </p>
                         {site.phones.map((phone) => (
                             <a key={phone.tel} href={`tel:${phone.tel}`}
-                                className="font-display text-2xl font-light tracking-tight transition-colors hover:text-champagne-300 sm:text-3xl">
+                                className="font-display text-2xl font-light tracking-tight transition-colors hover:text-champagne-500 sm:text-3xl dark:hover:text-champagne-300">
                                 {phone.display}
                             </a>
                         ))}
-                        <p className="text-sm text-stone-100/55">{site.hours}</p>
+                        <p className="text-sm text-slate-500 dark:text-stone-100/55">{site.hours}</p>
                     </div>
                 </aside>
             </Container>
@@ -153,11 +156,13 @@ function Field({
             <label htmlFor={htmlFor} className={`flex items-baseline gap-2 ${labelText}`}>
                 {label}
                 {required ? (
-                    <span aria-hidden="true" className="text-champagne-300">
+                    <span aria-hidden="true" className="text-champagne-500 dark:text-champagne-300">
                         *
                     </span>
                 ) : null}
-                {hint ? <span className="text-stone-100/35 normal-case tracking-normal">— {hint}</span> : null}
+                {hint ? (
+                    <span className="normal-case tracking-normal text-slate-400 dark:text-stone-100/35">— {hint}</span>
+                ) : null}
             </label>
             {children}
         </div>

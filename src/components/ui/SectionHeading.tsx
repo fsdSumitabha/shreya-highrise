@@ -10,15 +10,13 @@ type Props = {
     lines?: (string | ReactNode)[];
     lede?: string;
     align?: "left" | "center";
-    tone?: "light" | "dark";
     className?: string;
 };
 
 export default function SectionHeading({
-    id, eyebrow, title, lines, lede, align = "left", tone = "light", className = "",
+    id, eyebrow, title, lines, lede, align = "left", className = "",
 }: Props) {
     const centred = align === "center";
-    const ledeTone = tone === "dark" ? "text-stone-100/70" : "text-slate-600 dark:text-stone-100/70";
     const heading = "font-display text-4xl font-light leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl";
 
     return (
@@ -43,7 +41,7 @@ export default function SectionHeading({
 
             {lede ? (
                 <p data-reveal="up" style={{ "--rv-delay": "180ms" } as React.CSSProperties}
-                    className={`text-base leading-relaxed sm:text-lg ${ledeTone}`}>
+                    className="text-base leading-relaxed text-slate-600 sm:text-lg dark:text-stone-100/70">
                     {lede}
                 </p>
             ) : null}

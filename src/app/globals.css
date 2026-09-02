@@ -340,9 +340,13 @@ details[open]::details-content {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.35;
+    opacity: 0.16;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .grain::before {
+    opacity: 0.35;
 }
 
 /* Surveyor's grid, fading out as it rises. */
@@ -356,18 +360,27 @@ details[open]::details-content {
 
 /* Champagne sweeping through a headline word. */
 .text-shimmer {
+    --shimmer-base: var(--color-champagne-500);
+    --shimmer-crest: var(--color-champagne-300);
+    --shimmer-tail: var(--color-champagne-400);
     background: linear-gradient(
         100deg,
-        var(--color-champagne-400) 20%,
-        var(--color-champagne-100) 42%,
-        var(--color-champagne-300) 58%,
-        var(--color-champagne-400) 80%
+        var(--shimmer-base) 20%,
+        var(--shimmer-crest) 42%,
+        var(--shimmer-tail) 58%,
+        var(--shimmer-base) 80%
     );
     background-size: 250% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     animation: shimmer 7s var(--ease-soft) infinite;
+}
+
+[data-theme="dark"] .text-shimmer {
+    --shimmer-base: var(--color-champagne-400);
+    --shimmer-crest: var(--color-champagne-100);
+    --shimmer-tail: var(--color-champagne-300);
 }
 
 @keyframes shimmer {
@@ -413,6 +426,64 @@ details[open]::details-content {
 
 .window-lit {
     animation: window-glow var(--lit-duration, 6s) ease-in-out var(--lit-delay, 0s) infinite;
+}
+
+/* ── Skyline palette ──────────────────────────────────────────────────────
+   <Skyline> draws one set of towers for both themes and takes every colour
+   from here: an overcast midday in light, dusk over a lit city in dark. SVG
+   presentation attributes cannot hold var(), so the component applies these
+   through inline style rather than fill= / stop-color=.
+
+   The two --lit- values are read by .window-lit above. In daylight the lit
+   windows become faint glints off the glass instead of rooms with the lamps
+   on, which is why the light range is so much shallower. */
+
+.skyline {
+    --sky-haze: #93a8bd;
+    --sky-haze-opacity: 0.3;
+    --sky-back-top: #aec0d3;
+    --sky-back-bottom: #93a9c0;
+    --sky-front-top: #8098b0;
+    --sky-front-mid: #68809a;
+    --sky-front-bottom: #51677f;
+    --sky-window: #2c4a68;
+    --sky-window-opacity: 0.22;
+    --sky-roof: #ab8b4d;
+    --sky-roof-opacity: 0.55;
+    --sky-edge: #ffffff;
+    --sky-edge-opacity: 0.45;
+    --sky-mast: #64748b;
+    --sky-glint: #ffffff;
+    --sky-beacon: #ab8b4d;
+    --lit-min: 0.06;
+    --lit-max: 0.5;
+}
+
+[data-theme="dark"] .skyline {
+    --sky-haze: #c8a96b;
+    --sky-haze-opacity: 0.2;
+    --sky-back-top: #2b5077;
+    --sky-back-bottom: #122c46;
+    --sky-front-top: #1a3c5c;
+    --sky-front-mid: #102a43;
+    --sky-front-bottom: #0a1d30;
+    --sky-window: #c8a96b;
+    --sky-window-opacity: 0.3;
+    --sky-roof: #c8a96b;
+    --sky-roof-opacity: 0.4;
+    --sky-edge: #c8a96b;
+    --sky-edge-opacity: 0.16;
+    --sky-mast: #8fa4ba;
+    --sky-glint: #f3e9d5;
+    --sky-beacon: #c8a96b;
+    --lit-min: 0.1;
+    --lit-max: 0.85;
+}
+
+/* Mast lamps burn harder than a window in either theme. */
+.sky-beacon {
+    --lit-min: 0.2;
+    --lit-max: 1;
 }
 
 /* ── Reading progress ─────────────────────────────────────────────────── */

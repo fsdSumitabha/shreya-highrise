@@ -7,7 +7,13 @@
 
    Every figure below is computed from a plain integer generator, never
    Math.random, so the server and the browser draw the identical skyline and
-   hydration stays quiet. */
+   hydration stays quiet.
+
+   Colour lives in the .skyline block in globals.css, one set of custom
+   properties per theme — daylight towers against an overcast sky, or dusk
+   with the lamps coming on. Every paint below therefore goes through inline
+   style: an SVG presentation attribute such as fill= or stop-color= cannot
+   hold a var(). */
 
 const GROUND = 640;
 const CELL_W = 20;
@@ -73,28 +79,31 @@ function lightsFor(tower: Tower, seed: number): Light[] {
 export default function Skyline({ className = "", id = "skyline" }: { className?: string; id?: string }) {
     return (
         <svg viewBox={`0 0 1440 ${GROUND}`} preserveAspectRatio="xMidYMax slice" aria-hidden="true"
-            className={className}>
+            className={`skyline ${className}`}>
             <defs>
                 <pattern id={`${id}-windows`} width={CELL_W} height={CELL_H} patternUnits="userSpaceOnUse">
-                    <rect x={WIN_X} y={WIN_Y} width={WIN_W} height={WIN_H} fill="#c8a96b" opacity="0.30" />
+                    <rect x={WIN_X} y={WIN_Y} width={WIN_W} height={WIN_H}
+                        style={{ fill: "var(--sky-window)", opacity: "var(--sky-window-opacity)" }} />
                 </pattern>
                 <linearGradient id={`${id}-back`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#2b5077" stopOpacity="0.85" />
-                    <stop offset="100%" stopColor="#122c46" stopOpacity="0.95" />
+                    <stop offset="0%" style={{ stopColor: "var(--sky-back-top)", stopOpacity: 0.85 }} />
+                    <stop offset="100%" style={{ stopColor: "var(--sky-back-bottom)", stopOpacity: 0.95 }} />
                 </linearGradient>
                 <linearGradient id={`${id}-front`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#1a3c5c" />
-                    <stop offset="55%" stopColor="#102a43" />
-                    <stop offset="100%" stopColor="#0a1d30" />
+                    <stop offset="0%" style={{ stopColor: "var(--sky-front-top)" }} />
+                    <stop offset="55%" style={{ stopColor: "var(--sky-front-mid)" }} />
+                    <stop offset="100%" style={{ stopColor: "var(--sky-front-bottom)" }} />
                 </linearGradient>
-                {/* Dusk sits behind the towers, not in front of them. */}
-                <linearGradient id={`${id}-dusk`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#c8a96b" stopOpacity="0" />
-                    <stop offset="100%" stopColor="#c8a96b" stopOpacity="0.20" />
+                {/* Haze on the horizon — dusk, or an overcast midday — sits behind
+                    the towers, not in front of them. */}
+                <linearGradient id={`${id}-haze`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" style={{ stopColor: "var(--sky-haze)", stopOpacity: 0 }} />
+                    <stop offset="100%"
+                        style={{ stopColor: "var(--sky-haze)", stopOpacity: "var(--sky-haze-opacity)" }} />
                 </linearGradient>
             </defs>
 
-            <rect x="0" y={GROUND - 420} width="1440" height="420" fill={`url(#${id}-dusk)`} />
+            <rect x="0" y={GROUND - 420} width="1440" height="420" fill={`url(#${id}-haze)`} />
 
             <g fill={`url(#${id}-back)`}>
                 {backRow.map((tower) => (
@@ -108,18 +117,18 @@ export default function Skyline({ className = "", id = "skyline" }: { className?
                         fill={`url(#${id}-front)`} />
                     <rect x={tower.x} y={GROUND - tower.h} width={tower.w} height={tower.h}
                         fill={`url(#${id}-windows)`} />
-                    <rect x={tower.x} y={GROUND - tower.h} width={tower.w} height="2" fill="#c8a96b"
-                        opacity="0.4" />
-                    <rect x={tower.x} y={GROUND - tower.h} width="1.5" height={tower.h} fill="#c8a96b"
-                        opacity="0.16" />
+                    {/* Sunlit roof edge, and the highlight down the lit face. */}
+                    <rect x={tower.x} y={GROUND - tower.h} width={tower.w} height="2"
+                        style={{ fill: "var(--sky-roof)", opacity: "var(--sky-roof-opacity)" }} />
+                    <rect x={tower.x} y={GROUND - tower.h} width="1.5" height={tower.h}
+                        style={{ fill: "var(--sky-edge)", opacity: "var(--sky-edge-opacity)" }} />
                     {lightsFor(tower, i + 1).map((light) => (
                         <rect key={`${light.x}-${light.y}`} x={light.x} y={light.y} width={WIN_W} height={WIN_H}
-                            fill="#f3e9d5" className="window-lit"
+                            className="window-lit"
                             style={{
+                                fill: "var(--sky-glint)",
                                 "--lit-duration": `${light.duration}s`,
                                 "--lit-delay": `${light.delay}s`,
-                                "--lit-min": "0.1",
-                                "--lit-max": "0.85",
                             } as React.CSSProperties} />
                     ))}
                 </g>
@@ -131,10 +140,10 @@ export default function Skyline({ className = "", id = "skyline" }: { className?
                 { x: 876, y: GROUND - 566 },
             ].map((mast) => (
                 <g key={mast.x}>
-                    <line x1={mast.x} y1={mast.y} x2={mast.x} y2={mast.y - 46} stroke="#8fa4ba" strokeOpacity="0.5"
-                        strokeWidth="1.5" />
-                    <circle cx={mast.x} cy={mast.y - 50} r="4" fill="#c8a96b" className="window-lit"
-                        style={{ "--lit-duration": "3.2s", "--lit-min": "0.2", "--lit-max": "1" } as React.CSSProperties} />
+                    <line x1={mast.x} y1={mast.y} x2={mast.x} y2={mast.y - 46} strokeWidth="1.5"
+                        style={{ stroke: "var(--sky-mast)", strokeOpacity: 0.5 }} />
+                    <circle cx={mast.x} cy={mast.y - 50} r="4" className="window-lit sky-beacon"
+                        style={{ fill: "var(--sky-beacon)", "--lit-duration": "3.2s" } as React.CSSProperties} />
                 </g>
             ))}
         </svg>

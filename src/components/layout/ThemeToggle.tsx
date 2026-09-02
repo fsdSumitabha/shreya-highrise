@@ -53,15 +53,15 @@ export default function ThemeToggle() {
     return (
         <button type="button" onClick={toggle} role="switch" aria-checked={theme === "dark"}
             aria-label={`Switch to ${next} theme`}
-            className="group inline-flex items-center gap-3 border border-stone-100/15 px-3 py-2 transition-colors duration-300 hover:border-champagne-300/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne-300">
+            className="group inline-flex items-center gap-3 border border-slate-900/15 px-3 py-2 transition-colors duration-300 hover:border-champagne-500/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne-500 dark:border-stone-100/15 dark:hover:border-champagne-300/60 dark:focus-visible:outline-champagne-300">
             <span aria-hidden="true"
-                className="relative flex h-5 w-9 shrink-0 items-center rounded-full bg-stone-100/15 transition-colors duration-300 group-hover:bg-stone-100/25">
+                className="relative flex h-5 w-9 shrink-0 items-center rounded-full bg-slate-900/15 transition-colors duration-300 group-hover:bg-slate-900/25 dark:bg-stone-100/15 dark:group-hover:bg-stone-100/25">
                 <span
-                    className="absolute left-0.5 grid size-4 place-items-center rounded-full bg-champagne-300 text-navy-950 transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-aria-checked:translate-x-4">
+                    className="absolute left-0.5 grid size-4 place-items-center rounded-full bg-champagne-400 text-white transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-aria-checked:translate-x-4 dark:bg-champagne-300 dark:text-navy-950">
                     <Glyph theme={theme} />
                 </span>
             </span>
-            <span className="font-display text-[0.65rem] uppercase tracking-luxe text-stone-100/60 transition-colors duration-300 group-hover:text-champagne-300">
+            <span className="font-display text-[0.65rem] uppercase tracking-luxe text-slate-500 transition-colors duration-300 group-hover:text-champagne-500 dark:text-stone-100/60 dark:group-hover:text-champagne-300">
                 {theme === "dark" ? "Dark" : "Light"}
             </span>
         </button>
