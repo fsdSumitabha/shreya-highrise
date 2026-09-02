@@ -3,12 +3,13 @@ import Container from "@/components/ui/Container";
 import ActionLink from "@/components/ui/ActionLink";
 import BrandMark from "@/components/layout/BrandMark";
 import MobileNav from "@/components/layout/MobileNav";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 import { nav, site } from "@/data/site";
 
 export default function Header() {
     return (
-        <header
-            className="sticky top-0 z-50 border-b border-transparent bg-slate-100/70 backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 [html[data-scrolled]_&]:border-slate-900/10 [html[data-scrolled]_&]:bg-slate-100/90 [html[data-scrolled]_&]:shadow-[0_10px_30px_-24px_rgba(7,21,35,0.9)] dark:bg-navy-950/70 dark:[html[data-scrolled]_&]:border-stone-100/10 dark:[html[data-scrolled]_&]:bg-navy-950/90">
+        <header id="site-header"
+            className="sticky top-0 z-50 border-b border-transparent [html[data-menu]_&]:fixed [html[data-menu]_&]:inset-x-0 bg-slate-100/70 backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 [html[data-scrolled]_&]:border-slate-900/10 [html[data-scrolled]_&]:bg-slate-100/90 [html[data-scrolled]_&]:shadow-[0_10px_30px_-24px_rgba(7,21,35,0.9)] dark:bg-navy-950/70 dark:[html[data-scrolled]_&]:border-stone-100/10 dark:[html[data-scrolled]_&]:bg-navy-950/90">
             <Container
                 className="flex items-center justify-between gap-6 py-4 transition-[padding] duration-500 ease-out [html[data-scrolled]_&]:py-2.5">
                 <Link href="/" aria-label={`${site.name} — home`}
@@ -25,11 +26,16 @@ export default function Header() {
                         </Link>
                     ))}
                 </nav>
-                <ActionLink href={`tel:${site.phones[0].tel}`} arrow={false}
-                    className="max-lg:hidden [html[data-scrolled]_&]:px-6 [html[data-scrolled]_&]:py-3">
-                    {site.phones[0].display}
-                </ActionLink>
-                <MobileNav />
+                {/* Right corner of the bar. On phones the toggle moves inside
+                    the full-screen menu, so only the opener shows here. */}
+                <div className="flex items-center gap-3">
+                    <ActionLink href={`tel:${site.phones[0].tel}`} arrow={false}
+                        className="max-lg:hidden [html[data-scrolled]_&]:px-6 [html[data-scrolled]_&]:py-3">
+                        {site.phones[0].display}
+                    </ActionLink>
+                    <ThemeToggle className="max-lg:hidden" />
+                    <MobileNav />
+                </div>
             </Container>
         </header>
     );

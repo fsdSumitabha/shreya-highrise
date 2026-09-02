@@ -9,6 +9,43 @@ Confirmed facts we already have are at the [bottom of this file](#already-confir
 
 ---
 
+## Send the client CLIENT-QUESTIONS.md, not this file
+
+`CLIENT-QUESTIONS.md` is the same information written as plain questions, with no
+code paths and no internal notes. Coverage map:
+
+| Section here | Asked in CLIENT-QUESTIONS.md |
+| --- | --- |
+| §1 Company basics | Part 1, Q1–Q5 |
+| §2 Projects | Part 1, Q8–Q15 · Part 2 A |
+| §3 Track-record numbers | Part 1, Q8–Q14 |
+| §4 Claims we make | Part 1, Q16–Q19 · Part 2 C, D |
+| §5 People | Part 1, Q6–Q7 · Part 2 B |
+| §6 About page | Part 1, Q2 · Part 2 C, F |
+| §7 Contact page | Part 1, Q4–Q5 · Part 2 D, E |
+| §8 Testimonials | Part 2 G |
+| §9 Photography | Part 2 H |
+| §10 Technical setup | not on the sheet — see below |
+
+**Not on the client sheet — still open here.** Ask these on a call, or decide them
+ourselves. They are not answered anywhere:
+
+- 🔴 **Domain name** (§1) — every canonical URL and OG tag depends on it.
+- 🔴 **Where enquiry-form submissions go** (§7) — the form is still wired to nothing.
+- **Which phone is primary, which email is public sales** (§1) — we can default and
+  confirm verbally.
+- **Director spellings, designations, join years, responsibilities** (§5, §6) — Part 1
+  now only asks for a bio and a photo. Part 2 F asks which director heads which desk.
+- **Social profile URLs and the Google Analytics ID** (§10).
+
+**Ours to decide, deliberately never asked:** the About-page pull quote, the About-page
+headline wording, and the enquiry-form dropdown options (budget bands, possession windows).
+
+Answers land here: tick the box in this file, then change the value in the data file
+named beside it.
+
+---
+
 ## 1. Company basics
 
 - [ ] 🔴 **Year founded** — site says **2006**, used in the hero, stats, About page timeline and footer copyright · `src/data/site.ts`

@@ -7,7 +7,7 @@ import { site } from "@/data/site";
 export default function MobileCallBar() {
     return (
         <div
-            className="fixed inset-x-0 bottom-0 z-50 translate-y-full border-t border-slate-900/10 bg-slate-100/95 backdrop-blur-md transition-transform duration-500 ease-out lg:hidden [html[data-deep]_&]:translate-y-0 dark:border-stone-100/10 dark:bg-navy-950/95">
+            className="fixed inset-x-0 bottom-0 z-50 translate-y-full border-t border-slate-900/10 bg-slate-100/95 backdrop-blur-md transition-transform duration-500 ease-out lg:hidden [html[data-deep]_&]:translate-y-0 [html[data-menu]_&]:hidden dark:border-stone-100/10 dark:bg-navy-950/95">
             <div className="grid grid-cols-2 gap-px bg-slate-900/10 dark:bg-stone-100/10">
                 <a href={`tel:${site.phones[0].tel}`}
                     className="flex items-center justify-center gap-2 bg-slate-100 py-4 font-display text-xs uppercase tracking-luxe dark:bg-navy-950">

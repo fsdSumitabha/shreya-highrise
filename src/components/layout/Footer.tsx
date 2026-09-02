@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import BrandMark from "@/components/layout/BrandMark";
-import ThemeToggle from "@/components/layout/ThemeToggle";
 import { nav, offices, site, socials } from "@/data/site";
 
 export default function Footer() {
@@ -74,10 +73,7 @@ export default function Footer() {
                 <p>
                     © {site.founded}–{new Date().getFullYear()} {site.legalName}. All rights reserved.
                 </p>
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-4 sm:justify-end">
-                    <p>GSTIN {site.gstin}</p>
-                    <ThemeToggle />
-                </div>
+                <p>GSTIN {site.gstin}</p>
             </Container>
             <Container className="pb-10">
                 <p className="max-w-4xl text-xs leading-relaxed text-slate-500 dark:text-stone-100/40">

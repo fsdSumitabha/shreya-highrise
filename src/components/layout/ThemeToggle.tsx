@@ -31,12 +31,31 @@ const subscribe = (onChange: () => void) => {
 const read = (): Theme => (document.documentElement.dataset.theme === "dark" ? "dark" : "light");
 const readOnServer = (): Theme => DEFAULT_THEME;
 
+/* Two shells for the one control: `bar` for the nav bar, `glass` for the
+   full-screen mobile sheet. Variants rather than a className override, because
+   Tailwind utilities all carry the same specificity — a passed-in border- or
+   padding- class would win or lose on stylesheet order, not on the order it
+   was written in.
+
+   `bar` is sized by height rather than padding so it tracks the phone button
+   beside it, shrinking with the rest of the bar once the page is scrolled.
+   `quiet` is the bare switch, for the foot of the mobile sheet where it sits
+   well below the links and the call button in priority. */
+type Variant = "bar" | "quiet";
+
+const shells: Record<Variant, string> = {
+    bar: "h-12 border-slate-900/15 px-4 transition-[height,border-color] duration-500 ease-out hover:border-champagne-500/60 [html[data-scrolled]_&]:h-10 dark:border-stone-100/15 dark:hover:border-champagne-300/60",
+    quiet: "rounded-full p-2 opacity-60 transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100",
+};
+
 function apply(theme: Theme) {
     document.documentElement.dataset.theme = theme;
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", THEME_COLOR[theme]);
 }
 
-export default function ThemeToggle() {
+export default function ThemeToggle({
+    variant = "bar", className = "",
+}: { variant?: Variant; className?: string }) {
     const theme = useSyncExternalStore(subscribe, read, readOnServer);
     const next: Theme = theme === "dark" ? "light" : "dark";
 
@@ -53,7 +72,7 @@ export default function ThemeToggle() {
     return (
         <button type="button" onClick={toggle} role="switch" aria-checked={theme === "dark"}
             aria-label={`Switch to ${next} theme`}
-            className="group inline-flex items-center gap-3 border border-slate-900/15 px-3 py-2 transition-colors duration-300 hover:border-champagne-500/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne-500 dark:border-stone-100/15 dark:hover:border-champagne-300/60 dark:focus-visible:outline-champagne-300">
+            className={`group inline-flex shrink-0 items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne-500 dark:focus-visible:outline-champagne-300 ${shells[variant]} ${className}`}>
             <span aria-hidden="true"
                 className="relative flex h-5 w-9 shrink-0 items-center rounded-full bg-slate-900/15 transition-colors duration-300 group-hover:bg-slate-900/25 dark:bg-stone-100/15 dark:group-hover:bg-stone-100/25">
                 <span
@@ -61,9 +80,7 @@ export default function ThemeToggle() {
                     <Glyph theme={theme} />
                 </span>
             </span>
-            <span className="font-display text-[0.65rem] uppercase tracking-luxe text-slate-500 transition-colors duration-300 group-hover:text-champagne-500 dark:text-stone-100/60 dark:group-hover:text-champagne-300">
-                {theme === "dark" ? "Dark" : "Light"}
-            </span>
+
         </button>
     );
 }
