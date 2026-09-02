@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
     return (
         <>
-            <PageHero crumb="About Us" eyebrow={aboutIntro.eyebrow} heading={aboutIntro.heading}
+            <PageHero drawMark crumb="About Us" eyebrow={aboutIntro.eyebrow} heading={aboutIntro.heading}
                 lede={aboutIntro.lede} marks={aboutIntro.marks} />
             <StatsBand />
             <AboutStory />

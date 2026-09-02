@@ -105,6 +105,10 @@
     display: inline;
     fill: var(--logo-nib, var(--logo-stroke));
     opacity: 0;
+    /* Anchored on the bead itself. Left to resolve against the view box — the
+       default for an SVG child — the dot rides a monogram's width off the path. */
+    transform-box: fill-box;
+    offset-anchor: 50% 50%;
 }
 
 .logo-draw:is([data-logo="armed"], [data-logo="drawing"]) [data-ink="fill"] {
@@ -115,7 +119,7 @@
     animation:
         logo-draw calc(var(--logo-duration) * var(--seg-duration)) var(--logo-ease)
             calc(var(--logo-delay) + var(--logo-duration) * var(--seg-start)) both,
-        logo-lift calc(var(--logo-duration) * 0.18) ease-out
+        logo-lift calc(var(--logo-duration) * var(--logo-lift)) ease-out
             calc(var(--logo-delay) + var(--logo-duration) * var(--logo-dry)) both;
 }
 
@@ -129,9 +133,28 @@
         calc(var(--logo-delay) + var(--logo-duration) * var(--seg-start)) both;
 }
 
+/* The finished mark dissolving, so a looping draw can start again on a clean
+   sheet. By this state the lines are already hidden and the fills are back at
+   full strength, so fading the element is the whole trick — and the pen
+   restarts on a sheet with nothing left on it to jump. */
+.logo-draw[data-logo="clearing"] {
+    animation: logo-clear var(--logo-clear) ease-in both;
+}
+
+@keyframes logo-clear {
+    to {
+        opacity: 0;
+    }
+}
+
 /* Doubled class keeps these above the state rules. The component also declines
    to arm when reduced motion is set, so this is the second line of defence. */
 @media (prefers-reduced-motion: reduce) {
+    .logo-draw.logo-draw {
+        opacity: 1;
+        animation: none;
+    }
+
     .logo-draw.logo-draw [data-ink="line"],
     .logo-draw.logo-draw [data-ink="nib"] {
         display: none;
@@ -140,6 +163,45 @@
     .logo-draw.logo-draw [data-ink="fill"] {
         opacity: 1;
         animation: none;
+    }
+}
+
+/* ── Page-hero monogram ───────────────────────────────────────────────────
+   The watermark behind a page heading, drawn rather than printed. The ink it
+   dries into stays where a watermark belongs — barely there, and taken from
+   the element's own colour — but the pen laying it down is champagne at
+   strength, led by a bead of light. The mark therefore arrives as a drawing
+   being made and stays as a texture, which is what lets it be a full-height
+   graphic without ever competing with the heading in front of it.
+
+   Sits after .logo-draw on purpose: same specificity, so source order is what
+   carries these over the currentColor default. */
+
+.hero-mark {
+    --logo-stroke: color-mix(in oklab, var(--color-champagne-400) 60%, transparent);
+    --logo-nib: var(--color-champagne-300);
+}
+
+[data-theme="dark"] .hero-mark {
+    --logo-stroke: color-mix(in oklab, var(--color-champagne-300) 55%, transparent);
+    --logo-nib: var(--color-champagne-100);
+}
+
+/* The bead is a light source, not a dot. */
+.hero-mark [data-ink="nib"] {
+    filter: drop-shadow(0 0 7px color-mix(in oklab, var(--color-champagne-300) 75%, transparent));
+}
+
+/* Below the sm breakpoint there is no clear margin for the mark to sit in —
+   it runs the full width, under every line of the copy. The pen presses
+   lighter there, so the drawing stays a background event. */
+@media (width < 40rem) {
+    .hero-mark {
+        --logo-stroke: color-mix(in oklab, var(--color-champagne-400) 34%, transparent);
+    }
+
+    [data-theme="dark"] .hero-mark {
+        --logo-stroke: color-mix(in oklab, var(--color-champagne-300) 32%, transparent);
     }
 }
 
@@ -623,6 +685,83 @@ details[open]::details-content {
     }
 }
 
+/* ── Plan-to-reality reel ─────────────────────────────────────────────────
+   Drives <PlanReel>. The component writes one number onto the sheet each
+   frame — --reel, 0 at the first line of the drawing and 1 at the finished
+   tower — and every rule here is a reading of that number. Nothing below runs
+   on a clock of its own except the sweep: the film is the clock.
+
+   Both ranges deliberately finish early. Colour has fully arrived by about
+   seven tenths of the clip and the grid is off the sheet a little before that,
+   so the closing seconds are the building as it really looks, with no
+   treatment left on it. */
+
+.reel-sheet {
+    --reel: 0;
+}
+
+/* Cyanotype, lifting. `color` blending keeps the film's own luminance and
+   borrows only hue and saturation from this blue, so paper stays white, the
+   linework stays linework, and nothing is crushed on the way through. */
+.reel-veil {
+    background: #0b3f6b;
+    mix-blend-mode: color;
+    opacity: clamp(0, calc(0.78 - var(--reel) * 1.1), 0.78);
+}
+
+/* The other half of that move. Blue leaving a frame only reads as *neutral*;
+   what sells the last two seconds is warmth arriving in its place, low and from
+   the ground, so the finished render lands in late light. soft-light rather
+   than a wash — it warms what is already there instead of laying gold over it,
+   which on a white render is the difference between golden hour and jaundice. */
+.reel-warm {
+    background: radial-gradient(120% 90% at 50% 108%, var(--color-champagne-300) 0%, transparent 62%);
+    mix-blend-mode: soft-light;
+    opacity: clamp(0, calc(var(--reel) * 1.5 - 0.5), 0.85);
+}
+
+/* The playhead under the frame, drawn as a measured span. */
+.reel-fill {
+    transform: scaleX(var(--reel));
+    transform-origin: left;
+}
+
+/* A laser level crossing the sheet — the one thing here the film does not
+   drive, and the only reason the frame still breathes while paused.
+
+   multiply, not screen: the clip is a white sheet under a white sky for most of
+   its run, and a light band screened onto white is nothing at all. Multiplied,
+   the same champagne reads as a warm line travelling over the drawing. */
+.reel-sweep {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        color-mix(in oklab, var(--color-champagne-200) 55%, transparent) 46%,
+        var(--color-champagne-100) 50%,
+        color-mix(in oklab, var(--color-champagne-200) 55%, transparent) 54%,
+        transparent 100%
+    );
+    background-size: 24% 100%;
+    background-repeat: no-repeat;
+    mix-blend-mode: multiply;
+    animation: reel-sweep 7.5s var(--ease-soft) infinite;
+}
+
+@keyframes reel-sweep {
+    0% {
+        background-position: -28% 0;
+        opacity: 0;
+    }
+    14%,
+    64% {
+        opacity: 0.42;
+    }
+    100% {
+        background-position: 128% 0;
+        opacity: 0;
+    }
+}
+
 /* ── Reading progress ─────────────────────────────────────────────────── */
 
 .scroll-progress {
@@ -642,8 +781,15 @@ details[open]::details-content {
     .window-lit,
     .wa-halo,
     .wa-arrow-line,
-    .wa-arrow-tip {
+    .wa-arrow-tip,
+    .reel-sweep {
         animation: none;
+    }
+
+    /* Held still, the level is a champagne stripe parked across the drawing.
+       It only ever meant anything while it was travelling. */
+    .reel-sweep {
+        opacity: 0;
     }
 
     /* The rings are only legible in motion; held still they are two flat

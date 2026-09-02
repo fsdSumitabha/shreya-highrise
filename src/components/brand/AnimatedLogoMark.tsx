@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { LOGO_FILLS, LOGO_INK_DRY, LOGO_STROKES, LOGO_VIEWBOX } from "@/components/brand/logoArt";
+import {
+    LOGO_FILLS,
+    LOGO_INK_DRY,
+    LOGO_INK_LIFT,
+    LOGO_STROKES,
+    LOGO_VIEWBOX,
+} from "@/components/brand/logoArt";
 
 type Props = {
     className?: string;
@@ -18,9 +24,16 @@ type Props = {
     replay?: boolean;
     /** Show the point of light that leads the pen along each contour. */
     nib?: boolean;
+    /** Keep going: rest on the finished mark, clear it, draw it again. */
+    loop?: boolean;
+    /** Seconds the finished mark rests before it clears. Looping marks only. */
+    hold?: number;
 };
 
-type Phase = "static" | "armed" | "drawing";
+type Phase = "static" | "armed" | "drawing" | "clearing";
+
+/** Seconds the finished mark takes to dissolve before the pen starts again. */
+const CLEAR = 0.9;
 
 // State has to be set before the browser paints, or the finished mark flashes
 // for a frame before the animation resets it.
@@ -35,38 +48,69 @@ export default function AnimatedLogoMark({
     playOnView = true,
     replay = false,
     nib = false,
+    loop = false,
+    hold = 4,
 }: Props) {
     const ref = useRef<SVGSVGElement>(null);
     // Server and first client paint render "static": the plain finished logo.
     // Without JS, or with reduced motion, that is where it stays.
     const [phase, setPhase] = useState<Phase>("static");
+    const [onScreen, setOnScreen] = useState(false);
+
+    // A mark that waits for the viewport and one that keeps redrawing both
+    // need to know where they are on the page. A mark that draws once on
+    // mount and then stops has nothing to learn from it.
+    const gated = playOnView || loop;
 
     useBeforePaint(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        setPhase(playOnView ? "armed" : "drawing");
-    }, [playOnView]);
+        setPhase(gated ? "armed" : "drawing");
+    }, [gated]);
+
+    const watching = phase !== "static" && gated;
 
     useEffect(() => {
-        if (phase === "static" || !playOnView) return;
+        if (!watching) return;
         const svg = ref.current;
         if (!svg) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setPhase("drawing");
-                    if (!replay) observer.disconnect();
-                } else if (replay) {
-                    // Dropping back to "armed" tears the animations off the
-                    // elements, so re-entering starts a fresh draw.
-                    setPhase("armed");
-                }
-            },
-            { threshold: 0.3 },
-        );
+        const observer = new IntersectionObserver(([entry]) => setOnScreen(entry.isIntersecting), {
+            threshold: 0.3,
+        });
         observer.observe(svg);
         return () => observer.disconnect();
-    }, [phase, playOnView, replay]);
+    }, [watching]);
+
+    /* The cycle. A one-shot mark stops at "drawing" and holds the finished
+       state there, which is where the animations' own fill mode leaves it. A
+       looping one rests on that, clears the sheet, and starts the pen again —
+       and because each leg is timed off the same knobs the draw itself uses,
+       retiming the sequence retimes the loop with it.
+
+       Dropping back to "armed" tears the animations off the elements, so the
+       next pass is a fresh draw rather than a resumed one. */
+    useEffect(() => {
+        if (phase === "static") return;
+
+        if (gated && !onScreen) {
+            // Only a mark that is going to draw again is worth tearing down.
+            // One that has finished for good keeps what it has on the page.
+            if (replay || loop) setPhase("armed");
+            return;
+        }
+
+        if (phase === "armed") {
+            setPhase("drawing");
+            return;
+        }
+
+        if (!loop) return;
+
+        const drawing = phase === "drawing";
+        const leg = drawing ? delay + duration * (LOGO_INK_DRY + LOGO_INK_LIFT) + hold : CLEAR;
+        const timer = setTimeout(() => setPhase(drawing ? "clearing" : "drawing"), leg * 1000);
+        return () => clearTimeout(timer);
+    }, [phase, gated, onScreen, replay, loop, delay, duration, hold]);
 
     return (
         <svg
@@ -80,7 +124,9 @@ export default function AnimatedLogoMark({
                 {
                     "--logo-duration": `${duration}s`,
                     "--logo-delay": `${delay}s`,
+                    "--logo-clear": `${CLEAR}s`,
                     "--logo-dry": LOGO_INK_DRY,
+                    "--logo-lift": LOGO_INK_LIFT,
                     strokeWidth,
                 } as React.CSSProperties
             }>

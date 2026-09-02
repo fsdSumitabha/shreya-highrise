@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Hero from "@/components/sections/Hero";
+import HeroReel from "@/components/sections/HeroReel";
 import StatsBand from "@/components/sections/StatsBand";
 import AboutIntro from "@/components/sections/AboutIntro";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
@@ -21,11 +21,16 @@ export const metadata: Metadata = {
     alternates: { canonical: "/" },
 };
 
+/* <HeroReel> is the fold built around the plan-to-reality film. The earlier
+   fold is untouched at "@/components/sections/Hero" and drops straight back in
+   — import it here instead and change the one tag below; it takes the same
+   (no) props and the sections under it are unaffected either way. */
+
 export default function HomePage() {
     return (
         <>
             <JsonLd />
-            <Hero />
+            <HeroReel />
             <StatsBand />
             <AboutIntro />
             <FeaturedProjects />

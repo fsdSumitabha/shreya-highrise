@@ -37,3 +37,8 @@ export const LOGO_FILLS = [
 
 /** When the last fill has landed and the drawn lines can be retired. */
 export const LOGO_INK_DRY = 1.22;
+
+/** How long retiring them takes. Both are fractions of the draw phase, and
+ *  both are handed to the CSS as custom properties, so the sequence has one
+ *  set of numbers whether it runs once or on a loop. */
+export const LOGO_INK_LIFT = 0.18;
