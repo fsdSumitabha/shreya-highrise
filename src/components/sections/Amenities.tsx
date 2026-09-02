@@ -19,7 +19,9 @@ export default function Amenities() {
 
                 <div data-parallax="0.05">
                     <div data-reveal="curtain" className="group">
-                        <ImageFrame label="Clubhouse and rooftop deck — Riverstone Heights"
+                        <ImageFrame src="/clubhouse_deck.png"
+                            label="Rooftop infinity pool and glass-walled clubhouse lounge at dusk, above the New Town skyline"
+                            sizes="(min-width: 1280px) 1184px, 100vw"
                             ratio="aspect-21/9" zoom />
                     </div>
                 </div>

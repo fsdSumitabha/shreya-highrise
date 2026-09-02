@@ -196,7 +196,7 @@ Brochure renders are also fine to start with.
 3. One finished flat, from inside.
 4. Site engineer or workers at the site.
 5. A handover / key giving moment.
-6. Clubhouse or rooftop, wide photo.
+6. ~~Clubhouse or rooftop, wide photo.~~ **Received** — the rooftop pool and clubhouse picture is now on the home page. Just tell us which project it is, and whether it is a photo or a render.
 7. Photo of each director.
 8. Your first building, if you still have an old photo.
 
@@ -204,5 +204,6 @@ Brochure renders are also fine to start with.
 
 ## Already with us — do not send again
 
-Company name, legal name, GSTIN, both office addresses, both phone numbers,
-both email IDs, logo files, brand colours, and the three director names.
+Company name, legal name, CIN, GSTIN, year founded (2021), both office addresses, both phone
+numbers, both email IDs, logo files, brand colours, the three director names, and the rooftop
+clubhouse picture.

@@ -170,9 +170,13 @@ makes it good copy and also what makes it risky if the details are wrong.
 
 ## 9. Photography
 
-Every image on the site is a dashed placeholder box labelled with the shot it needs.
-**Ask whether a brochure PDF exists** — render shots can usually be lifted from it while real
-photography is arranged.
+One image is real: the rooftop clubhouse shot now running in the home-page amenity band
+(`public/clubhouse_deck.png`, 1584×672). Every other image is still a dashed placeholder box
+labelled with the shot it needs. **Ask whether a brochure PDF exists** — render shots can
+usually be lifted from it while real photography is arranged.
+
+- [ ] 🔴 **The clubhouse image — where is it from?** Which project, is it a photograph or a render, and do we have the right to publish it? It reads as a New Town rooftop at dusk. The alt text deliberately makes no project claim until we know · `src/components/sections/Amenities.tsx`
+- [ ] 🟡 **Source file** — 1.9 MB PNG. Ask for the original JPEG/TIFF if there is one; a JPEG at this size would be a fraction of the weight · `public/clubhouse_deck.png`
 
 | Shot | Where | Ratio |
 | --- | --- | --- |
@@ -181,7 +185,7 @@ photography is arranged.
 | One shot per completed project | "Recently delivered" | 3:2 |
 | Site engineer at work | Home, About | 3:4 |
 | Handover / resident moment | Home | 3:4 |
-| Clubhouse or rooftop panorama | Amenities | 21:9 |
+| ~~Clubhouse or rooftop panorama~~ **received** | Amenities | 21:9 |
 | Map marking all project locations | "Where we build" | 1:1 |
 | The first building on Rabindra Sarani | About story | 4:5 |
 | Directors on site during a slab pour | About story | 1:1 |
@@ -213,3 +217,6 @@ From `data.txt` and the supplied logo files. **Do not re-ask these.**
 - Brand colours: Deep Navy `#0B1F33` · Champagne `#C8A96B`
 - Logo files: `public/logo-currentcolor.svg` (header + footer), `public/shreya_logo.png` (social sharing),
   `public/shreya_favicon.png` (browser tab, copied to `src/app/icon.png` and `src/app/apple-icon.png`)
+- CIN: **U70109WB2021PTC246677** · Year founded / incorporated: **2021**
+- Photography received: `public/clubhouse_deck.png` — rooftop clubhouse and infinity pool at dusk,
+  live in the home-page amenity band *(project and usage rights still to confirm — see §9)*
