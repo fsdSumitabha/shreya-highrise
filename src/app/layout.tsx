@@ -1,15 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { Jost, Instrument_Sans } from "next/font/google";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import ScrollProgress from "@/components/layout/ScrollProgress";
-import BackToTop from "@/components/layout/BackToTop";
-import MobileCallBar from "@/components/layout/MobileCallBar";
-import WhatsAppCta from "@/components/layout/WhatsAppCta";
-import MotionRoot from "@/components/motion/MotionRoot";
 import { DEFAULT_THEME, THEME_COLOR, themeBootScript } from "@/components/layout/theme";
 import { site } from "@/data/site";
 import "./globals.css";
+
+/* ── The shell, and only the shell ────────────────────────────────────────
+   <html>, <body>, the fonts, the theme and the stylesheet — the things every
+   route in the app needs, whether or not it is part of the website.
+
+   The header, footer and the rest of the client-facing chrome are NOT here;
+   they live in app/(site)/layout.tsx and wrap only the routes inside that
+   group. A layout cannot opt out of its parent, so anything put back in this
+   file lands on /internal too. */
 
 const jost = Jost({ variable: "--font-jost", subsets: ["latin"], display: "swap" });
 const instrumentSans = Instrument_Sans({ variable: "--font-instrument-sans", subsets: ["latin"], display: "swap" });
@@ -63,18 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             className={`${jost.variable} ${instrumentSans.variable} h-full scroll-smooth antialiased`}>
             <body className="flex min-h-full flex-col bg-slate-100 pb-[4.25rem] font-sans lg:pb-0 text-slate-900 selection:bg-champagne-300 selection:text-navy-950 dark:bg-navy-950 dark:text-stone-100">
                 <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
-                <a href="#main"
-                    className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:bg-navy-900 focus:px-4 focus:py-2 focus:text-stone-100">
-                    Skip to main content
-                </a>
-                <MotionRoot />
-                <ScrollProgress />
-                <Header />
-                <main id="main" className="flex-1">{children}</main>
-                <Footer />
-                <BackToTop />
-                <WhatsAppCta />
-                <MobileCallBar />
+                {children}
             </body>
         </html>
     );

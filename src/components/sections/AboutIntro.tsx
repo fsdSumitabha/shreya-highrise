@@ -4,6 +4,10 @@ import ActionLink from "@/components/ui/ActionLink";
 import ImageFrame from "@/components/ui/ImageFrame";
 import { leadership, site } from "@/data/site";
 
+/* Two portraits side by side inside the right-hand column, so each one is about
+   a quarter of the container on desktop and half the viewport on tablets. */
+const photoSizes = "(min-width: 1280px) 268px, (min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw";
+
 export default function AboutIntro() {
     return (
         <section aria-labelledby="about-heading" className="relative overflow-hidden py-20 sm:py-28">
@@ -47,13 +51,17 @@ export default function AboutIntro() {
                 <div className="grid gap-4 sm:grid-cols-2">
                     <div data-parallax="0.05" className="sm:mt-12">
                         <div data-reveal="curtain" className="group">
-                            <ImageFrame label="Site engineer reviewing drawings" ratio="aspect-3/4" zoom />
+                            <ImageFrame src="/site_engineer_on_building.png"
+                                label="Site engineer in a white hard hat tracing a structural drawing on an open floor of a tower under construction, the city skyline behind them"
+                                sizes={photoSizes} ratio="aspect-3/4" zoom />
                         </div>
                     </div>
                     <div data-parallax="-0.05">
                         <div data-reveal="curtain" className="group"
                             style={{ "--rv-delay": "160ms" } as React.CSSProperties}>
-                            <ImageFrame label="Handover ceremony with residents" ratio="aspect-3/4" zoom />
+                            <ImageFrame src="/handover_ceremony.png"
+                                label="Handover ceremony at the door of a finished flat — keys passed hand to hand while three generations of the family wait on the landing, marigold petals on the floor"
+                                sizes={photoSizes} ratio="aspect-3/4" zoom />
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { submitEnquiry } from "@/app/contact/actions";
+import { submitEnquiry } from "@/app/(site)/contact/actions";
 import { enquiryFields, responsePromise } from "@/data/contact";
 import { site } from "@/data/site";
 

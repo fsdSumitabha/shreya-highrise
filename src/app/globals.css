@@ -14,6 +14,10 @@
 @theme {
     --font-display: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
     --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+    /* Only /internal wears this — the typed-form face for the intake sheet.
+       Loaded by that page alone, so everywhere else it falls straight through
+       to the system monospace. */
+    --font-paper: var(--font-plex-mono), ui-monospace, "Cascadia Mono", Menlo, monospace;
 
     --color-navy-50: #eef2f7;
     --color-navy-100: #d7e0ea;
@@ -760,6 +764,64 @@ details[open]::details-content {
         background-position: 128% 0;
         opacity: 0;
     }
+}
+
+/* ── Society bands sheet ──────────────────────────────────────────────────
+   Drives <CooperativeBands>. The drawn footprints and the three cards under
+   them sit inside one .band-plate, so reading a card can light its own plate
+   on the sheet above — the drawing and the copy are a single control rather
+   than a picture with a caption.
+
+   Every rule here is keyed off :has() and every rule is decoration. Without
+   :has(), and on a touch screen where nothing is ever hovered, the sheet stays
+   at its resting weight and all three bands read exactly as they do in the
+   markup — nothing below carries information the cards do not already carry.
+
+   The plates take their ink from the SVG's own colour, so the active state is
+   one `color` change on the group rather than a rule per stroke: everything
+   inside is drawn with currentColor. */
+
+.band-plate {
+    --unit-ink: var(--color-champagne-400);
+}
+
+[data-theme="dark"] .band-plate {
+    --unit-ink: var(--color-champagne-300);
+}
+
+.band-plate [data-band-unit] {
+    --unit-fade: 1;
+    --unit-lift: 0px;
+    --unit-wash: 0;
+    opacity: var(--unit-fade);
+    transform: translateY(var(--unit-lift));
+    transition:
+        opacity 0.6s var(--ease-soft),
+        transform 0.9s var(--ease-luxe),
+        color 0.6s var(--ease-soft);
+}
+
+/* One card taken up: the other two plates drop back, so the band being read is
+   the only thing on the sheet at full strength. */
+.band-plate:has([data-band-card]:is(:hover, :focus-within)) [data-band-unit] {
+    --unit-fade: 0.22;
+}
+
+.band-plate:has([data-band-card="lig"]:is(:hover, :focus-within)) [data-band-unit="lig"],
+.band-plate:has([data-band-card="mig"]:is(:hover, :focus-within)) [data-band-unit="mig"],
+.band-plate:has([data-band-card="hig"]:is(:hover, :focus-within)) [data-band-unit="hig"] {
+    --unit-fade: 1;
+    --unit-lift: -12px;
+    --unit-wash: 0.16;
+    color: var(--unit-ink);
+}
+
+/* Inherited from the group above, which is the whole reason the wash needs no
+   selector of its own. */
+.band-wash {
+    fill: currentColor;
+    opacity: var(--unit-wash);
+    transition: opacity 0.6s var(--ease-soft);
 }
 
 /* ── Reading progress ─────────────────────────────────────────────────── */
