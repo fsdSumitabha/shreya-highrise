@@ -4,9 +4,7 @@ import StatsBand from "@/components/sections/StatsBand";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import DeliveredProjects from "@/components/sections/DeliveredProjects";
 import Corridors from "@/components/sections/Corridors";
-import Amenities from "@/components/sections/Amenities";
 import Advantages from "@/components/sections/Advantages";
-import CooperativeBands from "@/components/sections/CooperativeBands";
 import Assurance from "@/components/sections/Assurance";
 import Faq from "@/components/sections/Faq";
 import CtaBand from "@/components/sections/CtaBand";
@@ -51,8 +49,6 @@ export default function ProjectsPage() {
             <FeaturedProjects linkToAll={false} />
             <DeliveredProjects linkToAll={false} />
             <Corridors />
-            <CooperativeBands />
-            <Amenities />
             <Advantages />
             <Assurance />
             <Faq />

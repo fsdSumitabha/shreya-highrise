@@ -124,25 +124,6 @@ export default function HeroReel() {
                 </div>
             </Container>
 
-            {/* Credential strip pinned to the foot of the fold. */}
-            <div className="relative z-10 border-t border-slate-900/12 backdrop-blur-sm dark:border-stone-100/12">
-                <Container>
-                    <ul data-stagger="90"
-                        className="grid grid-cols-2 gap-px bg-slate-900/10 sm:grid-cols-4 dark:bg-stone-100/10">
-                        {marks.map((mark) => (
-                            <li key={mark.value} data-reveal="up"
-                                className="flex flex-col gap-1 bg-white/75 px-5 py-6 sm:py-7 dark:bg-navy-950/70">
-                                <span className="font-display text-xl font-light tracking-tight text-champagne-500 sm:text-2xl dark:text-champagne-300">
-                                    {mark.value}
-                                </span>
-                                <span className="font-display text-[10px] uppercase tracking-luxe text-slate-500 sm:text-xs dark:text-stone-100/50">
-                                    {mark.note}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                </Container>
-            </div>
         </section>
     );
 }
