@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HeroReel from "@/components/sections/HeroReel";
+import Hero from "@/components/sections/Hero";
 import StatsBand from "@/components/sections/StatsBand";
 import AboutIntro from "@/components/sections/AboutIntro";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 export default function HomeV2Page() {
     return (
         <>
-            <HeroReel />
+            <Hero />
             <StatsBand />
             <AboutIntro />
             <FeaturedProjects />
