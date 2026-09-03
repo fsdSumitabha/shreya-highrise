@@ -171,7 +171,7 @@ export const projects: Project[] = [
                 distance: "1.0 km"
             },
             {
-                name: "Biswa Bangla Gate (Hanging Restaurant / Narkelbagan)",
+                name: "Biswa Bangla Gate ",
                 distance: "1.3 km"
             },
             {
