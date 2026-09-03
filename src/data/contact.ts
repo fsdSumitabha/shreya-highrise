@@ -94,7 +94,7 @@ export const departments: Department[] = [
     },
     {
         name: "Grievance officer",
-        purpose: "Complaints under WBRERA. Acknowledged in writing and answered within 30 days.",
+        purpose: "Complaints about a booked home or a building we have handed over. Acknowledged in writing and answered within 30 days.",
         email: site.emails.projects,
     },
 ];
@@ -114,7 +114,7 @@ export const visitBrief = {
         },
         {
             title: "See the paperwork",
-            body: "Sanctioned plan, RERA registration and title report are on the table at the site office.",
+            body: "Sanctioned plan, title deed and mutation record are on the table at the site office.",
         },
         {
             title: "Leave with the numbers",

@@ -21,7 +21,7 @@ export default function AboutIntro() {
                 <div className="flex flex-col gap-8">
                     <SectionHeading id="about-heading" eyebrow="Who we are"
                         lines={["Building across", <>Kolkata since {site.founded}</>]}
-                        lede="Shreya High Rise began with a single four-storey building on Rabindra Sarani in New Barrackpur. Five years on, we plan, fund and construct high-rise residences at ten addresses across the city — still run day to day by the three people who started it." />
+                        lede="Shreya High Rise began in land — buying and reselling plots on the city's eastern edge — and put up its first co-operative society building in New Town in 2016. Ten years on, we plan, fund and construct homes at ten addresses across Kolkata, still run day to day by the three people who started it." />
 
                     <div data-reveal="rule" className="h-px w-full origin-left bg-slate-900/10 dark:bg-stone-100/10" />
 

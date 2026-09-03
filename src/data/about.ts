@@ -7,54 +7,59 @@ export const aboutIntro = {
     eyebrow: "About Shreya High Rise",
     heading: "One family, ten addresses, no shortcuts",
     lede: "We are a privately held Kolkata developer. We buy the land, draw the plans, pour the concrete and hand over the keys ourselves — and we have never put this name on a building we did not build.",
-    marks: ["Privately held", "Roy family owned", "WBRERA registered", "Kolkata only"],
+    marks: ["Privately held", "Roy family owned", "Co-operative housing", "Kolkata only"],
 };
 
 export const story = {
     eyebrow: "How it started",
-    heading: "It begins on a road we already lived on",
+    heading: "It begins with land, not buildings",
     paragraphs: [
-        "Shreya High Rise starts the way most Kolkata builders do — with a single plot and a family name. The Roys bought a strip of land on Rabindra Sarani in New Barrackpur: a road they had lived on, in a neighbourhood where they knew which stretch floods in August and which one stays dry. The building that went up there still carries the company's registered office on its ground floor.",
-        "For the first years the work was deliberately small. Four floors, sixteen families, a contractor's crew, and three people doing everything else between them. What changed was never the ambition — it was the method. The company stopped quoting prices that could be revised later, started printing a delay clause into its own agreements, and hired an engineer whose entire job was to say no to the site.",
-        "The high-rise came after that. Piled foundations, gearless lifts, a fire system signed off to the National Building Code — none of it is remarkable elsewhere in India, and all of it was a decision here. Ten addresses now carry the name: north along the Jessore Road spine where we started, east into Rajarhat and New Town, and by the end of this decade, south towards Narendrapur.",
-        "The company is still private. It is still funded out of projects it has already delivered, and it is still run day to day by the three people who signed for that first plot. That is the whole story. We are not planning a different one.",
+        "The family's first business was land. From 2012 the Roys bought plots along Kolkata's eastern edge and sold them on to developers — no signboard, no company, and no building of their own. What those years bought was judgement: which titles were clean, which mutation would take a year, which stretch of a lane floods in August, and what a plot is actually worth to the person who has to build on it.",
+        "In 2016 the work changed sides of the table. Trading as Roy Constructions, the family stopped selling land to builders and started building on it — co-operative society blocks in New Town, four floors over the ground, eight to twelve families to a building. A co-operative is an unforgiving client: the members are the owners, they sit through every meeting, and they live in the result. That is the discipline the company still builds to.",
+        "In 2021 the business was registered in West Bengal as Shreya Highrise Private Limited, and the map opened out. New Town remains the home ground, but the name now goes up in Rajarhat and north along the Jessore Road spine — Madhyamgram, Birati and New Barrackpur. The size of the building has not changed with it. We would rather do the same G+4 well in five places than something taller in one.",
+        "The company is still private. It is still funded out of what it has already delivered, and it is still run day to day by the three people who started it. Ten addresses, a hundred and twenty-odd families, and not one building carrying this name that we did not build ourselves. That is the whole story. We are not planning a different one.",
     ],
-    pullQuote: "We would rather hand over sixty homes we can stand in front of than six hundred we cannot.",
+    pullQuote: "We would rather hand over twelve homes we can stand in front of than a hundred we cannot.",
     pullQuoteBy: "The founding principle, unchanged",
-    imageOne: "Rabindra Sarani — the first building the company completed",
+    imageOne: "New Town — the first co-operative society block the company completed",
     imageTwo: "Directors on site during a slab pour",
 };
 
 export const milestones: Milestone[] = [
     {
+        year: "2012",
+        title: "Land, and the lessons in it",
+        body: "The family business begins on the other side of the table — buying plots on the eastern edge of the city and selling them on to developers. Four years of title checks, mutation and conversion work, all of which the company still does in-house before it markets anything.",
+    },
+    {
+        year: "2016",
+        title: "Roy Constructions",
+        body: "The first building of our own goes up in New Town: a G+4 co-operative society block, built for the members who would live in it. One township, one crew, and a specification written down rather than agreed on site.",
+    },
+    {
+        year: "2018",
+        title: "The first two handovers",
+        body: "Mitrae Co-operative and the eight-member MIG society on Street 609 are completed in the same year. The first residents to take keys from us, and the first two buildings we are still called back to.",
+    },
+    {
         year: "2021",
-        title: "The company is registered",
-        body: "Shreya Highrise Private Limited is incorporated in West Bengal and buys a strip of land on Rabindra Sarani, New Barrackpur. Everything since has been funded out of what came before it.",
+        title: "Shreya Highrise Private Limited",
+        body: "The business is incorporated in West Bengal, and the working area widens past New Town — into Rajarhat, and north to Madhyamgram, Birati and New Barrackpur.",
     },
     {
         year: "2022",
-        title: "The delivery promise",
-        body: "A dated possession clause and a delay-compensation term go into the standard agreement. Shreya Greens is handed over the same year — ninety-six homes in Madhyamgram, transferred to a resident association after two years of estate support.",
+        title: "Chaitali Co-operative, BB-102",
+        body: "Eight families take possession on Street No. 152, New Town. The ground floor of that building became our head office, which is still where the project team sits.",
     },
     {
         year: "2023",
-        title: "Into high-rise",
-        body: "First piled foundation, first gearless lift bank, and the first project engineered to the delta's soil profile rather than a generic Zone III template.",
+        title: "New Manikanchan MIG Society",
+        body: "Twelve families in Action Area IIB, a kilometre from Eco Park and two from City Centre II — the largest single society the company had built to that point.",
     },
     {
-        year: "2024",
-        title: "Verdant Court receives its OC",
-        body: "One hundred and forty-eight families take possession in Action Area I — the first New Town address, and the move from neighbourhood developer to a company building on the city's planned edge.",
-    },
-    {
-        year: "2025",
-        title: "Skyline One",
-        body: "Twin G+22 towers in Action Area II — the tallest the company has built, and the first with a sky lounge.",
-    },
-    {
-        year: "2029",
-        title: "South of the bypass",
-        body: "Meadow Vista opens the Narendrapur corridor, the fourth part of Kolkata this company will have built in.",
+        year: "2026",
+        title: "Two more in Action Area I",
+        body: "Co-operative societies under construction on Street 237 and in BA Block, the first of them handing over in October.",
         tense: "future",
     },
 ];

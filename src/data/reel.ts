@@ -38,7 +38,7 @@ export const reelPhases: ReelPhase[] = [
         code: "01",
         label: "Drawing",
         at: 0,
-        note: "Every unit laid out for light, cross-ventilation and Vaastu, then registered with WBRERA before a single flat is quoted.",
+        note: "Every unit laid out for light, cross-ventilation and Vaastu, then sanctioned before a single flat is quoted.",
     },
     {
         code: "02",

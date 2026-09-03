@@ -79,8 +79,8 @@ export default function Footer() {
                 <p className="max-w-4xl text-xs leading-relaxed text-slate-500 dark:text-stone-100/40">
                     Disclaimer: Images, plans and specifications shown are indicative and subject to approval
                     by the competent authority. Nothing on this website constitutes an offer or contract.
-                    Please refer to the WBRERA-registered project details and the agreement for sale before
-                    making a purchase decision.
+                    Please refer to the sanctioned plan, the project details and the agreement for sale
+                    before making a purchase decision.
                 </p>
             </Container>
         </footer>

@@ -22,8 +22,8 @@ import "./hero.css";
 const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
 
 const METADATA = [
-    { value: "10", label: "Addresses" },
-    { value: "1.6M", label: "Sq. ft. developed" },
+    { value: "10+", label: "Addresses" },
+    { value: "130K+", label: "Sq. ft. built" },
     { value: "Kolkata", label: "New Town · Rajarhat" },
 ];
 

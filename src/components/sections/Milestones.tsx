@@ -1,7 +1,6 @@
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { milestones } from "@/data/about";
-import { site } from "@/data/site";
 
 export default function Milestones() {
     return (
@@ -9,7 +8,7 @@ export default function Milestones() {
             className="border-y border-slate-900/10 bg-white py-20 sm:py-28 dark:border-stone-100/10 dark:bg-navy-900/30">
             <Container className="flex flex-col gap-14">
                 <SectionHeading id="milestones-heading" eyebrow="The record"
-                    title={<>From {site.founded} to the next handover</>}
+                    title={<>From {milestones[0].year} to the next handover</>}
                     lede="Every line below is either a building that exists or a decision that changed how the next one was built. Nothing here is a plan we abandoned." />
 
                 <ol className="flex flex-col">

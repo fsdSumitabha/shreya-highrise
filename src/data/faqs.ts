@@ -2,12 +2,12 @@ export type Faq = { question: string; answer: string };
 
 export const faqs: Faq[] = [
     {
-        question: "Are all Shreya High Rise projects RERA registered?",
-        answer: "Yes. Every project is registered with the West Bengal Real Estate Regulatory Authority before a single unit is offered, and the registration number appears on the project page, the price sheet and the agreement for sale.",
+        question: "What paperwork do you show before a booking?",
+        answer: "The sanctioned plan, the title deed and the mutation record for the land, and the agreement for sale you will be signing. All of it is on the table at the site office, and you can take copies away with you before any money changes hands.",
     },
     {
         question: "What is the booking amount, and is it refundable?",
-        answer: "Booking starts at 10% of the agreement value. If you withdraw before the agreement is registered, the amount is refunded less a documented administrative charge, in line with WBRERA rules.",
+        answer: "Booking starts at 10% of the agreement value. If you withdraw before the agreement is registered, the amount is refunded less a documented administrative charge, in line with the terms printed on the booking form.",
     },
     {
         question: "Which banks have approved your projects for home loans?",

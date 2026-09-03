@@ -37,7 +37,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                     <Detail term="From" value={project.priceFrom} />
                     <Detail term="Possession" value={project.possession} />
                 </dl>
-                <div className="flex flex-col gap-2">
+                <div className="mt-auto flex flex-col gap-2">
                     <p className="font-display text-xs uppercase tracking-luxe text-slate-500 dark:text-stone-100/50">
                         From this address
                     </p>
@@ -54,9 +54,6 @@ export default function ProjectCard({ project }: { project: Project }) {
                         ))}
                     </ul>
                 </div>
-                <p className="mt-auto font-display text-xs uppercase tracking-luxe text-slate-500 dark:text-stone-100/50">
-                    RERA {project.rera}
-                </p>
             </div>
         </article>
     );

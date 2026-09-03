@@ -6,10 +6,10 @@ import PlanReel from "@/components/reel/PlanReel";
 import { site } from "@/data/site";
 
 const marks = [
-    { value: "WBRERA", note: "Registered, every project" },
-    { value: `Est. ${site.founded}`, note: "Five years building" },
-    { value: "10", note: "Addresses across Kolkata" },
-    { value: "1,450", note: "Families handed keys" },
+    { value: "G+4", note: "Co-operative societies" },
+    { value: `Est. ${site.founded}`, note: "Ten years building" },
+    { value: "10+", note: "Addresses across Kolkata" },
+    { value: "120+", note: "Families handed keys" },
 ];
 
 /* The fold, built around the film.

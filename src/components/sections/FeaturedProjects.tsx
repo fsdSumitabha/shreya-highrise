@@ -16,7 +16,7 @@ export default function FeaturedProjects({ linkToAll = true }: { linkToAll?: boo
                 <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
                     <SectionHeading id="projects-heading" eyebrow="Open for sale"
                         lines={["Launching &", "under construction"]}
-                        lede="Four addresses you can book into today, from Rajarhat to Narendrapur. Every carpet area, price and RERA number is published before you visit." />
+                        lede="Four addresses you can book into today, from Rajarhat to Narendrapur. Every carpet area, price and possession date is published before you visit." />
                     {linkToAll ? (
                         <div data-reveal="right" className="self-start lg:self-auto">
                             <ActionLink href="/projects" variant="outline">

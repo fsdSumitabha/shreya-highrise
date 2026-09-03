@@ -10,7 +10,6 @@ export type Project = {
     sizeRange: string;
     priceFrom: string;
     possession: string;
-    rera: string;
     highlights: string[];
     nearby: NearbyPlace[];
     imageLabel: string;
@@ -19,8 +18,8 @@ export type Project = {
 export const projectsIntro = {
     eyebrow: "Our projects",
     heading: "Every address we have built, and are building",
-    lede: "Seven addresses across four Kolkata corridors — four you can book into today, three already handed over and lived in. Carpet area, price, possession date and RERA number are published here before you ever pick up the phone.",
-    marks: ["7 addresses", "4 corridors", "1,450 families", "WBRERA registered"],
+    lede: "Seven addresses across four Kolkata corridors — four you can book into today, three already handed over and lived in. Carpet area, price and possession date are published here before you ever pick up the phone.",
+    marks: ["7 addresses", "4 corridors", "120+ families", "Kolkata only"],
 };
 
 export const stageLabel: Record<Stage, string> = {
@@ -40,7 +39,6 @@ export const projects: Project[] = [
         sizeRange: "1,340 – 2,180 sq. ft.",
         priceFrom: "₹94 L",
         possession: "Dec 2028",
-        rera: "WBRERA/P/NOR/2025/001842",
         highlights: ["G+22 twin towers", "Sky lounge on level 21", "Eco Park facing units"],
         nearby: [
             { name: "Eco Park Gate 1", distance: "1.8 km" },
@@ -59,7 +57,6 @@ export const projects: Project[] = [
         sizeRange: "890 – 1,510 sq. ft.",
         priceFrom: "₹62 L",
         possession: "Mar 2027",
-        rera: "WBRERA/P/NOR/2024/001196",
         highlights: ["70% open landscape", "Double-height lobby", "EV-ready basement"],
         nearby: [
             { name: "Rajarhat Chowmatha bus terminus", distance: "700 m" },
@@ -78,7 +75,6 @@ export const projects: Project[] = [
         sizeRange: "1,480 – 2,640 sq. ft.",
         priceFrom: "₹1.18 Cr",
         possession: "Sep 2027",
-        rera: "WBRERA/P/NOR/2024/001408",
         highlights: ["Only 4 homes per floor", "Private terrace duplexes", "Rooftop infinity deck"],
         nearby: [
             { name: "Biswa Bangla Convention Centre", distance: "2.2 km" },
@@ -97,7 +93,6 @@ export const projects: Project[] = [
         sizeRange: "780 – 1,290 sq. ft.",
         priceFrom: "₹48 L",
         possession: "Jun 2029",
-        rera: "Registration applied for",
         highlights: ["First south-Kolkata address", "Podium-level garden", "Station at walking distance"],
         nearby: [
             { name: "Narendrapur Station", distance: "1.1 km" },
@@ -116,7 +111,6 @@ export const projects: Project[] = [
         sizeRange: "820 – 1,395 sq. ft.",
         priceFrom: "Sold out",
         possession: "Handed over 2024",
-        rera: "WBRERA/P/NOR/2021/000745",
         highlights: ["OC received", "148 families resident", "Metro corridor at 600 m"],
         nearby: [
             { name: "New Town Metro", distance: "600 m" },
@@ -135,7 +129,6 @@ export const projects: Project[] = [
         sizeRange: "745 – 1,180 sq. ft.",
         priceFrom: "Sold out",
         possession: "Handed over 2022",
-        rera: "WBHIRA/P/NOR/2019/000512",
         highlights: ["Two towers, 96 homes", "Association-run since 2024", "Chowmatha at 1.5 km"],
         nearby: [
             { name: "Madhyamgram Chowmatha", distance: "1.5 km" },
@@ -154,7 +147,6 @@ export const projects: Project[] = [
         sizeRange: "690 – 1,120 sq. ft.",
         priceFrom: "Sold out",
         possession: "Handed over 2019",
-        rera: "WBHIRA/P/NOR/2018/000208",
         highlights: ["Where the company began", "64 homes across 2 blocks", "Fully occupied"],
         nearby: [
             { name: "New Barrackpur Bazaar", distance: "600 m" },

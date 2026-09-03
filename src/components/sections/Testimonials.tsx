@@ -8,7 +8,7 @@ export default function Testimonials() {
         <section aria-labelledby="testimonials-heading" className="relative overflow-hidden py-20 sm:py-28">
             <Container className="flex flex-col gap-14">
                 <SectionHeading id="testimonials-heading" eyebrow="Resident voices"
-                    lines={["1,450 families, and", "the reason they stayed"]}
+                    lines={["120 families, and", "the reason they stayed"]}
                     lede="Quotes collected at handover and again two years later, published with the owners' consent." />
 
                 {/* One swipeable rail on a phone, three columns from tablet up. */}

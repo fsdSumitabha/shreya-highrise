@@ -48,7 +48,7 @@ named beside it.
 
 ## 1. Company basics
 
-- [x] ✅ **Year founded** — confirmed **2021**, used in the hero, stats, About page timeline and footer copyright · `src/data/site.ts`
+- [x] ✅ **Year founded** — confirmed. Three dates, all now used deliberately: **2012** land trading (where the About timeline opens), **2016** first building as Roy Constructions (`site.founded` — the "since" year in the hero, stats, About intro and footer copyright), **2021** incorporation as Shreya Highrise Pvt Ltd (the CIN year) · `src/data/site.ts`
 - [ ] 🔴 **Domain name** — assumed `https://shreyahighrise.in`, used in canonical URLs, OG tags and JSON-LD · `src/data/site.ts`
 - [x] ✅ **CIN** — confirmed **U70109WB2021PTC246677**, printed in the footer legal line, the contact page legal note and the JSON-LD `identifier` · `src/data/site.ts`
 - [ ] 🟡 **Which email is public sales, which is internal** — we treat `shreyahighrise@gmail.com` as sales and `royconstruction@gmail.com` as projects/handover · `src/data/site.ts`
@@ -62,8 +62,9 @@ named beside it.
 All seven projects are invented. Ask for the **existing price sheet or brochure per project** —
 almost everything below is already printed on it.
 
-- [ ] 🔴 **The real project list** — name, stage (upcoming / ongoing / completed), full site address · `src/data/projects.ts`
-- [ ] 🔴 **RERA registration number for each** — exact string as issued by WBRERA (older ones may say WBHIRA) · `projects.ts` → `rera`
+- [ ] 🔴 **The real project list** — six are now recorded in `src/data/temp-projects.json` (Chaitali, LIG BA Block, Mitrae, LIG Street 237, New Manikanchan, the Street 609 MIG society). **The public Projects page still runs on the seven invented ones in `src/data/projects.ts`** — that swap is the next job, and it needs the remaining four-to-six addresses · `src/data/projects.ts`
+- [x] ✅ **RERA** — the client does not have WBRERA registration. **Every RERA/WBRERA claim has been stripped from the public site** (hero credential strips, footer disclaimer, grievance note, FAQs, buyer journey, co-operative process, site intro, page metadata, keywords, and the `rera` field on the project cards). The internal filing pages and `temp-projects.json` still carry a RERA field, left alone on purpose · `src/data/projects.ts`
+- [ ] 🟡 **What replaces it, if anything** — projects are described by sanctioned plan, title deed and mutation record now. If any project is ever registered, tell us and the number goes back on the card · `src/data/projects.ts`
 - [ ] 🔴 **Price / "starting at" per project** — and whether prices should be public at all. Ours run ₹48 L – ₹1.18 Cr · `projects.ts` → `priceFrom`
 - [ ] 🔴 **Possession date per project**, exactly as printed in the agreement · `projects.ts` → `possession`
 - [ ] 🟡 **Configuration** actually on offer (2/3/4 BHK, duplex) · `projects.ts` → `typology`
@@ -82,11 +83,11 @@ These are shown in huge type on the home page and the About page, so they need t
 each other **and** with the project list. If the client says "8 projects", the corridor counts
 have to add up to 8.
 
-- [ ] 🟡 **Total projects / addresses** (completed + ongoing) — we say **10** · `src/data/stats.ts`, `src/data/corridors.ts`
-- [ ] 🔴 **Total families / flats handed over** — we say **1,450**, which is a very large number for a company founded in 2021. Needs the real figure · `src/data/stats.ts`
-- [ ] 🔴 **Total sq. ft. developed** — we say **1.6M**; same problem as the family count against a 2021 founding · `src/data/stats.ts`
-- [ ] 🟡 **Years in business** — stats band now says **5** (2021 to today). Confirm the count is how they want it phrased · `src/data/stats.ts`
-- [ ] 🟡 **Which areas of Kolkata they actually build in** — we assume four corridors: New Town, Rajarhat, North Kolkata, South Kolkata · `src/data/corridors.ts`
+- [x] ✅ **Total projects / addresses** (completed + ongoing) — client says **10+**, now in the stats band, both heroes and the projects intro · `src/data/stats.ts`, `src/data/corridors.ts`
+- [x] ✅ **Total families / flats handed over** — client says **120+** · `src/data/stats.ts`
+- [ ] 🟡 **Total sq. ft. built** — we publish **130K+**, and it is the one number on the band the client has not given us. Derived: ~12 G+4 societies × ~12 flats × ~900 sq ft super built-up ≈ 130,000. Ask them to confirm or replace it · `src/data/stats.ts`
+- [x] ✅ **Years in business** — **10**, counted from the first building in 2016 · `src/data/stats.ts`
+- [ ] 🟡 **Which areas of Kolkata they actually build in** — client named New Town (2016), then Rajarhat, Madhyamgram, Birati and New Barrackpur (2021). Those are now the first three corridors. **The fourth, South Kolkata / Narendrapur, is still ours** — drop it or replace it · `src/data/corridors.ts`
 - [ ] 🟡 **Project count per corridor** — we assume New Town 3, Rajarhat 1, North Kolkata 5, South Kolkata 1 · `src/data/corridors.ts`
 
 ---
@@ -125,10 +126,11 @@ Each of these is stated on the site as a fact. If it isn't true, it has to come 
 The narrative is deliberately specific (dates, numbers, a founding anecdote) — which is what
 makes it good copy and also what makes it risky if the details are wrong.
 
-- [ ] 🔴 **The founding story** — we wrote that the family bought a plot on Rabindra Sarani in New Barrackpur (now dated 2021), in a neighbourhood they already lived in, and that the first building there still houses the registered office. Is any of that true? · `src/data/about.ts` → `story`
-- [ ] 🔴 **The timeline** — re-anchored to the confirmed 2021 founding, but the six milestones are still invented. Which ones are real, and what should replace the rest? · `src/data/about.ts` → `milestones`
-  - 2021 incorporated + first plot · 2022 delay clause introduced + Shreya Greens handover · 2023 first piled high-rise · 2024 Verdant Court OC, first New Town address · 2025 Skyline One launch · 2029 Narendrapur
-- [x] ✅ **Year of incorporation as a private limited company** — **2021**, per the CIN · `src/data/about.ts`
+- [ ] 🟡 **The founding story** — rewritten from the client's own account: land trading from 2012, first building as Roy Constructions in New Town in 2016, incorporation and expansion in 2021. The facts are theirs; the wording is ours, so it still needs a read-through · `src/data/about.ts` → `story`
+- [x] ✅ **The timeline** — rebuilt from the client's journey plus the real projects in `src/data/temp-projects.json` · `src/data/about.ts` → `milestones`
+  - 2012 land trading · 2016 Roy Constructions, first New Town building · 2018 Mitrae Co-operative + the eight-member MIG society on Street 609 handed over · 2021 incorporated, expands to Rajarhat / Madhyamgram / Birati / New Barrackpur · 2022 Chaitali Co-operative BB-102 · 2023 New Manikanchan MIG Society · 2026 two Action Area I societies, first possession October
+  - Still to confirm: the 2018 pairing (`temp-projects.json` gives Mitrae a 2018 *possession* and the Street 609 society a 2018 *handover* — same year, but recorded in different fields)
+- [x] ✅ **Year of incorporation as a private limited company** — **2021**, per the CIN. *(Client called it "LLP or whatever" — the CIN's `PTC` says private limited company, and the site says so.)* · `src/data/about.ts`
 - [ ] 🔴 **Director biographies** — a paragraph each, all invented, including specific claims ("has negotiated every acquisition since", "personally signs off the snag list on each flat") · `src/data/site.ts` → `leadership`
 - [ ] 🔴 **"We have never franchised the brand or sold a development-management licence"** — stated as fact · `src/data/about.ts` → `principles`
 - [ ] 🔴 **"Funded out of projects already delivered"** / never taken construction finance — a claim about how the company is financed · `src/data/about.ts`
@@ -137,7 +139,7 @@ makes it good copy and also what makes it risky if the details are wrong.
 - [ ] 🟡 **The six in-house desks** and which director leads each — invented org structure · `src/data/about.ts` → `desks`
 - [ ] 🟡 **"Occupancy certificate before keys"** — stated as standard practice · `src/data/about.ts`
 - [ ] 🟡 **The pull quote** ("sixty homes we can stand in front of…") — our words, presented as the company's. Keep, rewrite or drop · `src/data/about.ts` → `story.pullQuote`
-- [ ] 🟡 **Director start years** — now Ranjeet and Sampa Roy as founders in 2021 and Partha Roy Chowdhury as "Director since 2021". Confirm who was on the board at incorporation and who joined later · `src/data/site.ts`
+- [ ] 🟡 **Director start years** — now Ranjeet and Sampa Roy as "Founder, 2012" (the year the family business began) and Partha Roy Chowdhury as "Director since 2021". Confirm who was there in 2012, who from 2016, and who signed at incorporation · `src/data/site.ts`
 - [ ] 🟡 **Page headline** — "One family, ten addresses, no shortcuts". Are they comfortable leading with family ownership? · `src/data/about.ts`
 
 ---
@@ -217,6 +219,9 @@ From `data.txt` and the supplied logo files. **Do not re-ask these.**
 - Brand colours: Deep Navy `#0B1F33` · Champagne `#C8A96B`
 - Logo files: `public/logo-currentcolor.svg` (header + footer), `public/shreya_logo.png` (social sharing),
   `public/shreya_favicon.png` (browser tab, copied to `src/app/icon.png` and `src/app/apple-icon.png`)
-- CIN: **U70109WB2021PTC246677** · Year founded / incorporated: **2021**
+- CIN: **U70109WB2021PTC246677** · Incorporated **2021** as Shreya Highrise Private Limited
+- The journey: **2012** land buying and reselling (unregistered) · **2016** building starts as **Roy Constructions**, working area New Town · **2021** incorporated, expands to Rajarhat, Madhyamgram, Birati, New Barrackpur
+- Track record: **10 years since 2016** · **10+ addresses** · **120+ families**
+- Real project records live in `src/data/temp-projects.json` (six so far, all G+4 co-operative societies in New Town)
 - Photography received: `public/clubhouse_deck.png` — rooftop clubhouse and infinity pool at dusk,
   live in the home-page amenity band *(project and usage rights still to confirm — see §9)*

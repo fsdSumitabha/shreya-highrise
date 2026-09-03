@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     applicationName: site.name,
     keywords: [
         "flats in New Town Kolkata", "high rise apartments Kolkata", "Shreya High Rise",
-        "3 BHK New Town", "RERA projects Rajarhat", "real estate developer Kolkata",
+        "3 BHK New Town", "co-operative housing Rajarhat", "real estate developer Kolkata",
         "flats in Madhyamgram", "builders in Kolkata",
     ],
     authors: [{ name: site.legalName }],

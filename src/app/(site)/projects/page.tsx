@@ -14,7 +14,7 @@ import { projectsIntro } from "@/data/projects";
 import { site } from "@/data/site";
 
 const description =
-    "Every Shreya High Rise address in one place — four RERA-registered projects open for sale in New Town, Rajarhat and Narendrapur, and three handed over across North Kolkata and New Town. Carpet areas, prices, possession dates and RERA numbers published up front.";
+    "Every Shreya High Rise address in one place — four projects open for sale in New Town, Rajarhat and Narendrapur, and three handed over across North Kolkata and New Town. Carpet areas, prices and possession dates published up front.";
 
 export const metadata: Metadata = {
     title: "Our Projects — New Town, Rajarhat & Kolkata High-Rises",

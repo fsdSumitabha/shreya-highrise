@@ -14,7 +14,7 @@ Do not retype it.
 
 ## Company
 
-1. ~~Which year was the company founded?~~ **Answered: 2021**
+1. ~~Which year was the company founded?~~ **Answered: 2012** land work, **2016** first building as Roy Constructions, **2021** as Shreya Highrise Pvt Ltd
 2. ~~Which year was it registered as a Private Limited company?~~ **Answered: 2021** (per the CIN)
 3. ~~What is the CIN (company registration number)? Should we print it on the website?~~ **Answered: U70109WB2021PTC246677** — now printed in the footer and on the contact page
 

@@ -89,7 +89,7 @@ export const societySteps: SocietyStep[] = [
         body: "Areas, timelines, re-housing terms, the sale component and the delay clause — registered in writing before a single wall comes down.",
     },
     {
-        title: "RERA, build, allot",
-        body: "Registered with WBRERA, built to the schedule in the agreement, and allotted back to members with the completion file in hand.",
+        title: "Sanction, build, allot",
+        body: "Sanctioned by the local authority, built to the schedule in the agreement, and allotted back to members with the completion file in hand.",
     },
 ];

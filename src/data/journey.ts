@@ -15,7 +15,7 @@ export const journey: Step[] = [
     },
     {
         title: "Book & sign",
-        body: "Pay the booking amount, receive the allotment letter and register the agreement for sale under WBRERA.",
+        body: "Pay the booking amount, receive the allotment letter and register the agreement for sale at the registry office.",
     },
     {
         title: "Fund it",
