@@ -125,12 +125,20 @@
             ],
             "nearby": [
                 {
-                    "name": "Hanging Garden Restuarent",
-                    "distance": ""
+                    "name": "Biswa Bangla Gate (Hanging Restaurant / Narkelbagan)",
+                    "distance": "1.2 km"
                 },
                 {
-                    "name": "Narek Bagan",
-                    "distance": ""
+                    "name": "Axis Mall",
+                    "distance": "1.5 km"
+                },
+                {
+                    "name": "Eco Park",
+                    "distance": "2.8 km"
+                },
+                {
+                    "name": "City Centre 2",
+                    "distance": "6.2 km"
                 }
             ],
             "floorPlan": "",
