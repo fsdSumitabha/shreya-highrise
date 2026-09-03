@@ -15,7 +15,7 @@ export default function Leadership() {
                 <ul className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
                     {leadership.map((person) => (
                         <li key={person.name} className="flex flex-col gap-6">
-                            <ImageFrame label={person.portrait} ratio="aspect-3/4" />
+                            <ImageFrame label={person.portrait} src={person.image} ratio="aspect-3/4" />
                             <div className="flex flex-col gap-3 border-t border-slate-900/15 pt-6 dark:border-stone-100/15">
                                 <div className="flex flex-col gap-1.5">
                                     <h3 className="font-display text-2xl font-light tracking-tight sm:text-3xl">

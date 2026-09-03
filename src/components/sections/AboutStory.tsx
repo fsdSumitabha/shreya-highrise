@@ -43,8 +43,8 @@ export default function AboutStory() {
                 </div>
 
                 <div className="flex flex-col gap-6 lg:col-span-5 lg:pt-10">
-                    <ImageFrame label={story.imageOne} ratio="aspect-4/5" />
-                    <ImageFrame label={story.imageTwo} ratio="aspect-square" className="lg:ml-12" />
+                    <ImageFrame label={story.imageOne} src={story.imageOneFile || undefined} ratio="aspect-4/5" />
+                    <ImageFrame label={story.imageTwo} src={story.imageTwoFile} ratio="aspect-square" className="lg:ml-12" />
                 </div>
             </Container>
         </section>

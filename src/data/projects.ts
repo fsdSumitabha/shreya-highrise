@@ -188,6 +188,7 @@ export const projects: Project[] = [
             }
         ],
         imageLabel: "LIG Co-operative, CD-114 — street elevation under construction",
+        image: "/projects/plans/cd_114/project_elevation.jpg",
         plan: {
             title: "Proposed G+4 residential building",
             drawingNo: "05-0266",

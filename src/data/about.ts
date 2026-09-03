@@ -22,7 +22,9 @@ export const story = {
     pullQuote: "We would rather hand over twelve homes we can stand in front of than a hundred we cannot.",
     pullQuoteBy: "The founding principle, unchanged",
     imageOne: "New Town — the first co-operative society block the company completed",
+    imageOneFile: "",
     imageTwo: "Directors on site during a slab pour",
+    imageTwoFile: "/directors/ranjeet_roy.jpg",
 };
 
 export const milestones: Milestone[] = [

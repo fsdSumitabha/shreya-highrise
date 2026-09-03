@@ -74,6 +74,7 @@ export type Leader = {
     since: string;
     bio: string;
     portrait: string;
+    image: string;
 };
 
 export const leadership: Leader[] = [
@@ -84,6 +85,7 @@ export const leadership: Leader[] = [
         since: "Founder, 2012",
         bio: "Bought and sold the plots the company started out trading in, and has negotiated every acquisition since. Sets the price sheet, approves each cost revision before it reaches a buyer, and is the reason the company has never taken construction finance against a project it had not already sold out of its own books.",
         portrait: "Ranjeet Roy — portrait",
+        image: "/directors/ranjeet_roy.jpg",
     },
     {
         name: "Sampa Roy",
@@ -92,6 +94,7 @@ export const leadership: Leader[] = [
         since: "Founder, 2012",
         bio: "Runs the drawing desk and the handover desk — the two ends of the same conversation. Reviews every unit layout for light, cross-ventilation and Vaastu before it is sanctioned, and personally signs off the snag list on each flat before the keys are released.",
         portrait: "Sampa Roy — portrait",
+        image: "/directors/sampa_roy.jpg",
     },
     {
         name: "Partha Roy Chowdhury",
@@ -100,6 +103,7 @@ export const leadership: Leader[] = [
         since: "Director since 2021",
         bio: "Holds the specification. Approves the pile design, walks each slab before the pour, and keeps procurement tied to brand and grade rather than to the lowest quotation. The delay-compensation clause in our agreement exists because he was willing to stand behind it.",
         portrait: "Partha Roy Chowdhury — portrait",
+        image: "/directors/partha_roychowdhury.jpg",
     },
 ];
 
