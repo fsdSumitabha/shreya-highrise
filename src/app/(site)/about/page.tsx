@@ -5,7 +5,6 @@ import AboutStory from "@/components/sections/AboutStory";
 import Milestones from "@/components/sections/Milestones";
 import Principles from "@/components/sections/Principles";
 import Leadership from "@/components/sections/Leadership";
-import Corridors from "@/components/sections/Corridors";
 import BuildStandard from "@/components/sections/BuildStandard";
 import Desks from "@/components/sections/Desks";
 import CtaBand from "@/components/sections/CtaBand";
@@ -37,7 +36,6 @@ export default function AboutPage() {
             <Milestones />
             <Principles />
             <Leadership />
-            <Corridors />
             <BuildStandard />
             <Desks />
             <CtaBand />

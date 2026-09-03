@@ -3,7 +3,6 @@ import PageHero from "@/components/ui/PageHero";
 import StatsBand from "@/components/sections/StatsBand";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import DeliveredProjects from "@/components/sections/DeliveredProjects";
-import Corridors from "@/components/sections/Corridors";
 import Advantages from "@/components/sections/Advantages";
 import Assurance from "@/components/sections/Assurance";
 import Faq from "@/components/sections/Faq";
@@ -48,7 +47,6 @@ export default function ProjectsPage() {
             <StatsBand />
             <FeaturedProjects linkToAll={false} />
             <DeliveredProjects linkToAll={false} />
-            <Corridors />
             <Advantages />
             <Assurance />
             <Faq />
