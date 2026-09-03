@@ -12,10 +12,10 @@ import { projectsIntro } from "@/data/projects";
 import { site } from "@/data/site";
 
 const description =
-    "Every Shreya High Rise address in one place — four projects open for sale in New Town, Rajarhat and Narendrapur, and three handed over across North Kolkata and New Town. Carpet areas, prices and possession dates published up front.";
+    "Every Shreya High Rise address in one place — two co-operative society blocks under construction in Action Area I, New Town, and four handed over across New Town. Areas, prices, possession dates and sanctioned plans published up front.";
 
 export const metadata: Metadata = {
-    title: "Our Projects — New Town, Rajarhat & Kolkata High-Rises",
+    title: "Our Projects — Co-operative Society Homes in New Town, Kolkata",
     description,
     alternates: { canonical: "/projects" },
     openGraph: {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
     return (
         <>
-            <PageHero crumb="Projects" eyebrow={projectsIntro.eyebrow} heading={projectsIntro.heading}
+            <PageHero drawMark crumb="Projects" eyebrow={projectsIntro.eyebrow} heading={projectsIntro.heading}
                 lede={projectsIntro.lede} marks={projectsIntro.marks} />
             <StatsBand />
             <FeaturedProjects linkToAll={false} />

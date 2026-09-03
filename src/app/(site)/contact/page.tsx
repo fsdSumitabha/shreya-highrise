@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
     return (
         <>
-            <PageHero crumb="Contact Us" eyebrow={contactIntro.eyebrow} heading={contactIntro.heading}
+            <PageHero drawMark crumb="Contact Us" eyebrow={contactIntro.eyebrow} heading={contactIntro.heading}
                 lede={contactIntro.lede} marks={contactIntro.marks} />
             <ContactChannels />
             <EnquiryForm />

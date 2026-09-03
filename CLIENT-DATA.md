@@ -59,21 +59,30 @@ named beside it.
 
 ## 2. Projects
 
-All seven projects are invented. Ask for the **existing price sheet or brochure per project** —
-almost everything below is already printed on it.
+The invented catalogue is gone — the site now runs on the client's own six records. What is
+left below is what those records do **not** say. Ask for the **existing price sheet, brochure
+and sanctioned drawings per project**; almost everything still open is already printed on one
+of the three.
 
-- [ ] 🔴 **The real project list** — six are now recorded in `src/data/temp-projects.json` (Chaitali, LIG BA Block, Mitrae, LIG Street 237, New Manikanchan, the Street 609 MIG society). **The public Projects page still runs on the seven invented ones in `src/data/projects.ts`** — that swap is the next job, and it needs the remaining four-to-six addresses · `src/data/projects.ts`
-- [x] ✅ **RERA** — the client does not have WBRERA registration. **Every RERA/WBRERA claim has been stripped from the public site** (hero credential strips, footer disclaimer, grievance note, FAQs, buyer journey, co-operative process, site intro, page metadata, keywords, and the `rera` field on the project cards). The internal filing pages and `temp-projects.json` still carry a RERA field, left alone on purpose · `src/data/projects.ts`
+- [x] ✅ **The real project list** — the six records in `src/data/temp-projects.json` are now the public catalogue. `src/data/projects.ts` was rebuilt from them and every invented project is gone; each address has its own page at `/projects/<slug>`, slugged off the project name. Still to come: the remaining four-to-six addresses, since the site claims **10+** · `src/data/projects.ts`
+- [x] ✅ **RERA** — the client does not have WBRERA registration. **Every RERA/WBRERA claim has been stripped from the public site** (hero credential strips, footer disclaimer, grievance note, FAQs, buyer journey, co-operative process, site intro, page metadata, keywords, and the `rera` field on the project cards). `Project.rera` survives as an optional field and renders a row the moment one is filled in. The internal filing pages and `temp-projects.json` still carry a RERA field, left alone on purpose · `src/data/projects.ts`
 - [ ] 🟡 **What replaces it, if anything** — projects are described by sanctioned plan, title deed and mutation record now. If any project is ever registered, tell us and the number goes back on the card · `src/data/projects.ts`
-- [ ] 🔴 **Price / "starting at" per project** — and whether prices should be public at all. Ours run ₹48 L – ₹1.18 Cr · `projects.ts` → `priceFrom`
-- [ ] 🔴 **Possession date per project**, exactly as printed in the agreement · `projects.ts` → `possession`
-- [ ] 🟡 **Configuration** actually on offer (2/3/4 BHK, duplex) · `projects.ts` → `typology`
-- [ ] 🟡 **Area range** — and confirm it's *carpet* area, not super built-up. The site labels it "Carpet range" · `projects.ts` → `sizeRange`
-- [ ] 🟡 **Three nearby landmarks + real distances** per project · `projects.ts` → `nearby`
-- [ ] 🟡 **Three selling points** per project · `projects.ts` → `highlights`
-- [ ] 🟡 For completed projects: **handover year and number of families** living there · `projects.ts`
-- [ ] 🟡 **Floor plans and brochure PDFs** — needed for the Projects page
-- [ ] 🔴 **Placeholder projects that predate the 2021 founding** — Spriha Heights (WBHIRA 2018, handed over 2019) and Shreya Greens (WBHIRA 2019) can't exist for a company incorporated in 2021. Left as-is pending the real project list · `src/data/projects.ts`
+- [ ] 🔴 **LIG Co-operative (CD-114): is the 4 BHK really ₹7 Cr?** — that is what the intake sheet records, and it is published as given. It sits beside a ₹45 L 2 BHK in the same G+4 block, so it is almost certainly **₹70 L** mistyped. **Do not go live without an answer** · `projects.ts` → `prices`
+- [ ] 🔴 **LIG Co-operative (CD-114): the drawings and the brief disagree** — the client's sheet says 2 & 4 BHK from 750 sq. ft.; the architect's sanctioned plan shows three two-bedroom flats per floor at 665 – 725 sq. ft. super built-up. Both are published, in separate sections and labelled as such, rather than reconciled by us. Which is current? · `projects.ts` → `plan`
+- [ ] 🟡 **LIG Co-operative (CD-114): which layout option is being built?** — the architect issued two. Option A has 8 car bays and a 405 sq. ft. office; Option B has 5 bays, a longer shop and a wider Flat C. Both are on the project page until the client says which was sanctioned · `public/projects/plans/cd_114/`
+- [ ] 🟡 **CD-114's street number** — the drawing's title block says Street No. 266, the society's own paperwork says Street No. 114, and the PIN differs too (700 156 against 700 163). Both are printed, with a footnote under the drawings · `projects.ts`
+- [ ] 🟡 **Which project is `public/projects/plans/0068/`?** — a G+4 residence at Premises No. 11-0572, Street No. 0068, New Town, drawn for "Gautam Saha / Ref Roy Cons". It matches none of the six addresses on record, so it is **not published anywhere**. Whose is it? · `public/projects/plans/0068/`
+- [x] ✅ **Price / "starting at" per project** — given for three of the six: ₹45 L (CD-114, 2 BHK), ₹55 L (CC-59), ₹36 L (New Manikanchan). Chaitali, Mitrae and the Street 609 society carry no price and their pages show none. See the ₹7 Cr flag above · `projects.ts` → `prices`
+- [ ] 🟡 **Possession date per project**, exactly as printed in the agreement — only CC-59 has one (October 2026). **CD-114 has none on file** and its page therefore shows no date at all · `projects.ts` → `possession`
+- [x] ✅ **Configuration** — 2 & 4 BHK (CD-114), 2 BHK (CC-59 and New Manikanchan), 3 BHK (Street 609). Chaitali and Mitrae have none on file · `projects.ts` → `typology`
+- [x] ✅ **Area basis** — confirmed **super built-up**, not carpet. The site no longer says "Carpet range" anywhere; each project labels its own figure out of `areaBasis`, so an address measured differently can say so · `projects.ts` → `sizeRange`, `areaBasis`
+- [ ] 🟡 **Nearby landmarks + distances** — given for CC-59, New Manikanchan and the Street 609 society. Chaitali, Mitrae and **CD-114** have none, and their pages omit the block entirely · `projects.ts` → `nearby`
+- [ ] 🟡 **Selling points per project** — all six currently carry the same five-line society standard the client dictated. Anything true of one address and not the others still needs asking · `projects.ts` → `highlights`
+- [ ] 🟡 For completed projects: **handover year and number of families** — Mitrae has neither, nor an address. Chaitali, New Manikanchan and Street 609 are complete · `projects.ts`
+- [x] ✅ **Floor plans** — the CD-114 sanctioned drawings are live on that project's page as area schedules plus the four PDFs. **No other project has drawings.** Any project given a `plan` block gets the same section automatically · `public/projects/plans/`
+- [ ] 🟡 **Brochure PDFs** — none received. `Project.brochure` takes a path and renders a download button the moment one is dropped in · `projects.ts` → `brochure`
+- [x] ✅ **Placeholder projects that predate the 2021 founding** — Spriha Heights and Shreya Greens are gone with the rest of the invented catalogue. The real record still has two 2018 projects (Mitrae, Street 609), which is consistent: the company built as **Roy Constructions** from 2016 and incorporated in 2021 · `src/data/projects.ts`
+- [ ] 🟡 **Two projects are both called "LIG Co-operative"** — CD-114 and CC-59. Kept exactly as the client named them; the site separates them by plot reference everywhere, including the enquiry-form dropdown. Do they have distinct marketing names? · `projects.ts` → `name`
 
 ---
 
@@ -183,8 +192,8 @@ usually be lifted from it while real photography is arranged.
 | Shot | Where | Ratio |
 | --- | --- | --- |
 | Flagship tower at dusk | Home hero, full screen | Landscape, 2400px+ |
-| Exterior / elevation per project (7) | Project cards | 4:3 |
-| One shot per completed project | "Recently delivered" | 3:2 |
+| Exterior / elevation per project (6) | Project cards, project pages | 4:3 |
+| One shot per completed project (4) | "Recently delivered" | 3:2 |
 | Site engineer at work | Home, About | 3:4 |
 | Handover / resident moment | Home | 3:4 |
 | ~~Clubhouse or rooftop panorama~~ **received** | Amenities | 21:9 |
@@ -222,6 +231,9 @@ From `data.txt` and the supplied logo files. **Do not re-ask these.**
 - CIN: **U70109WB2021PTC246677** · Incorporated **2021** as Shreya Highrise Private Limited
 - The journey: **2012** land buying and reselling (unregistered) · **2016** building starts as **Roy Constructions**, working area New Town · **2021** incorporated, expands to Rajarhat, Madhyamgram, Birati, New Barrackpur
 - Track record: **10 years since 2016** · **10+ addresses** · **120+ families**
-- Real project records live in `src/data/temp-projects.json` (six so far, all G+4 co-operative societies in New Town)
+- Real project records live in `src/data/temp-projects.json` (six so far, all G+4 co-operative societies in New Town),
+  and are now promoted into `src/data/projects.ts` — the six the public site runs on
+- Sanctioned drawings received: `public/projects/plans/cd_114/` (four PDFs, the LIG Co-operative at CD-114 — live on
+  that project's page) and `public/projects/plans/0068/` (two PDFs, unmatched to any project — see §2)
 - Photography received: `public/clubhouse_deck.png` — rooftop clubhouse and infinity pool at dusk,
   live in the home-page amenity band *(project and usage rights still to confirm — see §9)*

@@ -202,10 +202,19 @@
 @media (width < 40rem) {
     .hero-mark {
         --logo-stroke: color-mix(in oklab, var(--color-champagne-400) 34%, transparent);
+        /* The bead comes down with the pen. Left at strength it outshines the
+           line it is meant to be leading, and lands on the copy as a stray
+           dot rather than reading as the tip of a stroke. */
+        --logo-nib: color-mix(in oklab, var(--color-champagne-300) 55%, transparent);
     }
 
     [data-theme="dark"] .hero-mark {
         --logo-stroke: color-mix(in oklab, var(--color-champagne-300) 32%, transparent);
+        --logo-nib: color-mix(in oklab, var(--color-champagne-100) 55%, transparent);
+    }
+
+    .hero-mark [data-ink="nib"] {
+        filter: none;
     }
 }
 

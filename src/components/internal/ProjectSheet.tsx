@@ -102,7 +102,8 @@ export default function ProjectSheet({ sheetNo, notice }: { sheetNo: string; not
                 whole sheet instead of stacking them at the top. */}
             <div className="grid flex-1 content-between gap-x-14 gap-y-6 py-6 lg:grid-cols-2">
                 <Row no="01">
-                    <Field label="Project name" name="name" placeholder="Skyline One" required />
+                    <Field label="Project name" name="name" placeholder="Chaitali Co-operative Housing Society"
+                        required />
                 </Row>
                 <Row no="02">
                     <Field label="RERA no." name="rera" placeholder="WBRERA/P/NOR/2025/00…" />

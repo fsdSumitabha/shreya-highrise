@@ -134,7 +134,13 @@ export const visitBrief = {
 export const enquiryFields = {
     projects: {
         label: "Project of interest",
-        options: [...openForSale.map((project) => project.name), "Not decided yet"],
+        /* Plot reference in the label, because two of the societies on sale
+           are both called some form of "LIG Co-operative" — the address is
+           the only thing that tells them apart in a dropdown. */
+        options: [
+            ...openForSale.map((project) => (project.plot ? `${project.name} (${project.plot})` : project.name)),
+            "Not decided yet",
+        ],
     },
     configuration: {
         label: "Configuration",

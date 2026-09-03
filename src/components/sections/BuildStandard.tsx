@@ -12,7 +12,7 @@ export default function BuildStandard() {
                     <SectionHeading id="standard-heading" className="lg:col-span-7"
                         eyebrow={buildStandard.eyebrow} title={buildStandard.heading}
                         lede={buildStandard.lede} />
-                    <ImageFrame label="Slab reinforcement before a pour — Skyline One"
+                    <ImageFrame label="Slab reinforcement before a pour, on one of our New Town sites"
                         ratio="aspect-3/2" className="lg:col-span-5" />
                 </div>
 

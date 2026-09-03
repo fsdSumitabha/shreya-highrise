@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import AnimatedLogoMark from "@/components/brand/AnimatedLogoMark";
@@ -10,6 +11,8 @@ type Props = {
     lede: string;
     marks?: string[];
     crumb: string;
+    /** Steps between Home and `crumb` — a project sits under /projects. */
+    trail?: { label: string; href: string }[];
     /** Lay the monogram down live, with a pen, instead of printing it flat. */
     drawMark?: boolean;
 };
@@ -35,7 +38,7 @@ const MARK_CLASS =
     "sm:right-[-22%] sm:h-[150%] lg:-top-24 lg:right-[-4%] lg:h-[165%] xl:right-[1%] " +
     "dark:text-stone-100/[0.07]";
 
-export default function PageHero({ eyebrow, heading, lede, marks, crumb, drawMark = false }: Props) {
+export default function PageHero({ eyebrow, heading, lede, marks, crumb, trail = [], drawMark = false }: Props) {
     return (
         <section aria-labelledby="page-heading"
             className="grain relative isolate overflow-hidden bg-white text-slate-900 dark:bg-navy-950 dark:text-stone-100">
@@ -67,12 +70,17 @@ export default function PageHero({ eyebrow, heading, lede, marks, crumb, drawMar
             <Container className="relative z-10 flex flex-col gap-7 pb-16 pt-14 sm:gap-9 sm:pb-24 sm:pt-20">
                 <nav aria-label="Breadcrumb" data-reveal="left"
                     className="flex items-center gap-3 font-display text-xs uppercase tracking-luxe text-slate-500 dark:text-stone-100/45">
-                    <Link href="/" className="transition-colors hover:text-champagne-500 dark:hover:text-champagne-300">
-                        Home
-                    </Link>
-                    <span aria-hidden="true" className="text-champagne-400/70 dark:text-champagne-300/60">
-                        /
-                    </span>
+                    {[{ label: "Home", href: "/" }, ...trail].map((step) => (
+                        <Fragment key={step.href}>
+                            <Link href={step.href}
+                                className="transition-colors hover:text-champagne-500 dark:hover:text-champagne-300">
+                                {step.label}
+                            </Link>
+                            <span aria-hidden="true" className="text-champagne-400/70 dark:text-champagne-300/60">
+                                /
+                            </span>
+                        </Fragment>
+                    ))}
                     <span className="text-slate-700 dark:text-stone-100/75">{crumb}</span>
                 </nav>
 
