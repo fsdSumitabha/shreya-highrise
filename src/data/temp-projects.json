@@ -13,8 +13,8 @@
             "price2bhk": "",
             "price3bhk": "",
             "price4bhk": "",
-            "possession": "",
-            "totalFlats": "",
+            "possession": "2022",
+            "totalFlats": "8",
             "floors": "G+4",
             "handedOver": "2022",
             "families": "8",
@@ -99,7 +99,7 @@
         {
             "id": "mtlfqk6n-oadw3",
             "name": "LIG Cooperative Housing Society",
-            "address": "CC 59, Street 237,  AA -1",
+            "address": "CC-59, Street No. 237, Action Area I, New Town, Kolkata 700 156, West Bengal",
             "status": "Ongoing",
             "rera": "",
             "flatTypes": [
@@ -149,7 +149,7 @@
         {
             "id": "mtlfyymw-0uvmn",
             "name": "New Manikanchan MIG Society ",
-            "address": "Street 570  Plot 1196, AA 2B",
+            "address": "Plot 1196, Street No. 570, Action Area IIB, New Town, Kolkata 700 156, West Bengal",
             "status": "Completed",
             "rera": "",
             "flatTypes": [
@@ -199,7 +199,7 @@
         {
             "id": "mtlg1q8a-b8sd2",
             "name": "8 Member MIG Society",
-            "address": "Street 609",
+            "address": "Street No. 609, Action Area II, New Town, Kolkata 700 156, West Bengal",
             "status": "Completed",
             "rera": "",
             "flatTypes": [
