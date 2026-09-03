@@ -5,6 +5,7 @@ import AboutIntro from "@/components/sections/AboutIntro";
 import CooperativeBands from "@/components/sections/CooperativeBands";
 import Advantages from "@/components/sections/Advantages";
 import Amenities from "@/components/sections/Amenities";
+import PaperworkDesk from "@/components/sections/PaperworkDesk";
 import Corridors from "@/components/sections/Corridors";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import Journey from "@/components/sections/Journey";
@@ -37,6 +38,7 @@ export default function HomePage() {
             <CooperativeBands />
             <Advantages />
             <Amenities />
+            <PaperworkDesk />
             <Corridors />
             <Journey />
             <Testimonials />
