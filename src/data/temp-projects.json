@@ -1,3 +1,242 @@
 {
-    "projects": []
+    "projects": [
+        {
+            "id": "mtlbhf56-d8oif",
+            "name": "Chaitali Cooperative Housing Society | MIG",
+            "address": "BB-102, Ground Floor, Street No. 152, New Town, Kolkata 700 156, West Bengal",
+            "status": "Completed",
+            "rera": "",
+            "flatTypes": [],
+            "sizeFrom": "",
+            "sizeTo": "",
+            "areaBasis": "",
+            "price2bhk": "",
+            "price3bhk": "",
+            "price4bhk": "",
+            "possession": "",
+            "totalFlats": "",
+            "floors": "G+4",
+            "handedOver": "2022",
+            "families": "8",
+            "highlights": [
+                "CCTV Surveillance & 24/7 Security",
+                "24-Hour Power Backup",
+                "Dedicated Parking – 1 Space per Flat",
+                "Landscaped Garden / Green Space",
+                "Security Room"
+            ],
+            "nearby": [],
+            "floorPlan": "",
+            "brochure": "",
+            "photos": "",
+            "capturedAt": "2026-09-03T09:22:56.106Z"
+        },
+        {
+            "id": "mtlbu9mq-cmcv1",
+            "name": "LIG Cooperative",
+            "address": "CD, Street Number 114, BA Block(Newtown), Action Area I, Newtown, West Bengal 700163",
+            "status": "Ongoing",
+            "rera": "",
+            "flatTypes": [
+                "2 BHK",
+                "4 BHK"
+            ],
+            "sizeFrom": "750",
+            "sizeTo": "",
+            "areaBasis": "Super built-up",
+            "price2bhk": "45L",
+            "price3bhk": "",
+            "price4bhk": "7Cr",
+            "possession": "",
+            "totalFlats": "",
+            "floors": "G+4",
+            "handedOver": "",
+            "families": "",
+            "highlights": [
+                "CCTV Surveillance & 24/7 Security",
+                "24-Hour Power Backup",
+                "Dedicated Parking – 1 Space per Flat",
+                "Landscaped Garden / Green Space",
+                "Security Room"
+            ],
+            "nearby": [],
+            "floorPlan": "",
+            "brochure": "",
+            "photos": "",
+            "capturedAt": "2026-09-03T09:32:55.490Z"
+        },
+        {
+            "id": "mtlc09ad-6f0ux",
+            "name": "Mitrae Cooperative",
+            "address": "",
+            "status": "Completed",
+            "rera": "",
+            "flatTypes": [],
+            "sizeFrom": "",
+            "sizeTo": "",
+            "areaBasis": "",
+            "price2bhk": "",
+            "price3bhk": "",
+            "price4bhk": "",
+            "possession": "2018",
+            "totalFlats": "",
+            "floors": "G+4",
+            "handedOver": "",
+            "families": "",
+            "highlights": [
+                "CCTV Surveillance & 24/7 Security",
+                "24-Hour Power Backup",
+                "Dedicated Parking – 1 Space per Flat",
+                "Landscaped Garden / Green Space",
+                "Security Room"
+            ],
+            "nearby": [],
+            "floorPlan": "",
+            "brochure": "",
+            "photos": "",
+            "capturedAt": "2026-09-03T09:37:34.981Z"
+        },
+        {
+            "id": "mtlfqk6n-oadw3",
+            "name": "LIG Cooperative Housing Society",
+            "address": "CC 59, Street 237,  AA -1",
+            "status": "Ongoing",
+            "rera": "",
+            "flatTypes": [
+                "2 BHK"
+            ],
+            "sizeFrom": "850",
+            "sizeTo": "",
+            "areaBasis": "Super built-up",
+            "price2bhk": "55L",
+            "price3bhk": "",
+            "price4bhk": "",
+            "possession": "Oct 2026",
+            "totalFlats": "8",
+            "floors": "G+4",
+            "handedOver": "",
+            "families": "8",
+            "highlights": [
+                "CCTV Surveillance & 24/7 Security",
+                "24-Hour Power Backup",
+                "Dedicated Parking – 1 Space per Flat",
+                "Landscaped Garden / Green Space",
+                "Security Room"
+            ],
+            "nearby": [
+                {
+                    "name": "Hanging Garden Restuarent",
+                    "distance": ""
+                },
+                {
+                    "name": "Narek Bagan",
+                    "distance": ""
+                }
+            ],
+            "floorPlan": "",
+            "brochure": "",
+            "photos": "",
+            "capturedAt": "2026-09-03T11:22:01.007Z"
+        },
+        {
+            "id": "mtlfyymw-0uvmn",
+            "name": "New Manikanchan MIG Society ",
+            "address": "Street 570  Plot 1196, AA 2B",
+            "status": "Completed",
+            "rera": "",
+            "flatTypes": [
+                "2 BHK"
+            ],
+            "sizeFrom": "800",
+            "sizeTo": "",
+            "areaBasis": "",
+            "price2bhk": "36L",
+            "price3bhk": "",
+            "price4bhk": "",
+            "possession": "",
+            "totalFlats": "",
+            "floors": "G+4",
+            "handedOver": "2023 Dec",
+            "families": "12",
+            "highlights": [
+                "CCTV Surveillance & 24/7 Security",
+                "24-Hour Power Backup",
+                "Dedicated Parking – 1 Space per Flat",
+                "Landscaped Garden / Green Space",
+                "Security Room"
+            ],
+            "nearby": [
+                {
+                    "name": "City Center 2",
+                    "distance": "2 km"
+                },
+                {
+                    "name": "6lane Highway",
+                    "distance": "100 m"
+                },
+                {
+                    "name": "Eco Park 1km",
+                    "distance": "1 km"
+                },
+                {
+                    "name": "Eco Park",
+                    "distance": "1 km"
+                }
+            ],
+            "floorPlan": "",
+            "brochure": "",
+            "photos": "",
+            "capturedAt": "2026-09-03T11:28:32.984Z"
+        },
+        {
+            "id": "mtlg1q8a-b8sd2",
+            "name": "8 Member MIG Society",
+            "address": "Street 609",
+            "status": "Completed",
+            "rera": "",
+            "flatTypes": [
+                "3 BHK"
+            ],
+            "sizeFrom": "1250",
+            "sizeTo": "",
+            "areaBasis": "Super built-up",
+            "price2bhk": "",
+            "price3bhk": "",
+            "price4bhk": "",
+            "possession": "",
+            "totalFlats": "8",
+            "floors": "G+4",
+            "handedOver": "2018",
+            "families": "8",
+            "highlights": [
+                "CCTV Surveillance & 24/7 Security",
+                "24-Hour Power Backup",
+                "Dedicated Parking – 1 Space per Flat",
+                "Landscaped Garden / Green Space",
+                "Security Room"
+            ],
+            "nearby": [
+                {
+                    "name": "City Center 2",
+                    "distance": "2 km"
+                },
+                {
+                    "name": "6lane Highway",
+                    "distance": "100 m"
+                },
+                {
+                    "name": "Eco Park 1km",
+                    "distance": "1 km"
+                },
+                {
+                    "name": "Eco Park",
+                    "distance": "1 km"
+                }
+            ],
+            "floorPlan": "",
+            "brochure": "",
+            "photos": "",
+            "capturedAt": "2026-09-03T11:30:42.058Z"
+        }
+    ]
 }

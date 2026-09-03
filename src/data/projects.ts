@@ -16,6 +16,13 @@ export type Project = {
     imageLabel: string;
 };
 
+export const projectsIntro = {
+    eyebrow: "Our projects",
+    heading: "Every address we have built, and are building",
+    lede: "Seven addresses across four Kolkata corridors — four you can book into today, three already handed over and lived in. Carpet area, price, possession date and RERA number are published here before you ever pick up the phone.",
+    marks: ["7 addresses", "4 corridors", "1,450 families", "WBRERA registered"],
+};
+
 export const stageLabel: Record<Stage, string> = {
     upcoming: "New launch",
     ongoing: "Under construction",

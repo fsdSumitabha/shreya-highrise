@@ -4,7 +4,10 @@ import ActionLink from "@/components/ui/ActionLink";
 import ImageFrame from "@/components/ui/ImageFrame";
 import { delivered } from "@/data/projects";
 
-export default function DeliveredProjects() {
+/* `linkToAll` matches <FeaturedProjects>: the footer link is a way through to
+   the full list, so it comes off wherever the full list already is. */
+
+export default function DeliveredProjects({ linkToAll = true }: { linkToAll?: boolean }) {
     return (
         <section aria-labelledby="delivered-heading" className="py-20 sm:py-28">
             <Container className="flex flex-col gap-12">
@@ -40,11 +43,13 @@ export default function DeliveredProjects() {
                     ))}
                 </ul>
 
-                <div data-reveal="up">
-                    <ActionLink href="/projects" variant="ghost" arrow className="self-start">
-                        See every completed project
-                    </ActionLink>
-                </div>
+                {linkToAll ? (
+                    <div data-reveal="up">
+                        <ActionLink href="/projects" variant="ghost" arrow className="self-start">
+                            See every completed project
+                        </ActionLink>
+                    </div>
+                ) : null}
             </Container>
         </section>
     );
