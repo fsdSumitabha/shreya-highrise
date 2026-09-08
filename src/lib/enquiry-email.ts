@@ -1,7 +1,7 @@
 import "server-only";
 
 import { getTransporter, missingMailEnv } from "@/lib/mail-transporter";
-import { enquiryLabels, type Enquiry, type EnquiryKind } from "@/lib/enquiry";
+import { enquiryLabels, phoneDisplay, phoneTel, type Enquiry, type EnquiryKind } from "@/lib/enquiry";
 import { site } from "@/data/site";
 
 export type DeliveryResult =
@@ -69,7 +69,7 @@ function deskEmail(enquiry: Enquiry) {
     </td></tr>
     <tr><td style="padding:24px 32px 8px;">
         <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
-            ${row("Phone", `<a href="tel:${escape(enquiry.phone)}" style="color:#111827;font-weight:600;text-decoration:none;">${escape(enquiry.phone)}</a>`)}
+            ${row("Phone", `<a href="tel:${escape(phoneTel(enquiry.phone))}" style="color:#111827;font-weight:600;text-decoration:none;">${escape(phoneDisplay(enquiry.phone))}</a>`)}
             ${enquiry.email ? row("Email", `<a href="mailto:${escape(enquiry.email)}" style="color:#8a6d2f;">${escape(enquiry.email)}</a>`) : ""}
             ${detail}
         </table>
@@ -92,7 +92,7 @@ function deskEmail(enquiry: Enquiry) {
         `New enquiry — ${deskName(enquiry.kind)}`,
         "",
         `Name:  ${enquiry.name}`,
-        `Phone: ${enquiry.phone}`,
+        `Phone: ${phoneDisplay(enquiry.phone)}`,
         enquiry.email ? `Email: ${enquiry.email}` : "",
         ...Object.entries(enquiryLabels).map(([key, label]) => {
             const value = enquiry[key as keyof Enquiry];

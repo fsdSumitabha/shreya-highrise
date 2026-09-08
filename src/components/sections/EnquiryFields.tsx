@@ -1,7 +1,8 @@
 "use client";
 
-import { useActionState, useEffect, useRef, type ReactNode } from "react";
+import { useActionState, useEffect, useRef, type FormEvent, type ReactNode } from "react";
 import { submitEnquiry, type EnquiryFormState } from "@/app/(site)/contact/actions";
+import { normalizePhone } from "@/lib/enquiry";
 import { enquiryFields } from "@/data/contact";
 import { site } from "@/data/site";
 
@@ -12,6 +13,25 @@ import { site } from "@/data/site";
    module may only export async functions, so a plain object there is a trap. */
 
 const idle: EnquiryFormState = { status: "idle" };
+
+/* Keep the phone box to ten bare digits as it is typed, so a stray space or a
+   letter can never reach the server in the first place. `normalizePhone` is the
+   same function the server validates with — importing it here rather than
+   rewriting the rule is the point of keeping `lib/enquiry.ts` server-free. It
+   also means pasting "+91 98300 12345" lands correctly instead of being
+   truncated to the first ten characters. */
+const sanitizePhone = (event: FormEvent<HTMLInputElement>) => {
+    const input = event.currentTarget;
+    const cleaned = normalizePhone(input.value).slice(0, 10);
+    if (cleaned === input.value) return;
+
+    // Put the caret back where the typing was, counted in digits.
+    const caret = input.selectionStart ?? input.value.length;
+    const digitsBefore = input.value.slice(0, caret).replace(/\D/g, "").length;
+    input.value = cleaned;
+    const next = Math.min(digitsBefore, cleaned.length);
+    input.setSelectionRange(next, next);
+};
 
 const control =
     "w-full border border-slate-900/20 bg-white px-4 py-3.5 text-base text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-champagne-500 focus:ring-1 focus:ring-champagne-500 dark:border-stone-100/20 dark:bg-navy-950/50 dark:text-stone-100 dark:placeholder:text-stone-100/30 dark:focus:border-champagne-300 dark:focus:ring-champagne-300";
@@ -87,22 +107,35 @@ export default function EnquiryFields() {
                         className={`${control} ${errors.name ? invalidControl : ""}`}
                     />
                 </Field>
-                <Field htmlFor="phone" label="Phone" required error={errors.phone}>
-                    <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        required
-                        inputMode="tel"
-                        minLength={10}
-                        maxLength={18}
-                        autoComplete="tel"
-                        defaultValue={was("phone")}
-                        placeholder="+91 00000 00000"
-                        aria-invalid={errors.phone ? true : undefined}
-                        aria-describedby={errors.phone ? "phone-error" : undefined}
-                        className={`${control} ${errors.phone ? invalidControl : ""}`}
-                    />
+                <Field htmlFor="phone" label="Phone" hint="10 digits" required error={errors.phone}>
+                    <div className="flex items-stretch">
+                        <span
+                            id="phone-prefix"
+                            className={`inline-flex items-center border border-r-0 bg-slate-100 px-4 text-base text-slate-500 dark:bg-navy-950/80 dark:text-stone-100/55 ${
+                                errors.phone
+                                    ? "border-red-500 dark:border-red-400"
+                                    : "border-slate-900/20 dark:border-stone-100/20"
+                            }`}>
+                            +91
+                        </span>
+                        <input
+                            id="phone"
+                            name="phone"
+                            type="tel"
+                            required
+                            inputMode="numeric"
+                            maxLength={10}
+                            pattern="[2-9][0-9]{9}"
+                            // The country code has its own box, so only the national number is wanted.
+                            autoComplete="tel-national"
+                            defaultValue={was("phone")}
+                            placeholder="00000 00000"
+                            onInput={sanitizePhone}
+                            aria-invalid={errors.phone ? true : undefined}
+                            aria-describedby={`phone-prefix${errors.phone ? " phone-error" : ""}`}
+                            className={`${control} flex-1 ${errors.phone ? invalidControl : ""}`}
+                        />
+                    </div>
                 </Field>
             </div>
 

@@ -46,7 +46,7 @@ the same validation into the same inbox.
 ```jsonc
 {
   "name": "Required, 2+ characters",
-  "phone": "Required, 10–15 digits",
+  "phone": "Required, 10 national digits — 9830012345",
   "consent": true,          // required — permission to make contact
   "email": "optional, becomes Reply-To and gets the acknowledgement",
   "kind": "sales",          // or "projects" — picks the desk
@@ -54,6 +54,10 @@ the same validation into the same inbox.
   "timeline": "", "purpose": "", "visitOn": "", "message": ""
 }
 ```
+
+Phone is normalised before validation, so `+91 98300 12345`, `09830012345` and
+`919830012345` are all accepted and stored as the same ten digits. The first digit
+must be 2–9 (6–9 mobile, 2–5 landline STD).
 
 `201` delivered · `400` validation (`fields` says which) · `429` rate limited ·
 `503` valid but the mail hop failed — retrying may work.
