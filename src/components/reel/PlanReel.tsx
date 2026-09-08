@@ -215,14 +215,21 @@ export default function PlanReel({ className = "" }: { className?: string }) {
                 {/* The sheet. --reel is written here each frame; every overlay
                     below reads it and nothing else. */}
                 <div ref={sheetRef} className="reel-sheet relative isolate aspect-16/9 overflow-hidden">
-                    {/* What shows before the first frame decodes: a blank
-                        blueprint, which is where the film starts anyway. */}
+                    {/* The ground the poster sits on, and all there is to see in
+                        the instant before it loads. */}
                     <div aria-hidden="true"
                         className="absolute inset-0 bg-linear-to-br from-navy-800 via-navy-900 to-navy-950" />
 
-                    <video ref={videoRef} src={reel.src} muted loop playsInline autoPlay
-                        preload="metadata" aria-label={reel.description}
-                        className="absolute inset-0 size-full object-cover" />
+                    {/* The poster is the clip's own first frame, so the sheet is
+                        painted at once and playback starts on the picture that is
+                        already there — no flash between the two. */}
+                    <video ref={videoRef} muted loop playsInline autoPlay
+                        poster={reel.poster} preload="metadata" aria-label={reel.description}
+                        className="absolute inset-0 size-full object-cover">
+                        {reel.sources.map((source) => (
+                            <source key={source.src} src={source.src} type={source.type} />
+                        ))}
+                    </video>
 
                     {/* Cyanotype, lifting. Takes hue and saturation from this blue
                         and luminance from the film, so the drawing stays a drawing

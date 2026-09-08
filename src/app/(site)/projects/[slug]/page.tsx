@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import PageHero from "@/components/ui/PageHero";
 import ProjectOverview from "@/components/projects/ProjectOverview";
 import ProjectPlan from "@/components/projects/ProjectPlan";
+import ProjectPlanSheets from "@/components/projects/ProjectPlanSheets";
 import ProjectSurroundings from "@/components/projects/ProjectSurroundings";
 import ProjectEnquiry from "@/components/projects/ProjectEnquiry";
 import MoreProjects from "@/components/projects/MoreProjects";
@@ -59,6 +60,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
                 lede={heroLede(project)} marks={heroMarks(project)} />
             <ProjectOverview project={project} />
             {project.plan ? <ProjectPlan plan={project.plan} /> : null}
+            {project.plan ? <ProjectPlanSheets plan={project.plan} /> : null}
             <ProjectSurroundings project={project} />
             <ProjectEnquiry project={project} />
             <MoreProjects slug={project.slug} />

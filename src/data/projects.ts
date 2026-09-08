@@ -30,10 +30,19 @@ export type UnitRow = { unit: string; tenement: string; superBuiltUp: string };
 /** A row of the ground-floor area schedule — the non-residential spaces. */
 export type SpaceRow = { space: string; builtUp: string; superBuiltUp: string };
 
+/** A scan of a drawing sheet. The dimensions travel with the source because
+    the architect issues these both portrait and landscape, so nothing
+    downstream may assume a ratio, and `alt` is required rather than optional:
+    a drawing is the one thing on this site that must not be published to only
+    half its readers. */
+export type SheetImage = { src: string; width: number; height: number; alt: string };
+
 /** A drawing sheet under public/projects/plans/. `file` is a raw path — the
     component that renders it runs encodeURI, so the spaces in the filenames
-    the architect supplied are left exactly as they arrived. */
-export type PlanSheet = { label: string; file: string };
+    the architect supplied are left exactly as they arrived. `image` is the
+    same sheet as a scan, where we have one; a sheet without it stays a link
+    and nothing more. */
+export type PlanSheet = { label: string; file: string; image?: SheetImage };
 
 /** One sanctioned layout of the same building. Where the architect has issued
     alternatives, each is an option here rather than a separate project. */
@@ -229,8 +238,26 @@ export const projects: Project[] = [
                         { space: "Office", builtUp: "324 sq. ft.", superBuiltUp: "405 sq. ft." },
                     ],
                     sheets: [
-                        { label: "Ground floor plan", file: "/projects/plans/cd_114/05-0266_CD114_GR FL PLAN.pdf" },
-                        { label: "1st to 4th floor plan", file: "/projects/plans/cd_114/05-0266_CD114_TYP FL PLAN.pdf" },
+                        {
+                            label: "Ground floor plan",
+                            file: "/projects/plans/cd_114/05-0266_CD114_GR FL PLAN.pdf",
+                            image: {
+                                src: "/projects/plans/cd_114/05-0266_CD114_GR FL PLAN.jpg",
+                                width: 1684,
+                                height: 2382,
+                                alt: "Sanctioned ground floor plan, Option A: eight car bays and a shop along the 12 m street frontage, office and guard's room off the lift lobby, and an underground water reservoir, rainwater tank and garden strip across the rear boundary.",
+                            },
+                        },
+                        {
+                            label: "1st to 4th floor plan",
+                            file: "/projects/plans/cd_114/05-0266_CD114_TYP FL PLAN.pdf",
+                            image: {
+                                src: "/projects/plans/cd_114/05-0266_CD114_TYP FL PLAN.jpg",
+                                width: 2382,
+                                height: 1684,
+                                alt: "Sanctioned 1st to 4th floor plan, Option A: three flats set around a central stair and lift lobby, each drawn with two bedrooms, a drawing room, kitchen-cum-dining, toilet and a 900 mm balcony.",
+                            },
+                        },
                     ],
                 },
                 {
@@ -247,8 +274,26 @@ export const projects: Project[] = [
                         { space: "Office", builtUp: "119 sq. ft.", superBuiltUp: "149 sq. ft." },
                     ],
                     sheets: [
-                        { label: "Ground floor plan", file: "/projects/plans/cd_114/05-0266_CD114_GR FL PLAN-1.pdf" },
-                        { label: "1st to 4th floor plan", file: "/projects/plans/cd_114/05-0266_CD114_TYP FL PLAN-1.pdf" },
+                        {
+                            label: "Ground floor plan",
+                            file: "/projects/plans/cd_114/05-0266_CD114_GR FL PLAN-1.pdf",
+                            image: {
+                                src: "/projects/plans/cd_114/05-0266_CD114_GR FL PLAN-1.jpg",
+                                width: 2382,
+                                height: 1684,
+                                alt: "Sanctioned ground floor plan, Option B: five car bays and a longer shop frontage to the street, a smaller office beside the guard's room at the lift lobby, with the underground water reservoir and rainwater tank along the rear boundary.",
+                            },
+                        },
+                        {
+                            label: "1st to 4th floor plan",
+                            file: "/projects/plans/cd_114/05-0266_CD114_TYP FL PLAN-1.pdf",
+                            image: {
+                                src: "/projects/plans/cd_114/05-0266_CD114_TYP FL PLAN-1.jpg",
+                                width: 1684,
+                                height: 2382,
+                                alt: "Sanctioned 1st to 4th floor plan, Option B: Flats A and B mirrored across a shared drawing-room wall at the front of the plot, Flat C to the rear beside the stair and lift core.",
+                            },
+                        },
                     ],
                 },
             ],
@@ -388,6 +433,25 @@ export const areaTerm = (project: Project) => project.areaBasis ?? "Area";
 
 /** The income band a society is developed for, as the band file names it. */
 export const bandOf = (project: Project) => incomeBands.find((band) => band.code === project.band);
+
+/** One drawing to hang on the wall: the scan, plus the option it belongs to
+    and the PDF it was taken from. */
+export type SheetPlate = { option: string; label: string; file: string; image: SheetImage };
+
+/* Every sheet of a plan we hold a scan of, flattened across the options and
+   tagged with the option it came from. Sheets we only have a PDF for drop out
+   here rather than in the component, so "do we have drawings to show?" is one
+   `.length` at the call site — and a project whose scans have not arrived
+   simply renders no gallery. */
+export function planSheetImages(plan: SanctionedPlan): SheetPlate[] {
+    return plan.options.flatMap((option) =>
+        option.sheets.flatMap((sheet) =>
+            sheet.image
+                ? [{ option: option.name, label: sheet.label, file: sheet.file, image: sheet.image }]
+                : [],
+        ),
+    );
+}
 
 /* One dated row, not two. The intake sheet records the same year under
    `possession` for one society and `handedOver` for another — see the note in

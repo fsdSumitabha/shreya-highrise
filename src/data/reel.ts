@@ -1,6 +1,6 @@
 /* The plan-to-reality film, and the five stages it runs through.
 
-   public/plan_to_reality_.mp4 is ten seconds of a sanctioned 2D drawing being
+   public/videos/plan_to_reality.webm is ten seconds of a sanctioned 2D drawing being
    built into a finished tower. <PlanReel> narrates it: as the clip plays, the
    stage below whose window contains the playhead lights up and its note is
    read out under the frame, so a reader who cannot see the film — or has
@@ -25,7 +25,16 @@ export type ReelPhase = {
 };
 
 export const reel = {
-    src: "/plan_to_reality_.mp4",
+    /* Ordered by preference: the browser plays the first type it supports.
+       VP9 is half the weight of the H.264 the older Safaris still fall back to,
+       and neither carries an audio track — the film is played muted. */
+    sources: [
+        { src: "/videos/plan_to_reality.webm", type: "video/webm" },
+        { src: "/videos/plan_to_reality.mp4", type: "video/mp4" },
+    ],
+    /** The clip's own first frame, so the sheet is on screen before a single
+        frame of video has decoded. */
+    poster: "/videos/plan_to_reality_poster.webp",
     /** Drawing-sheet metadata for the title block, in draughtsman's shorthand. */
     sheet: { number: "SHR-001", scale: "N.T.S.", revision: "A" },
     /** Stands in for the film wherever it cannot be watched. */
