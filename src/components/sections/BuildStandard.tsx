@@ -12,7 +12,9 @@ export default function BuildStandard() {
                     <SectionHeading id="standard-heading" className="lg:col-span-7"
                         eyebrow={buildStandard.eyebrow} title={buildStandard.heading}
                         lede={buildStandard.lede} />
-                    <ImageFrame label="Slab reinforcement before a pour, on one of our New Town sites"
+                    <ImageFrame src="/under_construction.jpg"
+                        label="A G+4 co-operative block under construction on one of our New Town sites — RCC frame plastered, window openings still unglazed, cement stacked at ground level"
+                        sizes="(min-width: 1280px) 470px, (min-width: 1024px) 40vw, 100vw"
                         ratio="aspect-3/2" className="lg:col-span-5" />
                 </div>
 

@@ -187,20 +187,22 @@ labelled with the shot it needs. **Ask whether a brochure PDF exists** — rende
 usually be lifted from it while real photography is arranged.
 
 - [ ] 🔴 **The clubhouse image — where is it from?** Which project, is it a photograph or a render, and do we have the right to publish it? It reads as a New Town rooftop at dusk. The alt text deliberately makes no project claim until we know · `src/components/sections/Amenities.tsx`
+- [ ] 🟡 **The lobby nameplate — render or photograph?** `public/lobby_nameplate.png` (1024×1024, renamed from a UUID filename) shows the Shreya High Rise logo in brass on black granite beside glass lobby doors. It reads as a studio mockup rather than a photograph of one of the six addresses, so the alt text names no building. Confirm what it is and that it may be published · `src/data/about.ts` → `imageOne`
+- [ ] 🔴 **The two AA-110 renders — which society are they?** `public/right_side_view.jpg` and `public/left_side_view.jpg` are two angles of one building, each stamped "FRONT VIEW IF THE RESIDENTIAL BUILDING AT AA-110 (02-0068), NEW TOWN, KOLKATA" and watermarked "KarmaQuar's". That drawing number matches the unmatched `public/projects/plans/0068/` sheets (§2), not BB-102 or CC-59. They are published on **Chaitali** and **LIG Co-operative Housing Society (CC-59)** on the client's instruction, and the alt text deliberately makes no project claim until this is answered. Confirm which building it is, and that we may publish a third party's render · `src/data/projects.ts`
 - [ ] 🟡 **Source file** — 1.9 MB PNG. Ask for the original JPEG/TIFF if there is one; a JPEG at this size would be a fraction of the weight · `public/clubhouse_deck.png`
 
 | Shot | Where | Ratio |
 | --- | --- | --- |
 | Flagship tower at dusk | Home hero, full screen | Landscape, 2400px+ |
-| Exterior / elevation per project (6) | Project cards, project pages | 4:3 |
-| One shot per completed project (4) | "Recently delivered" | 3:2 |
+| Exterior / elevation per project (6) — **5 of 6 filled**; only the 8 Member MIG Society has none | Project cards, project pages | 4:3 |
+| One shot per completed project (4) — **2 received** (New Manikanchan, Mitrae) | "Recently delivered" | 3:2 |
 | Site engineer at work | Home, About | 3:4 |
 | Handover / resident moment | Home | 3:4 |
 | ~~Clubhouse or rooftop panorama~~ **received** | Amenities | 21:9 |
 | Map marking all project locations | "Where we build" | 1:1 |
-| The first building on Rabindra Sarani | About story | 4:5 |
-| Directors on site during a slab pour | About story | 1:1 |
-| **Portrait of each director (3)** | About, leadership | 3:4 |
+| ~~The first building on Rabindra Sarani~~ — the About-story 4:5 slot now carries the received nameplate | About story | 4:5 |
+| Directors on site during a slab pour — **still outstanding**; the 1:1 slot currently stands in with a director portrait | About story | 1:1 |
+| ~~Portrait of each director (3)~~ **received** — `public/directors/` | About, leadership | 3:4 |
 | Slab reinforcement before a pour | About, specification | 3:2 |
 | Map of each office (2) | Contact | 2:1 |
 
@@ -235,5 +237,14 @@ From `data.txt` and the supplied logo files. **Do not re-ask these.**
   and are now promoted into `src/data/projects.ts` — the six the public site runs on
 - Sanctioned drawings received: `public/projects/plans/cd_114/` (four PDFs, the LIG Co-operative at CD-114 — live on
   that project's page) and `public/projects/plans/0068/` (two PDFs, unmatched to any project — see §2)
+- Project photography received: `public/projects/manikanchan/street_elevation.png` and
+  `public/projects/mitrae_co-operative/street_elevation_dusk.png` — both completed G+4 blocks, occupied,
+  live on their project cards and pages. The first images on file that read as photographs of a named address
+  *(confirm they are photographs of that society, not of another — see §9)*
+- Brand imagery received: `public/lobby_nameplate.png` — logo in brass on granite at a lobby entrance,
+  live in the About-story column *(origin still to confirm — see §9)*
+- Renders received: `public/right_side_view.jpg`, `public/left_side_view.jpg` (both stamped AA-110 / 02-0068),
+  live on Chaitali and CC-59 *(building identity and usage rights still to confirm — see §9)*; `public/under_construction.jpg`,
+  live in the specification band
 - Photography received: `public/clubhouse_deck.png` — rooftop clubhouse and infinity pool at dusk,
   live in the home-page amenity band *(project and usage rights still to confirm — see §9)*

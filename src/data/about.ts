@@ -21,8 +21,8 @@ export const story = {
     ],
     pullQuote: "We would rather hand over twelve homes we can stand in front of than a hundred we cannot.",
     pullQuoteBy: "The founding principle, unchanged",
-    imageOne: "New Town — the first co-operative society block the company completed",
-    imageOneFile: "",
+    imageOne: "The Shreya High Rise nameplate in brass on a black granite wall, beside the glass entrance doors of a building lobby",
+    imageOneFile: "/lobby_nameplate.png",
     imageTwo: "Directors on site during a slab pour",
     imageTwoFile: "/directors/ranjeet_roy.jpg",
 };

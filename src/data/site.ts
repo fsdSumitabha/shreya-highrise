@@ -28,7 +28,7 @@ export const site = {
         sales: "shreyahighrise@gmail.com",
         projects: "royconstruction@gmail.com",
     },
-    hours: "Site office open Mon–Sun, 10:00 – 19:00 IST",
+    hours: "Site office open Mon–Sat, 10:00 – 19:00 IST",
 };
 
 export const nav: NavItem[] = [
@@ -110,6 +110,5 @@ export const leadership: Leader[] = [
 export const socials: NavItem[] = [
     { label: "Facebook", href: "https://facebook.com" },
     { label: "Instagram", href: "https://instagram.com" },
-    { label: "YouTube", href: "https://youtube.com" },
     { label: "LinkedIn", href: "https://linkedin.com" },
 ];

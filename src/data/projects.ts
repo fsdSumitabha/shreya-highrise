@@ -280,7 +280,8 @@ export const projects: Project[] = [
             { name: "Eco Park", distance: "2.8 km" },
             { name: "City Centre 2", distance: "6.2 km" },
         ],
-        imageLabel: "LIG Co-operative Housing Society, CC-59 — street elevation",
+        imageLabel: "Architect's render of a G+4 co-operative society block in New Town — side elevation from the street, balconies stacked beside the stair core",
+        image: "/left_side_view.jpg",
     },
     {
         slug: "chaitali-co-operative-housing-society",
@@ -299,7 +300,8 @@ export const projects: Project[] = [
         highlights: societyStandard,
         nearby: [],
         about: "Our head office sits on the ground floor of this building. Price sheets, floor plans and anything to do with a booked flat are handled from here, which makes it the easiest address on this list to come and see for yourself.",
-        imageLabel: "Chaitali Co-operative Housing Society — entrance elevation",
+        imageLabel: "Architect's render of a G+4 co-operative society block in New Town — corner elevation, balconies above a gated ground-floor parking bay",
+        image: "/right_side_view.jpg",
     },
     {
         slug: "new-manikanchan-mig-society",
@@ -323,7 +325,8 @@ export const projects: Project[] = [
             { name: "Eco Park", distance: "1 km" },
             { name: "City Centre 2", distance: "2 km" },
         ],
-        imageLabel: "New Manikanchan MIG Society — street elevation",
+        imageLabel: "New Manikanchan MIG Society — the completed G+4 block from the road, stilt parking below and open ground alongside",
+        image: "/projects/manikanchan/street_elevation.png",
     },
     {
         slug: "8-member-mig-society",
@@ -359,7 +362,8 @@ export const projects: Project[] = [
         floors: "G+4",
         highlights: societyStandard,
         nearby: [],
-        imageLabel: "Mitrae Co-operative — street elevation",
+        imageLabel: "Mitrae Co-operative — the completed G+4 block at dusk, lit windows above stilt parking",
+        image: "/projects/mitrae_co-operative/street_elevation_dusk.png",
     },
 ];
 

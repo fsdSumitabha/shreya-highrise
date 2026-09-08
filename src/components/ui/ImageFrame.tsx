@@ -29,7 +29,7 @@ export default function ImageFrame({
 }: Props) {
     const corner = `absolute size-3 border-champagne-400/60 dark:border-champagne-300/50`;
     const push = zoom ? "transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]" : "";
-    const frame = `relative isolate flex items-center justify-center overflow-hidden ${bordered ? `border ${edge}` : ""} ${ratio} ${className}`;
+    const frame = `relative isolate flex items-center justify-center overflow-hidden rounded-xl ${bordered ? `border ${edge}` : ""} ${ratio} ${className}`;
     const ticks = (
         <>
             <span aria-hidden="true" className={`${corner} left-3 top-3 border-l border-t`} />
