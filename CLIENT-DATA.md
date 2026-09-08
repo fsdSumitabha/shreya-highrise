@@ -26,6 +26,7 @@ code paths and no internal notes. Coverage map:
 | §8 Testimonials | Part 2 G |
 | §9 Photography | Part 2 H |
 | §10 Technical setup | not on the sheet — see below |
+| §11 Privacy policy | not on the sheet — needs a call, see below |
 
 **Not on the client sheet — still open here.** Ask these on a call, or decide them
 ourselves. They are not answered anywhere:
@@ -49,7 +50,7 @@ named beside it.
 ## 1. Company basics
 
 - [x] ✅ **Year founded** — confirmed. Three dates, all now used deliberately: **2012** land trading (where the About timeline opens), **2016** first building as Roy Constructions (`site.founded` — the "since" year in the hero, stats, About intro and footer copyright), **2021** incorporation as Shreya Highrise Pvt Ltd (the CIN year) · `src/data/site.ts`
-- [ ] 🔴 **Domain name** — assumed `https://shreyahighrise.in`, used in canonical URLs, OG tags and JSON-LD · `src/data/site.ts`
+- [ ] 🔴 **Domain name** — assumed `https://shreyahighrise.com`, used in canonical URLs, OG tags and JSON-LD · `src/data/site.ts`
 - [x] ✅ **CIN** — confirmed **U70109WB2021PTC246677**, printed in the footer legal line, the contact page legal note and the JSON-LD `identifier` · `src/data/site.ts`
 - [ ] 🟡 **Which email is public sales, which is internal** — we treat `shreyahighrise@gmail.com` as sales and `royconstruction@gmail.com` as projects/handover · `src/data/site.ts`
 - [ ] 🟡 **Are both phone numbers public, and which is primary?** — `8910355765` is primary (it's the header button), `9836649276` secondary · `src/data/site.ts`
@@ -216,6 +217,55 @@ usually be lifted from it while real photography is arranged.
 - [ ] 🔴 **Wire the enquiry form to a real destination** (see §7) · `src/app/contact/actions.ts`
 - [ ] 🟡 **Real social media profile URLs** — the footer currently links to facebook.com, instagram.com, youtube.com and linkedin.com homepages · `src/data/site.ts` → `socials`
 - [ ] 🟡 **Google Analytics / Tag Manager ID**
+
+---
+
+## 11. Privacy policy — `/privacy`
+
+The page at `src/app/(site)/privacy/page.tsx` renders `src/data/privacy.ts`. It is a **legal
+notice**: under §4 of the DPDP Act the notice *is* the lawful basis for processing, so anything
+inaccurate here does not merely read badly — it invalidates the consent it describes. Every item
+below is something we asserted on the client's behalf and they have to confirm or correct.
+
+- [ ] 🔴 **Name the Grievance Officer.** DPDP §13 and SPDI Rule 5(9) both require a published,
+  named person. The card currently prints the designation, the desk email, the second phone number
+  and the registered office — a lawful fallback, but not the whole requirement. Fill
+  `grievanceOfficer.name` and the line appears · `src/data/privacy.ts` → `grievanceOfficer`
+- [ ] 🔴 **There is no cookie consent banner on this site.** The policy is written to be true today
+  (`analyticsLive = false` → §7 says nothing is running and no banner is needed). **The moment a
+  Meta Pixel, GA4 or Google Ads tag is added, a consent banner has to ship in the same deploy and
+  `analyticsLive` must be flipped to `true`** — which rewrites §4 and §7 to the consent wording.
+  Shipping a tag without both is the single most likely way this page becomes untrue ·
+  `src/data/privacy.ts` → `analyticsLive`
+- [ ] 🔴 **Retention periods are ours, not theirs.** We committed the company in writing to:
+  enquiries deleted **24 months** after last contact; deletion on request within **30 days**;
+  consent records kept **3 years**; booking/KYC/registration records **8 years** from the end of the
+  financial year. The 8 years is defensible from the Companies Act and the tax statutes; the other
+  three are our choice and the client must actually be able to keep them ·
+  `src/data/privacy.ts` → `sections` → `retention`
+- [ ] 🔴 **Grievance timelines** — **three working days** to acknowledge, **thirty days** to answer.
+  These now appear on a legal page, not just in marketing copy · `src/data/privacy.ts`
+- [ ] 🟡 **Booking-stage practice at the offices**, described in §3: masked Aadhaar accepted and the
+  full twelve digits never stored, Aadhaar never mandatory, PAN quoted on the TDS challan, financial
+  documents passed only to the lender the buyer names. Confirm this is what the desk actually does ·
+  `src/data/privacy.ts` → `sections` → `sensitive`
+- [ ] 🟡 **"We do not circulate enquiries to brokers"** (§9) and **"we do not send bulk promotional
+  SMS"** (§15). Both are absolute statements about current practice ·
+  `src/data/privacy.ts` → `sections` → `sharing`, `marketing`
+- [ ] 🟡 **Hosting provider and its log retention** — §11 says server logs are kept "as our hosting
+  provider retains them, typically 30 days". Confirm against the actual host once deployment is
+  settled · `src/data/privacy.ts` → `sections` → `retention`
+- [ ] 🟡 **Bengali or Hindi copy on request** — §5 offers the notice in an Eighth Schedule language,
+  which DPDP §5(3) entitles the reader to. Someone has to be able to produce it ·
+  `src/data/privacy.ts` → `sections` → `consent`
+- [ ] 🟡 **Effective date and version** — published as **8 September 2026, version 1.0**. Bump both
+  on any substantive edit; the date is also the JSON-LD `dateModified` ·
+  `src/data/privacy.ts` → `policyMeta`
+- [ ] 🟡 **A Terms of Use / disclaimer page** is not written. The footer disclaimer covers the
+  indicative-imagery point, but `legalNav` is an array precisely so a second entry can be added ·
+  `src/data/site.ts` → `legalNav`
+- [x] ✅ **No WBRERA claim** — §1 states positively that the company is *not* registered with
+  WBRERA, consistent with the rest of the site · `src/data/privacy.ts`
 
 ---
 

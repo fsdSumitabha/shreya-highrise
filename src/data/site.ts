@@ -18,7 +18,7 @@ export const site = {
     name: "Shreya High Rise",
     legalName: "Shreya Highrise Private Limited",
     cin: "U70109WB2021PTC246677",
-    url: "https://shreyahighrise.in",
+    url: "https://shreyahighrise.com",
     locality: "Kolkata · New Town · Rajarhat · Madhyamgram",
     tagline: "Homes that rise with the city",
     intro: "A Kolkata developer of co-operative society homes — ten addresses across New Town, Rajarhat and the north of the city, delivered on time and priced in the open.",
@@ -41,6 +41,12 @@ export const nav: NavItem[] = [
     { label: "About Us", href: "/about" },
     { label: "Contact Us", href: "/contact" },
 ];
+
+/* Legal pages. Deliberately not in `nav` — the header and the mobile menu both
+   render that list, and neither is where a privacy policy belongs. These sit in
+   the footer's bottom bar, on every page, which is where a reader looks for
+   them and where Meta and Google look for them when they review an ad account. */
+export const legalNav: NavItem[] = [{ label: "Privacy Policy", href: "/privacy" }];
 
 /** The exact pin the client gave for the New Town office. */
 const headOfficePin = "22.5891026,88.4528644";

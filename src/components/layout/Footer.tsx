@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import BrandMark from "@/components/layout/BrandMark";
-import { nav, offices, site, socials } from "@/data/site";
+import { legalNav, nav, offices, site, socials } from "@/data/site";
 
 export default function Footer() {
     return (
@@ -69,10 +69,18 @@ export default function Footer() {
             </Container>
 
             <Container
-                className="flex flex-col gap-3 border-t border-slate-900/10 py-8 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between dark:border-stone-100/10 dark:text-stone-100/50">
+                className="flex flex-col gap-4 border-t border-slate-900/10 py-8 text-xs text-slate-500 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-8 dark:border-stone-100/10 dark:text-stone-100/50">
                 <p>
                     © {site.founded}–{new Date().getFullYear()} {site.legalName}. All rights reserved.
                 </p>
+                <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                    {legalNav.map((item) => (
+                        <Link key={item.href} href={item.href}
+                            className="font-display uppercase tracking-luxe underline-offset-4 hover:text-champagne-500 hover:underline dark:hover:text-champagne-300">
+                            {item.label}
+                        </Link>
+                    ))}
+                </nav>
                 <p>CIN {site.cin} · GSTIN {site.gstin}</p>
             </Container>
             <Container className="pb-10">
