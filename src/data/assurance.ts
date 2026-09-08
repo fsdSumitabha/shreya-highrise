@@ -14,7 +14,6 @@ export const lenders = [
 
 export const credentials: Credential[] = [
     { label: "Registration", value: `CIN ${site.cin}` },
-    { label: "Membership", value: "CREDAI Bengal member" },
     { label: "Quality", value: "ISO 9001:2015 processes" },
     { label: "Audit", value: "Third-party structural audit" },
 ];

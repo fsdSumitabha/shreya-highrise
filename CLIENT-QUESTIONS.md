@@ -41,7 +41,7 @@ Do not retype it.
 
 ## Legal and certificates
 
-16. Are you a CREDAI Bengal member? If yes, please send the certificate.
+16. ~~Are you a CREDAI Bengal member?~~ **Answered: no** — the claim has been taken off the site.
 17. Do you have ISO 9001 certification? If yes, please send the certificate.
 18. Which banks have approved your projects for home loans? (SBI, HDFC, ICICI…)
 19. Any award or recognition you want shown?

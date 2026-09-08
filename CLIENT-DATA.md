@@ -106,7 +106,7 @@ have to add up to 8.
 
 Each of these is stated on the site as a fact. If it isn't true, it has to come off.
 
-- [ ] 🔴 **CREDAI Bengal membership** · `src/data/assurance.ts`
+- [x] ✅ **CREDAI Bengal membership** — client does not have it. Removed from the credentials row on the home page; nothing on the site claims it now · `src/data/assurance.ts`
 - [ ] 🔴 **ISO 9001:2015 certification** · `src/data/assurance.ts`
 - [ ] 🔴 **Which banks / HFCs have project-level approval** — we list 7: SBI, HDFC, ICICI, Axis, Bank of Baroda, PNB Housing, LIC Housing Finance · `src/data/assurance.ts`
 - [ ] 🔴 **Third-party structural audit** — is there one, and by whom? · `src/data/assurance.ts`

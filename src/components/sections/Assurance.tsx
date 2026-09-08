@@ -12,7 +12,7 @@ export default function Assurance() {
                     Approved, registered and financeable
                 </h2>
 
-                <ul data-stagger="110" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <ul data-stagger="110" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     {credentials.map((item) => (
                         <li key={item.label} data-reveal="up" className="group relative flex flex-col gap-2 pl-5">
                             <span aria-hidden="true"
