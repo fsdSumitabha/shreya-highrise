@@ -53,7 +53,8 @@ named beside it.
 - [x] ✅ **CIN** — confirmed **U70109WB2021PTC246677**, printed in the footer legal line, the contact page legal note and the JSON-LD `identifier` · `src/data/site.ts`
 - [ ] 🟡 **Which email is public sales, which is internal** — we treat `shreyahighrise@gmail.com` as sales and `royconstruction@gmail.com` as projects/handover · `src/data/site.ts`
 - [ ] 🟡 **Are both phone numbers public, and which is primary?** — `8910355765` is primary (it's the header button), `9836649276` secondary · `src/data/site.ts`
-- [ ] 🟡 **Office hours per office** — we invented Head Office Mon–Sun 10:00–19:00 and Registered Office Mon–Sat 11:00–18:00 · `src/data/site.ts`
+- [x] ✅ **Site / head office hours** — confirmed **Mon–Sat, 10:00 – 19:00 IST**, now in `site.hours`, the head-office row, the contact hero strip, the "Reach us directly" sales-desk note and the enquiry auto-reply · `src/data/site.ts`, `src/data/contact.ts`
+- [ ] 🟡 **Registered office hours** — still ours: we invented Mon–Sat 11:00–18:00 for New Barrackpur · `src/data/site.ts`
 
 ---
 
@@ -155,11 +156,13 @@ makes it good copy and also what makes it risky if the details are wrong.
 
 ## 7. Contact page — reaching you
 
-- [ ] 🔴 **Where enquiry-form submissions should go** — a shared inbox, a CRM, WhatsApp for Business? **The form is not wired to anything yet**: it validates and writes to the server log, then shows a thank-you page. Nothing is emailed to anyone · `src/app/contact/actions.ts`
+- [ ] 🔴 **Where enquiry-form submissions should go** — the form now emails the sales desk over SMTP, defaulting to `shreyahighrise@gmail.com` (`EMAIL_TO_SALES` overrides it). Confirm that is the right inbox, and whether a CRM or WhatsApp for Business should receive it too. **There is no database — the mail is the lead** · `src/lib/enquiry-intake.ts`, `MAIL-SETUP.md`
 - [ ] 🔴 **Named grievance officer for WBRERA complaints** — the page publishes a grievance desk and promises a **written acknowledgement within three working days**. Confirm both the promise and who owns it · `src/data/contact.ts` → `departments`
 - [ ] 🔴 **"We do not sell, share or resell your number"** — a data-protection promise on the form. Confirm it, and confirm the consent wording covers phone, WhatsApp and email · `src/data/contact.ts`, `src/components/sections/EnquiryForm.tsx`
 - [ ] 🟡 **WhatsApp business number** — we're currently pointing `wa.me` at the primary phone. Is that number on WhatsApp? · `src/data/contact.ts` → `channels`
-- [ ] 🟡 **Google Maps link or lat-long for both offices** — we build a Maps *search* link from the postal address, which may land on the wrong pin · `src/data/site.ts` → `mapQuery`, `src/data/contact.ts` → `mapLink`
+- [x] ✅ **Head office pin** — client gave **22.5891026, 88.4528644** (Action Area I, New Town). It drives both the embedded map and the "Open in Maps →" link on the contact page · `src/data/site.ts` → `headOffice.mapPin` / `mapEmbed`
+- [ ] 🟡 **Registered office pin** — still built as a Maps *search* from the postal address, so it can land on the wrong doorway. It only appears in the footer now, not on the contact page · `src/data/site.ts` → `registeredOffice.mapQuery`
+- [ ] 🟡 **The head office pin sits in Action Area I, 700163, while the printed address reads BB-102, Street No. 152, New Town, 700156** — worth a glance to confirm the postal address is written the way the client wants it · `src/data/site.ts`
 - [ ] 🟡 **"Reply within one working day"** — repeated four times across the page. Is it a promise they can keep? · `src/data/contact.ts`
 - [ ] 🟡 **Free pickup anywhere inside Kolkata** for site visits, with no obligation · `src/data/contact.ts` → `visitBrief`
 - [ ] 🟡 **The site-visit description** — an engineer (not a salesperson) meets you at the gate, you walk a real unit, the sanctioned plan / RERA registration / title report are on the table, and you leave with a printed cost sheet. Does that match what actually happens? · `src/data/contact.ts` → `visitBrief`
@@ -204,7 +207,7 @@ usually be lifted from it while real photography is arranged.
 | Directors on site during a slab pour — **still outstanding**; the 1:1 slot currently stands in with a director portrait | About story | 1:1 |
 | ~~Portrait of each director (3)~~ **received** — `public/directors/` | About, leadership | 3:4 |
 | Slab reinforcement before a pour | About, specification | 3:2 |
-| Map of each office (2) | Contact | 2:1 |
+| ~~Map of each office (2)~~ **not needed** — live Google embed instead | Contact | 2:1 |
 
 ---
 

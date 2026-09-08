@@ -10,7 +10,7 @@ import { contactIntro } from "@/data/contact";
 import { site } from "@/data/site";
 
 const description =
-    "Call, WhatsApp or email Shreya High Rise, or book a site visit at any project in New Town, Rajarhat, Madhyamgram or Narendrapur. Two offices in Kolkata, open seven days a week, with a reply inside one working day.";
+    "Call, WhatsApp or email Shreya High Rise, or book a site visit at any project in New Town, Rajarhat, Madhyamgram or Narendrapur. Our New Town office is open Mon – Sat, and every enquiry gets a reply inside one working day.";
 
 export const metadata: Metadata = {
     title: "Contact Us — Book a Site Visit in Kolkata",

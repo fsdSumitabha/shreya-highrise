@@ -6,15 +6,23 @@ export type Department = { name: string; purpose: string; email: string; phone?:
 export type VisitStep = { title: string; body: string };
 export type FieldGroup = { label: string; options: string[] };
 
-/** Google Maps deep link built from an office's `mapQuery`. Replace with a real place link — see CLIENT-DATA. */
+/** Google Maps deep link built from an office's `mapQuery`. An office with a
+    confirmed `mapPin` uses that instead — see `offices` in data/site.ts. */
 export const mapLink = (query: string) =>
     `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+
+/** The same address as an embeddable map. No API key: this is the classic
+    `output=embed` endpoint, which takes a plain address the way the deep link
+    does. A client-supplied "Share → Embed a map" URL (`…/maps/embed?pb=…`)
+    drops straight into `office.mapEmbed` and wins over this. */
+export const mapEmbed = (query: string) =>
+    `https://maps.google.com/maps?q=${encodeURIComponent(query)}&z=16&output=embed`;
 
 export const contactIntro = {
     eyebrow: "Contact",
     heading: "Come and stand in the building",
     lede: "Renders flatten everything. Floor heights, the light at four in the afternoon, how far the lift bank really is from the door — you learn all of it in twenty minutes on site and none of it from a brochure.",
-    marks: ["Open Mon – Sun, 10:00 – 19:00", "Reply within one working day", "No closing script"],
+    marks: ["Open Mon – Sat, 10:00 – 19:00", "Reply within one working day", "No closing script"],
 };
 
 export const responsePromise = {
@@ -41,7 +49,7 @@ export const channels: Channel[] = [
         label: "Call the sales desk",
         value: site.phones[0].display,
         href: `tel:${site.phones[0].tel}`,
-        note: "Mon – Sun, 10:00 – 19:00 IST",
+        note: "Mon – Sat, 10:00 – 19:00 IST",
     },
     {
         label: "WhatsApp",
