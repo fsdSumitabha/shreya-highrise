@@ -253,8 +253,8 @@ export const projects: Project[] = [
                             file: "/projects/plans/cd_114/05-0266_CD114_TYP FL PLAN.pdf",
                             image: {
                                 src: "/projects/plans/cd_114/05-0266_CD114_TYP FL PLAN.jpg",
-                                width: 2382,
-                                height: 1684,
+                                width: 1684,
+                                height: 2382,
                                 alt: "Sanctioned 1st to 4th floor plan, Option A: three flats set around a central stair and lift lobby, each drawn with two bedrooms, a drawing room, kitchen-cum-dining, toilet and a 900 mm balcony.",
                             },
                         },
@@ -279,8 +279,8 @@ export const projects: Project[] = [
                             file: "/projects/plans/cd_114/05-0266_CD114_GR FL PLAN-1.pdf",
                             image: {
                                 src: "/projects/plans/cd_114/05-0266_CD114_GR FL PLAN-1.jpg",
-                                width: 2382,
-                                height: 1684,
+                                width: 1684,
+                                height: 2382,
                                 alt: "Sanctioned ground floor plan, Option B: five car bays and a longer shop frontage to the street, a smaller office beside the guard's room at the lift lobby, with the underground water reservoir and rainwater tank along the rear boundary.",
                             },
                         },
