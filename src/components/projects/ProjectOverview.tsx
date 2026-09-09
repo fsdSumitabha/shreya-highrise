@@ -1,5 +1,5 @@
 import Container from "@/components/ui/Container";
-import ImageFrame from "@/components/ui/ImageFrame";
+import ProjectGallery from "@/components/projects/ProjectGallery";
 import SpecGrid from "@/components/ui/SpecGrid";
 import StageBadge from "@/components/ui/StageBadge";
 import ActionLink from "@/components/ui/ActionLink";
@@ -7,8 +7,10 @@ import { scheduleFacts, type Project } from "@/data/projects";
 
 /* The top of a project page: the building on the left, the schedule on the
    right. Photograph where we have one and a shot brief where we do not — the
-   <ImageFrame> swap is the whole difference, so a project page never waits on
-   photography to be worth reading.
+   <ProjectGallery> swap is the whole difference, so a project page never
+   waits on photography to be worth reading. What photography there is opens
+   full size from there; the frames here stay a fixed ratio so the column
+   holds its shape whatever the picture's own proportions turn out to be.
 
    The right-hand column is assembled entirely out of what the project
    carries. The gallery, the paragraph, the price table and the brochure
@@ -28,23 +30,8 @@ export default function ProjectOverview({ project }: { project: Project }) {
                 {project.name} at a glance
             </h2>
             <Container className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
-                <div className="flex flex-col gap-6">
-                    <div data-reveal="curtain" className="group">
-                        <ImageFrame src={project.image} label={project.imageLabel} ratio="aspect-4/3"
-                            sizes="(min-width: 1024px) 640px, 100vw" zoom />
-                    </div>
-
-                    {project.gallery?.length ? (
-                        <ul data-stagger="90" className="grid grid-cols-3 gap-3">
-                            {project.gallery.map((shot) => (
-                                <li key={shot.src} data-reveal="up" className="group">
-                                    <ImageFrame src={shot.src} label={shot.label} ratio="aspect-4/3"
-                                        sizes="(min-width: 1024px) 200px, 30vw" zoom />
-                                </li>
-                            ))}
-                        </ul>
-                    ) : null}
-                </div>
+                <ProjectGallery image={project.image} imageLabel={project.imageLabel}
+                    gallery={project.gallery} />
 
                 <div className="flex flex-col gap-8">
                     <div data-reveal="up" className="flex flex-wrap items-center gap-3">
