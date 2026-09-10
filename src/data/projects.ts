@@ -153,24 +153,19 @@ const societyStandard = [
 export const projects: Project[] = [
     {
         slug: "lig-co-operative",
-        name: "LIG Co-operative",
+        name: "LIG Co-operative Society",
         stage: "ongoing",
         band: "lig",
         plot: "CD-114",
-        locality: "BA Block, Action Area I, New Town",
-        address: "CD, Street Number 114, BA Block, Action Area I, New Town, Kolkata 700 163, West Bengal",
+        locality: "CD Block, Action Area I, New Town",
+        address: "CD 114, Street Number 266, CD Block, Action Area I, New Town, Kolkata 700 163, West Bengal",
         corridor: "New Town",
-        typology: "2 & 4 BHK",
+        typology: "2 BHK",
         sizeRange: "750 sq. ft. onwards",
         areaBasis: "Super built-up",
         priceFrom: "₹45 L",
         prices: [
-            { config: "2 BHK", from: "₹45 L" },
-            /* ⚠ VERIFY BEFORE GO-LIVE — ₹7 Cr is what the intake sheet records,
-               but it sits beside a ₹45 L 2 BHK in the same G+4 block. Almost
-               certainly ₹70 L mistyped. Left exactly as captured rather than
-               corrected on a guess; see CLIENT-DATA.md §2. */
-            { config: "4 BHK", from: "₹7 Cr" },
+            { config: "2 BHK", from: "₹45 L" }
         ],
         floors: "G+4",
         highlights: societyStandard,
@@ -306,14 +301,14 @@ export const projects: Project[] = [
         stage: "ongoing",
         band: "lig",
         plot: "CC-59",
-        locality: "Street No. 237, Action Area I, New Town",
+        locality: "CC Plot No 59 | Street No. 237, Action Area I, New Town",
         address: "CC-59, Street No. 237, Action Area I, New Town, Kolkata 700 156, West Bengal",
         corridor: "New Town",
-        typology: "4 BHK",
+        typology: "2 BHK",
         sizeRange: "850 sq. ft. onwards",
         areaBasis: "Super built-up",
         priceFrom: "₹55 L",
-        prices: [{ config: "4 BHK", from: "₹55 L" }],
+        prices: [{ config: "2 BHK", from: "₹55 L" }],
         possession: "October 2026",
         totalFlats: "8",
         families: "8",
@@ -346,7 +341,7 @@ export const projects: Project[] = [
         nearby: [],
         about: "Our head office sits on the ground floor of this building. Price sheets, floor plans and anything to do with a booked flat are handled from here, which makes it the easiest address on this list to come and see for yourself.",
         imageLabel: "Architect's render of a G+4 co-operative society block in New Town — corner elevation, balconies above a gated ground-floor parking bay",
-        image: "/right_side_view.jpg",
+        image: "",
     },
     {
         slug: "new-manikanchan-mig-society",
