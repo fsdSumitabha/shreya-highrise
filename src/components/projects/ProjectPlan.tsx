@@ -33,6 +33,8 @@ export default function ProjectPlan({ plan }: { plan: SanctionedPlan }) {
         plan.drawingNo && { term: "Drawing no.", value: plan.drawingNo },
     ].filter((row) => !!row);
 
+    const wording = planWording(plan);
+
     return (
         <section aria-labelledby="plan-heading"
             className="relative isolate overflow-hidden border-y border-slate-900/10 bg-slate-100 py-20 sm:py-28 dark:border-stone-100/10 dark:bg-navy-950">
@@ -40,9 +42,9 @@ export default function ProjectPlan({ plan }: { plan: SanctionedPlan }) {
                 className="blueprint-grid pointer-events-none absolute inset-0 -z-10 text-slate-900/70 [--grid-size:4rem] dark:text-stone-100/60" />
 
             <Container className="flex flex-col gap-14">
-                <SectionHeading id="plan-heading" eyebrow={planWording(plan).eyebrow}
+                <SectionHeading id="plan-heading" eyebrow={wording.eyebrow}
                     lines={["What has actually", "been drawn"]}
-                    lede={`${plan.title}. Areas, bays and services below are read straight off the architect's sheets — the sheets themselves are linked under each option.`} />
+                    lede={`${plan.title}. Areas, bays and services below are read straight off the architect's sheets — the sheets themselves are ${wording.linked}.`} />
 
                 {titleBlock.length ? (
                     <dl data-stagger="70"
@@ -68,11 +70,11 @@ export default function ProjectPlan({ plan }: { plan: SanctionedPlan }) {
 
                 {/* Two alternative layouts sit side by side to be compared.
                     A set with only one has nothing to compare it against, so
-                    it runs full width instead of leaving half the row empty. */}
-                <div data-stagger="120"
-                    className={`grid gap-8 ${plan.options.length > 1 ? "lg:grid-cols-2" : ""}`}>
+                    it runs full width instead of leaving half the row empty,
+                    and drops its own name — see <PlanOptionCard>. */}
+                <div data-stagger="120" className={`grid gap-8 ${wording.solo ? "" : "lg:grid-cols-2"}`}>
                     {plan.options.map((option) => (
-                        <PlanOptionCard key={option.name} option={option} />
+                        <PlanOptionCard key={option.name} option={option} solo={wording.solo} />
                     ))}
                 </div>
 
@@ -109,17 +111,25 @@ function PlanList({ title, items }: { title: string; items?: string[] }) {
     );
 }
 
-function PlanOptionCard({ option }: { option: PlanOption }) {
+function PlanOptionCard({ option, solo }: { option: PlanOption; solo: boolean }) {
+    // Nothing to head the card with when the name is suppressed and no note
+    // was written — the schedules below start straight away.
+    const header = !solo || option.note;
+
     return (
         <article data-reveal="up"
             className="flex flex-col gap-6 border border-slate-900/15 bg-white p-6 sm:p-8 dark:border-stone-100/12 dark:bg-navy-900/50">
-            <header className="flex flex-col gap-2">
-                <h3 className="font-display text-2xl font-light tracking-tight">{option.name}</h3>
-                {option.note ? (
-                    <p className="text-sm leading-relaxed text-slate-600 dark:text-stone-100/65">{option.note}</p>
-                ) : null}
-                <Ornament className="pt-1" />
-            </header>
+            {header ? (
+                <header className="flex flex-col gap-2">
+                    {solo ? null : (
+                        <h3 className="font-display text-2xl font-light tracking-tight">{option.name}</h3>
+                    )}
+                    {option.note ? (
+                        <p className="text-sm leading-relaxed text-slate-600 dark:text-stone-100/65">{option.note}</p>
+                    ) : null}
+                    <Ornament className="pt-1" />
+                </header>
+            ) : null}
 
             {option.units?.length ? (
                 <PlanTable caption="Tenement schedule"

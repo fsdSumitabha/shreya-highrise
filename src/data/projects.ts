@@ -408,37 +408,55 @@ export const projects: Project[] = [
             ],
             options: [
                 {
-                    name: "Option 2",
-                    note: "The layout the architect issued as OP-2, and the only one in the set. Each sheet is drawn twice — once in colour and once as line work — and both are linked below.",
+                    /* The architect issued one layout for this address, so
+                       this name is never shown — a set of one has nothing to
+                       tell itself apart from. It stays as the grouping key
+                       the sheets hang off. */
+                    name: "As drawn",
                     parking: "4 car parking bays at ground level",
+                    /* Two floors, each drawn twice: once coloured for a reader
+                       and once in line work. The pairs are kept adjacent so
+                       each floor's two versions sit side by side. */
                     sheets: [
                         {
-                            label: "Ground floor plan",
-                            file: "/projects/plans/0068/02-0068_GAUTAM SAHA_REN_GR FL.pdf",
+                            label: "Ground floor plan — colour render",
+                            file: "/projects/plans/0068/ground_floor_plan_colour_render.pdf",
                             image: {
-                                src: "/projects/plans/0068/02-0068_GAUTAM SAHA_REN_GR FL.jpg",
+                                src: "/projects/plans/0068/ground_floor_plan_colour_render.jpg",
                                 width: 1684,
                                 height: 2382,
                                 alt: "Ground floor plan in colour: four car bays drawn with cars along the Street No. 68 frontage, a long shop and electrical equipment room to one side, two bedrooms with toilets behind the stair and lift lobby, and an underground water reservoir under planting across the rear yard.",
                             },
                         },
                         {
-                            label: "1st to 4th floor plan",
-                            file: "/projects/plans/0068/02-0068_GAUTAM SAHA_REN_TYP_0P2.pdf",
+                            label: "Ground floor plan — line drawing",
+                            file: "/projects/plans/0068/ground_floor_plan_line_drawing.pdf",
                             image: {
-                                src: "/projects/plans/0068/02-0068_GAUTAM SAHA_REN_TYP_0P2.jpg",
+                                src: "/projects/plans/0068/ground_floor_plan_line_drawing.jpg",
+                                width: 1684,
+                                height: 2382,
+                                alt: "The same ground floor plan in line work, without colour: four parking bays off the street, shop and electrical equipment room alongside, two bedrooms and toilets behind the stair and lift lobby, and the underground water reservoir across the rear yard. Dimensions are written against every room.",
+                            },
+                        },
+                        {
+                            label: "1st to 4th floor plan — colour render",
+                            file: "/projects/plans/0068/typical_floor_plan_op_2_colour_render.pdf",
+                            image: {
+                                src: "/projects/plans/0068/typical_floor_plan_op_2_colour_render.jpg",
                                 width: 1684,
                                 height: 2382,
                                 alt: "Typical floor plan in colour, one home to the floor: four bedrooms at the corners, a living-cum-dining room running the depth of the plan with the kitchen off it, three toilets, a loft over the inner lobby and a balcony at the street end.",
                             },
                         },
                         {
-                            label: "Ground floor plan (line drawing)",
-                            file: "/projects/plans/0068/02-0068_GAUTAM SAHA_REF ROY CONS_GR FL.pdf",
-                        },
-                        {
-                            label: "1st to 4th floor plan (line drawing)",
-                            file: "/projects/plans/0068/02-0068_GAUTAM SAHA_REF ROY CONS_TYP FL-OP2.pdf",
+                            label: "1st to 4th floor plan — line drawing",
+                            file: "/projects/plans/0068/typical_floor_plan_op_2_line_drawing.pdf",
+                            image: {
+                                src: "/projects/plans/0068/typical_floor_plan_op_2_line_drawing.jpg",
+                                width: 1684,
+                                height: 2382,
+                                alt: "The same typical floor plan in line work, marked OP-2 on the sheet: four bedrooms, living-cum-dining with the kitchen off it, three toilets, a loft and a balcony, with dimensions written against every room.",
+                            },
                         },
                     ],
                 },
@@ -582,10 +600,19 @@ export function planSheetImages(plan: SanctionedPlan): SheetPlate[] {
 export function planWording(plan: SanctionedPlan) {
     const sanctioned = plan.sanctioned ?? true;
 
+    /* An option name is only information when there is a second option to
+       tell it apart from. Where the architect issued one layout, the name is
+       an unanswered question on the page — "Option 2 of what?" — so a set of
+       one is presented as the drawings, unlabelled, and nothing above them
+       refers to options either. */
+    const solo = plan.options.length === 1;
+
     return {
+        solo,
         eyebrow: sanctioned ? "From the sanctioned drawing" : "From the architect's drawing",
         sheets: sanctioned ? "The sanctioned drawings" : "The architect's drawings",
         reproduced: sanctioned ? "reproduced as sanctioned" : "reproduced as issued",
+        linked: solo ? "linked below" : "linked under each option",
     };
 }
 

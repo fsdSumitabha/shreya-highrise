@@ -75,7 +75,8 @@ of the three.
 - [ ] 🟡 **CD-114's street number** — the drawing's title block says Street No. 266, the society's own paperwork says Street No. 114, and the PIN differs too (700 156 against 700 163). Both are printed, with a footnote under the drawings · `projects.ts`
 - [x] ✅ **Which project is `public/projects/plans/0068/`?** — answered. It is **Pre Hold Individual Plot**, AA Block, Street No. 68, and both the drawings and the AA-110 renders are now published on that project's page · `src/data/projects.ts`
 - [ ] 🔴 **Pre Hold Individual Plot: 148 flats and 148 families are not possible** — the intake sheet records both. The architect's own drawing for the address puts **one 4 BHK home on each of four floors**, on a plot of about 2,150 sq. ft. with 1,382 sq. ft. of ground coverage. 148 would also put more families in this one house than the site claims for the whole practice (120+). **Both fields are withheld from the site** until the client corrects them — everything else on that record is published as given · `projects.ts`
-- [ ] 🟡 **Pre Hold Individual Plot: three plot references for one address** — the drawing's title block says **Premises No. 11-0572**, the client's sheet says **Plot 111**, and the architect's renders are captioned **AA-110**. All three are printed as received, with a footnote under the drawings. Which is the address a buyer would be given? · `projects.ts`
+- [ ] 🔴 **Pre Hold Individual Plot: which is the premises number?** — the sheet's title block reads "PLAN OF RESIDENCE AT PRE NO. **-11-0572**, NEW TOWN, KOLKATA", while **02-0068** is the drawing number in the corner box. The data was edited by hand to say Premises No. **02-068**, so the page now gives the drawing number as the premises number and the "Drawing no." row repeats it. Either the title block is wrong or the edit is — confirm which · `projects.ts` → `plotAddress`, `title`, `caveat`
+- [ ] 🟡 **Pre Hold Individual Plot: three plot references for one address** — the client's sheet says **Plot 111**, the architect's renders are captioned **AA-110**, and the title block carries a premises number (see above). All are printed as received, with a footnote under the drawings. Which is the address a buyer would be given? · `projects.ts`
 - [ ] 🟡 **Is "Pre Hold Individual Plot" the public name?** — it reads as an internal description rather than a name a buyer would be sold. It is used verbatim, and it is the URL: `/projects/pre-hold-individual-plot`. A different name means a different URL, so decide before launch · `projects.ts` → `name`
 - [ ] 🟡 **Is Pre Hold Individual Plot for sale, or the client's own?** — it is filed as completed and handed over in 2024, with a ₹1.6 Cr 4 BHK price and a commercial rate against it. If nothing there is available, the price should come off · `projects.ts`
 - [x] ✅ **Price / "starting at" per project** — given for three of the six: ₹45 L (CD-114, 2 BHK), ₹55 L (CC-59), ₹36 L (New Manikanchan). Chaitali, Mitrae and the Street 609 society carry no price and their pages show none. See the ₹7 Cr flag above · `projects.ts` → `prices`
@@ -298,10 +299,12 @@ From `data.txt` and the supplied logo files. **Do not re-ask these.**
 - Sanctioned drawings received: `public/projects/plans/cd_114/` (four PDFs, the LIG Co-operative at CD-114 — live on
   that project's page)
 - Architect's drawings received: `public/projects/plans/0068/` — the Pre Hold Individual Plot at AA Block,
-  Street No. 68. Seven PDFs, but only **four are distinct**: a ground floor and a typical floor, each issued twice,
-  once in colour and once as line work. Three of the seven are byte-identical duplicates of another three
-  (`…TYP FL-OP2_02`, `…REN_GR FL_CAR`, `…REN_TYP_0P2_02`) and can be deleted. The two colour sheets were
-  rasterised to JPEG here for the page; the two line sheets are linked as PDFs only
+  Street No. 68. Seven PDFs arrived but only **four were distinct**: a ground floor and a typical floor, each
+  issued twice, once in colour and once as line work. Three were byte-identical duplicates (`…TYP FL-OP2_02`,
+  `…REN_GR FL_CAR`, `…REN_TYP_0P2_02`) and have been deleted; the content survives under the names below.
+  The colour sheets were rasterised to JPEG here, so all four drawings now show as images and link to their PDF:
+  `ground_floor_plan_colour_render`, `ground_floor_plan_line_drawing`, `typical_floor_plan_op_2_colour_render`,
+  `typical_floor_plan_op_2_line_drawing` — `.pdf` and `.jpg` each
 - Project photography received: `public/projects/manikanchan/street_elevation.png` and
   `public/projects/mitrae_co-operative/street_elevation_dusk.png` — both completed G+4 blocks, occupied,
   live on their project cards and pages. The first images on file that read as photographs of a named address

@@ -55,7 +55,11 @@ export default function ProjectPlanSheets({ plan }: { plan: SanctionedPlan }) {
        the options stack down the same column and a plate that changed shape
        between them would read as a mistake. */
     const ratio = plateRatio(plates);
-    const wording = planWording(plan);
+    /* `solo` is the same judgement <ProjectPlan> makes, taken from the same
+       place: one layout means the option name says nothing, so neither the
+       group heading nor the tag on each caption is drawn and the sheets stand
+       on their own labels. */
+    const { solo, ...wording } = planWording(plan);
 
     /* Grouped back into the options they came from, in the order the data
        lists them: two alternative layouts of one building read as two sets of
@@ -77,22 +81,24 @@ export default function ProjectPlanSheets({ plan }: { plan: SanctionedPlan }) {
 
                 {groups.map((group) => (
                     <div key={group.name} className="flex flex-col gap-6">
-                        <header data-reveal="left" className="flex flex-col gap-2">
-                            <div className="flex items-baseline gap-4">
-                                <h3 className="font-display text-xl font-light tracking-tight">{group.name}</h3>
-                                <span aria-hidden="true"
-                                    className="h-px flex-1 bg-linear-to-r from-champagne-400/60 to-transparent dark:from-champagne-300/50" />
-                            </div>
-                            {group.note ? (
-                                <p className="max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-stone-100/65">
-                                    {group.note}
-                                </p>
-                            ) : null}
-                        </header>
+                        {solo ? null : (
+                            <header data-reveal="left" className="flex flex-col gap-2">
+                                <div className="flex items-baseline gap-4">
+                                    <h3 className="font-display text-xl font-light tracking-tight">{group.name}</h3>
+                                    <span aria-hidden="true"
+                                        className="h-px flex-1 bg-linear-to-r from-champagne-400/60 to-transparent dark:from-champagne-300/50" />
+                                </div>
+                                {group.note ? (
+                                    <p className="max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-stone-100/65">
+                                        {group.note}
+                                    </p>
+                                ) : null}
+                            </header>
+                        )}
 
                         <div data-stagger="120" className="grid items-start gap-6 lg:grid-cols-2">
                             {group.plates.map((plate) => (
-                                <SheetPlateFigure key={plate.image.src} plate={plate} ratio={ratio} />
+                                <SheetPlateFigure key={plate.image.src} plate={plate} ratio={ratio} solo={solo} />
                             ))}
                         </div>
                     </div>
@@ -113,7 +119,7 @@ export default function ProjectPlanSheets({ plan }: { plan: SanctionedPlan }) {
    an unreadable negative the moment you try to theme it. The plate around it
    carries the dark mode instead. */
 
-function SheetPlateFigure({ plate, ratio }: { plate: SheetPlate; ratio: string | null }) {
+function SheetPlateFigure({ plate, ratio, solo }: { plate: SheetPlate; ratio: string | null; solo: boolean }) {
     const corner = "absolute size-3 border-champagne-400/70";
 
     /* A mixed set, where the section could not settle on one shape. Stacked
@@ -152,9 +158,16 @@ function SheetPlateFigure({ plate, ratio }: { plate: SheetPlate; ratio: string |
                 className="flex items-baseline gap-3 font-display text-xs uppercase tracking-luxe text-slate-500 dark:text-stone-100/50">
                 <span className="text-champagne-500 dark:text-champagne-300">PDF</span>
                 <span className="text-slate-700 dark:text-stone-100/75">{plate.label}</span>
-                <span aria-hidden="true"
-                    className="mb-1 flex-1 border-b border-dotted border-slate-900/20 dark:border-stone-100/20" />
-                <span>{plate.option}</span>
+                {/* The leader only earns its keep by carrying something to the
+                    right of it. With the option tag gone there is nothing to
+                    lead to, so both come off together. */}
+                {solo ? null : (
+                    <>
+                        <span aria-hidden="true"
+                            className="mb-1 flex-1 border-b border-dotted border-slate-900/20 dark:border-stone-100/20" />
+                        <span>{plate.option}</span>
+                    </>
+                )}
             </figcaption>
         </figure>
     );
