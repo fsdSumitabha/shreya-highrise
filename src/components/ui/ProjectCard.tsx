@@ -26,23 +26,30 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <StageBadge stage={project.stage} className="absolute left-4 top-4 z-2" />
                 {/* Slides up over the image on hover. */}
                 <span aria-hidden="true"
-                    className="absolute inset-x-0 bottom-0 z-2 translate-y-full bg-navy-950/85 px-6 py-3 font-display text-xs uppercase tracking-luxe text-champagne-300 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:translate-y-0">
+                    className="absolute inset-x-0 bottom-0 z-2 line-clamp-1 translate-y-full bg-navy-950/85 px-6 py-3 font-display text-xs uppercase tracking-luxe text-champagne-300 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:translate-y-0">
                     {caption}
                 </span>
             </div>
 
             <div className="relative z-2 flex flex-1 flex-col gap-5 p-6 sm:p-7">
+                {/* Name and locality are clamped to a single line each, so a
+                    row of cards keeps one baseline whatever the client called
+                    a society. Clamping is visual only — the full string stays
+                    in the DOM for assistive tech, and the page the card links
+                    to spells it out in full. */}
                 <header className="flex flex-col gap-1">
-                    <h3 className="font-display text-2xl font-light tracking-tight transition-colors duration-300 group-hover:text-champagne-500 sm:text-3xl dark:group-hover:text-champagne-300">
+                    <h3 className="line-clamp-1 font-display text-2xl font-light tracking-tight transition-colors duration-300 group-hover:text-champagne-500 sm:text-3xl dark:group-hover:text-champagne-300">
                         {project.name}
                     </h3>
-                    <p className="text-sm text-slate-600 dark:text-stone-100/65">{whereLine(project)}</p>
+                    <p className="line-clamp-1 text-sm text-slate-600 dark:text-stone-100/65">
+                        {whereLine(project)}
+                    </p>
                 </header>
 
                 <SpecGrid facts={cardFacts(project)} ruled />
 
                 <div className="mt-auto flex flex-col gap-4">
-                    <NearbyList places={project.nearby} />
+                    <NearbyList places={project.nearby} clamp />
                     <span aria-hidden="true"
                         className="flex items-center gap-3 font-display text-xs uppercase tracking-luxe text-champagne-500 dark:text-champagne-300">
                         View project

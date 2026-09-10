@@ -129,14 +129,14 @@ export type Project = {
 export const projectsIntro = {
     eyebrow: "Our projects",
     heading: "Every address we have built, and are building",
-    lede: "Seven addresses across New Town — two under construction and open for booking, five handed over and lived in. Mostly co-operative society blocks, and one house on a private plot. Configuration, area, price and possession are published here before you ever pick up the phone.",
-    marks: ["7 addresses on record", "New Town", "G+4 throughout", "Kolkata only"],
+    lede: "Seven addresses across New Town — three under construction and open for booking, four handed over and lived in. Mostly co-operative society blocks, and one house on a private plot. Configuration, area, price and possession are published here before you ever pick up the phone.",
+    marks: ["7 addresses on record", "3 open for booking", "New Town", "Kolkata only"],
 };
 
 export const featuredIntro = {
     eyebrow: "Open for sale",
     lines: ["Under construction,", "open for booking"],
-    lede: "Two co-operative society blocks in Action Area I, New Town. Area, price and possession are on the card; the sanctioned plan is on the project page.",
+    lede: "Two co-operative society blocks in Action Area I and a house on a private plot off Street No. 68. Area, price and possession are on the card; the drawings are on the project page.",
 };
 
 export const deliveredIntro = {
@@ -338,7 +338,7 @@ export const projects: Project[] = [
     {
         slug: "pre-hold-individual-plot",
         name: "Pre Hold Individual Plot",
-        stage: "completed",
+        stage: "ongoing",
         /* Not a co-operative. One four-bedroom home to a floor on a private
            plot, so it carries no income band and says what it is instead. */
         buildingType: "residence on an individual plot",
@@ -351,7 +351,10 @@ export const projects: Project[] = [
         areaBasis: "Super built-up",
         priceFrom: "₹1.6 Cr",
         prices: [{ config: "4 BHK", from: "₹1.6 Cr" }],
-        handedOver: "DEC 2026",
+        // A date still in the future is a possession date, not a handover —
+        // `datedFact` labels it from the stage, and the rest of the catalogue
+        // writes months out in full.
+        possession: "December 2026",
         floors: "G+4",
         /* WITHHELD — the intake sheet records `totalFlats: "148"` and
            `families: "148"`. The architect's own drawing for this address puts
@@ -369,12 +372,13 @@ export const projects: Project[] = [
             { name: "Axis Mall", distance: "1 km" },
             { name: "City Centre 2", distance: "3 km" },
         ],
-        imageLabel: "Architect's render of the finished G+4 residence at AA Block, Street No. 68 — street corner elevation, four floors of balconies beside a slatted stair screen, with the shop shutter and entrance gate at ground level",
+        imageLabel: "Architect's render of the G+4 residence at AA Block, Street No. 68 — street corner elevation, four floors of balconies beside a slatted stair screen, with the shop shutter and entrance gate at ground level",
         image: "/projects/aa_68/left_side_view.jpg",
         gallery: [
             {
                 src: "/projects/aa_68/right_side_view.jpg",
                 label: "Architect's render of the same building from the opposite corner — timber and stone cladding across the projecting bay, and the covered parking behind the gate",
+                // Reads as an exterior brief until a site photograph exists.
             },
         ],
         plan: {

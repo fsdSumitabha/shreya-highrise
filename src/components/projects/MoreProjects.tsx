@@ -37,11 +37,15 @@ export default function MoreProjects({ slug }: { slug: string }) {
                                 {/* Marker rail that fills top-to-bottom on hover. */}
                                 <span aria-hidden="true"
                                     className="absolute inset-y-0 left-0 w-0.5 origin-top scale-y-0 bg-champagne-300 transition-transform duration-500 ease-out group-hover:scale-y-100" />
-                                <span className="flex flex-col gap-1 transition-transform duration-500 ease-out group-hover:translate-x-2">
-                                    <span className="font-display text-2xl font-light tracking-tight">
+                                {/* min-w-0 is what makes the clamp bite: this
+                                    is a flex child, and without it the column
+                                    sizes to its longest word and pushes the
+                                    stage label off instead of ellipsing. */}
+                                <span className="flex min-w-0 flex-col gap-1 transition-transform duration-500 ease-out group-hover:translate-x-2">
+                                    <span className="line-clamp-1 font-display text-2xl font-light tracking-tight">
                                         {project.name}
                                     </span>
-                                    <span className="text-sm text-slate-600 dark:text-stone-100/65">
+                                    <span className="line-clamp-1 text-sm text-slate-600 dark:text-stone-100/65">
                                         {whereLine(project)}
                                     </span>
                                 </span>

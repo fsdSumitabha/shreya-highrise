@@ -46,17 +46,22 @@ export default function DeliveredProjects({ linkToAll = true }: { linkToAll?: bo
                                             {project.plot ?? `${project.corridor} corridor`}
                                         </span>
                                     </div>
+                                    {/* Clamped to a line each, as on <ProjectCard>: four of these
+                                        sit in a row and a wrapped name would drop the rule and the
+                                        footnote below it out of step with the rest. Visual only —
+                                        the full string stays in the DOM for assistive tech, and the
+                                        page the card links to spells it out. */}
                                     <div className="flex flex-col gap-2">
-                                        <h3 className="font-display text-2xl font-light tracking-tight transition-colors duration-300 group-hover:text-champagne-500 dark:group-hover:text-champagne-300">
+                                        <h3 className="line-clamp-1 font-display text-2xl font-light tracking-tight transition-colors duration-300 group-hover:text-champagne-500 dark:group-hover:text-champagne-300">
                                             {project.name}
                                         </h3>
-                                        <p className="text-sm text-slate-600 dark:text-stone-100/65">
+                                        <p className="line-clamp-1 text-sm text-slate-600 dark:text-stone-100/65">
                                             {whereLine(project)}
                                         </p>
                                         <span aria-hidden="true"
                                             className="h-px w-8 bg-champagne-400/70 transition-all duration-500 ease-out group-hover:w-20 dark:bg-champagne-300/70" />
                                         {footnote.length ? (
-                                            <p className="font-display text-xs uppercase tracking-luxe text-champagne-500 dark:text-champagne-300">
+                                            <p className="line-clamp-1 font-display text-xs uppercase tracking-luxe text-champagne-500 dark:text-champagne-300">
                                                 {footnote.join(" · ")}
                                             </p>
                                         ) : null}

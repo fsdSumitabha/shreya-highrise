@@ -11,7 +11,7 @@ import { projectsIntro } from "@/data/projects";
 import { site } from "@/data/site";
 
 const description =
-    "Every Shreya High Rise address in one place — two co-operative society blocks under construction in Action Area I, New Town, and five handed over across New Town. Areas, prices, possession dates and sanctioned plans published up front.";
+    "Every Shreya High Rise address in one place — three under construction and open for booking in New Town, and four handed over. Areas, prices, possession dates and sanctioned plans published up front.";
 
 export const metadata: Metadata = {
     title: "Our Projects — Co-operative Society Homes in New Town, Kolkata",
