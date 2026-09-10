@@ -245,6 +245,53 @@
             "brochure": "",
             "photos": "",
             "capturedAt": "2026-09-03T11:30:42.058Z"
+        },
+        {
+            "id": "mtvej83v-an0u8",
+            "name": "Pre Hold Individual Plot",
+            "address": "AA Block, Plot 111, Street No. 68, New Town, Kolkata 700 156, West Bengal",
+            "status": "Completed",
+            "rera": "",
+            "flatTypes": [
+                "4 BHK"
+            ],
+            "sizeFrom": "1800",
+            "sizeTo": "",
+            "areaBasis": "Super built-up",
+            "price2bhk": "",
+            "price3bhk": "",
+            "price4bhk": "1.6 Cr",
+            "possession": "",
+            "totalFlats": "148",
+            "floors": "G+4",
+            "handedOver": "2024",
+            "families": "148",
+            "highlights": [
+                "200 sq ft commercial space (₹20,000 per sq ft)",
+                "CCTV Surveillance & 24/7 Security",
+                "24-Hour Power Backup",
+                "Dedicated Parking – 1 Space per Flat",
+                "Landscaped Garden / Green Space",
+                "Security Room"
+            ],
+            "nearby": [
+                {
+                    "name": "City Centre 2",
+                    "distance": "3 km"
+                },
+                {
+                    "name": "Biswa Bangla Gate",
+                    "distance": "1 km"
+                },
+                {
+                    "name": "Axis Mall",
+                    "distance": "1 km"
+                }
+            ],
+            "floorPlan": "",
+            "brochure": "",
+            "photos": "/projects/aa_68/left_side_view.jpg, /projects/aa_68/right_side_view.jpg",
+            "capturedAt": "2026-09-10T10:46:00.907Z"
         }
     ]
 }

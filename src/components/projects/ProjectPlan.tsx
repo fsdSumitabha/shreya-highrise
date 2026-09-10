@@ -1,7 +1,7 @@
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Ornament from "@/components/ui/Ornament";
-import type { PlanOption, PlanSheet, SanctionedPlan } from "@/data/projects";
+import { planWording, type PlanOption, type PlanSheet, type SanctionedPlan } from "@/data/projects";
 
 /* ── The sanctioned drawings ──────────────────────────────────────────────
    Everything in this section is read off the architect's sheets rather than
@@ -24,6 +24,7 @@ export default function ProjectPlan({ plan }: { plan: SanctionedPlan }) {
     const titleBlock = [
         plan.plotAddress && { term: "Plot", value: plan.plotAddress },
         plan.plotSize && { term: "Plot size", value: plan.plotSize },
+        plan.groundCoverage && { term: "Ground coverage", value: plan.groundCoverage },
         plan.roadWidth && { term: "Frontage", value: plan.roadWidth },
         plan.stack && { term: "Storeys", value: plan.stack },
         plan.unitsPerFloor && { term: "Homes", value: plan.unitsPerFloor },
@@ -39,7 +40,7 @@ export default function ProjectPlan({ plan }: { plan: SanctionedPlan }) {
                 className="blueprint-grid pointer-events-none absolute inset-0 -z-10 text-slate-900/70 [--grid-size:4rem] dark:text-stone-100/60" />
 
             <Container className="flex flex-col gap-14">
-                <SectionHeading id="plan-heading" eyebrow="From the sanctioned drawing"
+                <SectionHeading id="plan-heading" eyebrow={planWording(plan).eyebrow}
                     lines={["What has actually", "been drawn"]}
                     lede={`${plan.title}. Areas, bays and services below are read straight off the architect's sheets — the sheets themselves are linked under each option.`} />
 
@@ -65,7 +66,11 @@ export default function ProjectPlan({ plan }: { plan: SanctionedPlan }) {
                     </div>
                 ) : null}
 
-                <div data-stagger="120" className="grid gap-8 lg:grid-cols-2">
+                {/* Two alternative layouts sit side by side to be compared.
+                    A set with only one has nothing to compare it against, so
+                    it runs full width instead of leaving half the row empty. */}
+                <div data-stagger="120"
+                    className={`grid gap-8 ${plan.options.length > 1 ? "lg:grid-cols-2" : ""}`}>
                     {plan.options.map((option) => (
                         <PlanOptionCard key={option.name} option={option} />
                     ))}

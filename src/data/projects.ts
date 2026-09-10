@@ -59,10 +59,18 @@ export type PlanOption = {
     The title block is quoted, not paraphrased. */
 export type SanctionedPlan = {
     title: string;
+    /** Whether these sheets are the sanctioned set. True for most of the
+        catalogue, and the default. A set whose title block does not say so
+        sets this false, and the two sections that show drawings then call
+        them the architect's rather than borrowing a word the paperwork has
+        not earned — see `planWording`. */
+    sanctioned?: boolean;
     drawingNo?: string;
     /** The address exactly as it is written on the drawing's title block. */
     plotAddress?: string;
     plotSize?: string;
+    /** Ground coverage, where the sheet prints it. */
+    groundCoverage?: string;
     roadWidth?: string;
     scale?: string;
     stack?: string;
@@ -85,6 +93,10 @@ export type Project = {
     imageLabel: string;
     /** Co-operative income band — keys into `incomeBands` in cooperative.ts. */
     band?: BandCode;
+    /** What kind of building this is, for the assembled hero line. Almost
+        everything here is a co-operative society block, which is the default;
+        anything else — an individual plot, say — names itself. */
+    buildingType?: string;
     /** Plot reference off the front of the address: BB-102, CD-114, CC-59. */
     plot?: string;
     /** Short form, for cards and the hero line. */
@@ -117,8 +129,8 @@ export type Project = {
 export const projectsIntro = {
     eyebrow: "Our projects",
     heading: "Every address we have built, and are building",
-    lede: "Co-operative society blocks across New Town — two under construction and open for booking, four handed over and lived in. Configuration, area, price and possession are published here before you ever pick up the phone.",
-    marks: ["6 addresses on record", "New Town", "G+4 co-operative blocks", "Kolkata only"],
+    lede: "Seven addresses across New Town — two under construction and open for booking, five handed over and lived in. Mostly co-operative society blocks, and one house on a private plot. Configuration, area, price and possession are published here before you ever pick up the phone.",
+    marks: ["7 addresses on record", "New Town", "G+4 throughout", "Kolkata only"],
 };
 
 export const featuredIntro = {
@@ -324,6 +336,117 @@ export const projects: Project[] = [
         image: "/projects/cc_59/lig-co-operative-housing-society.jpg",
     },
     {
+        slug: "pre-hold-individual-plot",
+        name: "Pre Hold Individual Plot",
+        stage: "completed",
+        /* Not a co-operative. One four-bedroom home to a floor on a private
+           plot, so it carries no income band and says what it is instead. */
+        buildingType: "residence on an individual plot",
+        plot: "Plot 111",
+        locality: "AA Block, Street No. 68, New Town",
+        address: "AA Block, Plot 111, Street No. 68, New Town, Kolkata 700 156, West Bengal",
+        corridor: "New Town",
+        typology: "4 BHK",
+        sizeRange: "1,800 sq. ft.",
+        areaBasis: "Super built-up",
+        priceFrom: "₹1.6 Cr",
+        prices: [{ config: "4 BHK", from: "₹1.6 Cr" }],
+        handedOver: "DEC 2026",
+        floors: "G+4",
+        /* WITHHELD — the intake sheet records `totalFlats: "148"` and
+           `families: "148"`. The architect's own drawing for this address puts
+           one 4 BHK home on each of four floors, on a plot of about 2,150 sq.
+           ft. with 1,382 sq. ft. of ground coverage, so 148 is not a number
+           this building can hold. Publishing it would also put more families
+           in one house than the site claims across the whole practice.
+           Left out until the client corrects it — see CLIENT-DATA.md §2. */
+        highlights: [
+            "200 sq. ft. commercial space at ₹20,000 per sq. ft.",
+            ...societyStandard,
+        ],
+        nearby: [
+            { name: "Biswa Bangla Gate", distance: "1 km" },
+            { name: "Axis Mall", distance: "1 km" },
+            { name: "City Centre 2", distance: "3 km" },
+        ],
+        imageLabel: "Architect's render of the finished G+4 residence at AA Block, Street No. 68 — street corner elevation, four floors of balconies beside a slatted stair screen, with the shop shutter and entrance gate at ground level",
+        image: "/projects/aa_68/left_side_view.jpg",
+        gallery: [
+            {
+                src: "/projects/aa_68/right_side_view.jpg",
+                label: "Architect's render of the same building from the opposite corner — timber and stone cladding across the projecting bay, and the covered parking behind the gate",
+            },
+        ],
+        plan: {
+            /* The title block on these sheets says "plan of residence", not
+               "proposed" or "sanctioned" as CD-114's does, so the two sections
+               that show them do not claim otherwise. */
+            sanctioned: false,
+            title: "G+4 residence at Premises No. 02-068",
+            drawingNo: "02-0068",
+            plotAddress: "Premises No. 02-068, Street No. 0068, New Town, Kolkata",
+            plotSize: "10.245 m × 19.532 m — 33′-7″ × 64′-1″",
+            groundCoverage: "128.375 sq. m. — 1,382 sq. ft.",
+            scale: "1 : 100",
+            stack: "Ground floor + four residential floors",
+            unitsPerFloor: "One four-bedroom home per floor, 1st to 4th",
+            lift: "Lift well 1300 × 1600 mm, off a common lobby",
+            unitPlan: [
+                "Four bedrooms, the largest 13′-2″ × 9′-10″",
+                "Living-cum-dining, 14′-1″ × 15′-10″",
+                "Kitchen, 11′-6″ × 6′-10″",
+                "Three toilets",
+                "Loft off the inner lobby",
+                "Balcony, 10′-6″ × 3′-2″",
+            ],
+            services: [
+                "Four car parking bays, drawn in off the street frontage",
+                "Shop of 8′-5″ × 24′-11″ beside the parking",
+                "Electrical equipment room at ground level",
+                "Two further bedrooms and a toilet on the ground floor",
+                "Underground water reservoir and planted rear yard",
+            ],
+            options: [
+                {
+                    name: "Option 2",
+                    note: "The layout the architect issued as OP-2, and the only one in the set. Each sheet is drawn twice — once in colour and once as line work — and both are linked below.",
+                    parking: "4 car parking bays at ground level",
+                    sheets: [
+                        {
+                            label: "Ground floor plan",
+                            file: "/projects/plans/0068/02-0068_GAUTAM SAHA_REN_GR FL.pdf",
+                            image: {
+                                src: "/projects/plans/0068/02-0068_GAUTAM SAHA_REN_GR FL.jpg",
+                                width: 1684,
+                                height: 2382,
+                                alt: "Ground floor plan in colour: four car bays drawn with cars along the Street No. 68 frontage, a long shop and electrical equipment room to one side, two bedrooms with toilets behind the stair and lift lobby, and an underground water reservoir under planting across the rear yard.",
+                            },
+                        },
+                        {
+                            label: "1st to 4th floor plan",
+                            file: "/projects/plans/0068/02-0068_GAUTAM SAHA_REN_TYP_0P2.pdf",
+                            image: {
+                                src: "/projects/plans/0068/02-0068_GAUTAM SAHA_REN_TYP_0P2.jpg",
+                                width: 1684,
+                                height: 2382,
+                                alt: "Typical floor plan in colour, one home to the floor: four bedrooms at the corners, a living-cum-dining room running the depth of the plan with the kitchen off it, three toilets, a loft over the inner lobby and a balcony at the street end.",
+                            },
+                        },
+                        {
+                            label: "Ground floor plan (line drawing)",
+                            file: "/projects/plans/0068/02-0068_GAUTAM SAHA_REF ROY CONS_GR FL.pdf",
+                        },
+                        {
+                            label: "1st to 4th floor plan (line drawing)",
+                            file: "/projects/plans/0068/02-0068_GAUTAM SAHA_REF ROY CONS_TYP FL-OP2.pdf",
+                        },
+                    ],
+                },
+            ],
+            caveat: "The sheets print no tenement schedule, so no unit areas are quoted here — the 1,800 sq. ft. above is the client's figure, not the drawing's. Three plot references are in circulation for this address: the drawing's title block says Premises No. 02-068, the society paperwork says Plot 111, and the architect's renders are captioned AA-110. All three are printed as received rather than reconciled.",
+        },
+    },
+    {
         slug: "chaitali-co-operative-housing-society",
         name: "Chaitali Co-operative Housing Society",
         stage: "completed",
@@ -448,6 +571,24 @@ export function planSheetImages(plan: SanctionedPlan): SheetPlate[] {
     );
 }
 
+/* What to call a set of drawings. Two sections show them — the schedules in
+   <ProjectPlan> and the sheets in <ProjectPlanSheets> — and both have to
+   agree, so the wording is decided here once rather than written twice.
+
+   The distinction is worth the field. "Sanctioned" says an authority approved
+   this drawing, which is a claim about a document, not a style of words; a
+   set whose title block does not make that claim must not have it made on
+   its behalf by a heading. */
+export function planWording(plan: SanctionedPlan) {
+    const sanctioned = plan.sanctioned ?? true;
+
+    return {
+        eyebrow: sanctioned ? "From the sanctioned drawing" : "From the architect's drawing",
+        sheets: sanctioned ? "The sanctioned drawings" : "The architect's drawings",
+        reproduced: sanctioned ? "reproduced as sanctioned" : "reproduced as issued",
+    };
+}
+
 /* One dated row, not two. The intake sheet records the same year under
    `possession` for one society and `handedOver` for another — see the note in
    CLIENT-DATA §6 — so for a finished building the two fields are read as the
@@ -469,9 +610,8 @@ export function datedFact(project: Project) {
    written an `about` paragraph it runs further down the page, in the column
    that has room for it, and is what search results quote. */
 export function heroLede(project: Project): string {
-    const block = project.floors
-        ? `A ${project.floors} co-operative society block`
-        : "A co-operative society block";
+    const type = project.buildingType ?? "co-operative society block";
+    const block = project.floors ? `A ${project.floors} ${type}` : `A ${type}`;
     const where = project.locality ? `at ${project.locality}` : `in ${project.corridor}, Kolkata`;
     const dated = datedFact(project);
     const when = dated

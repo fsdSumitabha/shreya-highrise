@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { planSheetImages, type SanctionedPlan, type SheetImage, type SheetPlate } from "@/data/projects";
+import { planSheetImages, planWording, type SanctionedPlan, type SheetImage, type SheetPlate } from "@/data/projects";
 
 /* ── The drawings themselves ──────────────────────────────────────────────
    <ProjectPlan> reads the sanctioned sheets out to you as schedules and
@@ -55,6 +55,7 @@ export default function ProjectPlanSheets({ plan }: { plan: SanctionedPlan }) {
        the options stack down the same column and a plate that changed shape
        between them would read as a mistake. */
     const ratio = plateRatio(plates);
+    const wording = planWording(plan);
 
     /* Grouped back into the options they came from, in the order the data
        lists them: two alternative layouts of one building read as two sets of
@@ -72,7 +73,7 @@ export default function ProjectPlanSheets({ plan }: { plan: SanctionedPlan }) {
             <Container className="flex flex-col gap-14">
                 <SectionHeading id="sheets-heading" eyebrow="The drawings themselves"
                     lines={["The sheets,", "as they were drawn"]}
-                    lede="The sanctioned drawings, reproduced whole and uncropped. Open any sheet to read it at full size, at the scale the architect drew it to." />
+                    lede={`${wording.sheets}, reproduced whole and uncropped. Open any sheet to read it at full size, at the scale the architect drew it to.`} />
 
                 {groups.map((group) => (
                     <div key={group.name} className="flex flex-col gap-6">
@@ -99,7 +100,7 @@ export default function ProjectPlanSheets({ plan }: { plan: SanctionedPlan }) {
 
                 <p data-reveal="up"
                     className="max-w-3xl border-l border-champagne-400/50 pl-5 text-xs leading-relaxed text-slate-500 dark:border-champagne-300/40 dark:text-stone-100/50">
-                    Drawings are reproduced as sanctioned and are not to scale on screen. Dimensions written on the
+                    Drawings are {wording.reproduced} and are not to scale on screen. Dimensions written on the
                     sheet govern; anything measured off the picture does not.
                 </p>
             </Container>
