@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* ── Scan the internal tool as well ───────────────────────────────────────
+   Tailwind v4 finds source files on its own, but it skips anything listed
+   in a .gitignore. src/app/.gitignore and src/components/.gitignore both
+   hold "/internal", to keep the build-time intake tool off main. That also
+   hid those files from Tailwind, so no class used only there was generated.
+
+   These two lines register the folders by hand. An explicitly registered
+   source is scanned whether or not git ignores it. Both paths are safe when
+   the folders are absent — Tailwind finds no files and emits nothing. */
+
+@source "./internal";
+@source "../components/internal";
+
 /* ── Theme switching ──────────────────────────────────────────────
    The site does not follow the device preference: it opens light for
    everyone. <ThemeToggle> in the footer is the only thing that turns the
