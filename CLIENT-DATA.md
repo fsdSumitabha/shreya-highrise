@@ -199,6 +199,8 @@ usually be lifted from it while real photography is arranged.
 - [ ] 🟡 **The lobby nameplate — render or photograph?** `public/lobby_nameplate.png` (1024×1024, renamed from a UUID filename) shows the Shreya High Rise logo in brass on black granite beside glass lobby doors. It reads as a studio mockup rather than a photograph of one of the six addresses, so the alt text names no building. Confirm what it is and that it may be published · `src/data/about.ts` → `imageOne`
 - [x] ✅ **The two AA-110 renders — which building are they?** Answered by the client filing them under `public/projects/aa_68/` with the new **Pre Hold Individual Plot** record. The AA-110 (02-0068) stamp matches that address's drawings, as suspected. They are now published on that project alone, as its lead image and gallery · `src/data/projects.ts`
 - [ ] 🔴 **May we publish the AA-110 renders at all?** — both are watermarked **"KarmaQuar's — Architectural & Engineering Services"**, a third party. They are on the live project page. Confirm the client holds the right to publish another firm's renders, or get clean copies · `public/projects/aa_68/`
+- [ ] 🔴 **Chaitali's two images are Google Street View captures** — not photographs taken for us. Both carry a "© 2026 Google" watermark, and the wider one still has Street View's own "Aerial" button and drag bar across the bottom. They are live on the project card and page. **Google's imagery is licensed and is not ours to publish on a commercial site**, so these need replacing with the client's own photographs of BB-102 — which should be easy, since the head office is on the ground floor · `public/projects/bb_102/`
+- [ ] 🟡 **A third Chaitali capture is unpublished** — `street_elevation_raw_screenshot.jpg` is the same frame as the lead image with a phone status bar, a "Google · Jan 2026" pill and a close button across the top. Left on disk, referenced nowhere. Delete it once real photographs arrive · `public/projects/bb_102/`
 - [ ] 🟡 **Pre Hold Individual Plot has renders, not photographs** — reasonable while it is under construction, and both are labelled "Architect's render" in the alt text and lightbox caption. Ask for site progress photographs, and for an exterior once it tops out · `projects.ts` → `imageLabel`, `gallery`
 - [ ] 🟡 **Source file** — 1.9 MB PNG. Ask for the original JPEG/TIFF if there is one; a JPEG at this size would be a fraction of the weight · `public/clubhouse_deck.png`
 
@@ -309,6 +311,10 @@ From `data.txt` and the supplied logo files. **Do not re-ask these.**
   `public/projects/mitrae_co-operative/street_elevation_dusk.png` — both completed G+4 blocks, occupied,
   live on their project cards and pages. The first images on file that read as photographs of a named address
   *(confirm they are photographs of that society, not of another — see §9)*
+- Street View captures received: `public/projects/bb_102/street_elevation.jpg` and `street_corner_from_gate.jpg`
+  — Chaitali at BB-102, live on its card and page. **Google imagery, watermarked, and not ours to publish —
+  needs replacing with the client's own photographs (see §9).** A third, `street_elevation_raw_screenshot.jpg`,
+  is the same frame with the phone's status bar on it and is referenced nowhere
 - Brand imagery received: `public/lobby_nameplate.png` — logo in brass on granite at a lobby entrance,
   live in the About-story column *(origin still to confirm — see §9)*
 - Renders received: `public/projects/aa_68/left_side_view.jpg` and `right_side_view.jpg` (both stamped AA-110 / 02-0068

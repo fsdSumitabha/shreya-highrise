@@ -485,8 +485,14 @@ export const projects: Project[] = [
         highlights: societyStandard,
         nearby: [],
         about: "Our head office sits on the ground floor of this building. Price sheets, floor plans and anything to do with a booked flat are handled from here, which makes it the easiest address on this list to come and see for yourself.",
-        imageLabel: "Architect's render of a G+4 co-operative society block in New Town — corner elevation, balconies above a gated ground-floor parking bay",
-        image: "",
+        imageLabel: "Chaitali Co-operative Housing Society from Street No. 152 — four floors of grilled windows and shallow balconies on a banded cream facade, a rainwater downpipe running the height of it, and the company signboard at ground level",
+        image: "/projects/bb_102/street_elevation.jpg",
+        gallery: [
+            {
+                src: "/projects/bb_102/street_corner_from_gate.jpg",
+                label: "The same building seen along the street — its full height above the boundary wall and entrance gate, with the neighbouring plot and trees to the left",
+            },
+        ],
     },
     {
         slug: "new-manikanchan-mig-society",
