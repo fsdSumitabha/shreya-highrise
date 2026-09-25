@@ -37,7 +37,7 @@ ourselves. They are not answered anywhere:
   confirm verbally.
 - **Director spellings, designations, join years, responsibilities** (§5, §6) — Part 1
   now only asks for a bio and a photo. Part 2 F asks which director heads which desk.
-- **Social profile URLs and the Google Analytics ID** (§10).
+- **Google Analytics ID** (§10). Social profile URLs are now received.
 
 **Ours to decide, deliberately never asked:** the About-page pull quote, the About-page
 headline wording, and the enquiry-form dropdown options (budget bands, possession windows).
@@ -224,7 +224,7 @@ usually be lifted from it while real photography is arranged.
 ## 10. Technical setup
 
 - [ ] 🔴 **Wire the enquiry form to a real destination** (see §7) · `src/app/contact/actions.ts`
-- [ ] 🟡 **Real social media profile URLs** — the footer currently links to facebook.com, instagram.com, youtube.com and linkedin.com homepages · `src/data/site.ts` → `socials`
+- [x] ~~**Real social media profile URLs**~~ **received** — Facebook `https://www.facebook.com/shreyahighrise`, Instagram `https://www.instagram.com/shreyahighrise`. LinkedIn dropped from the footer · `src/data/site.ts` → `socials`
 - [ ] 🟡 **Google Analytics / Tag Manager ID**
 
 ---

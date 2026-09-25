@@ -126,7 +126,6 @@ export const leadership: Leader[] = [
 ];
 
 export const socials: NavItem[] = [
-    { label: "Facebook", href: "https://facebook.com" },
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
+    { label: "Facebook", href: "https://www.facebook.com/shreyahighrise" },
+    { label: "Instagram", href: "https://www.instagram.com/shreyahighrise" },
 ];
