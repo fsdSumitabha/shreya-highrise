@@ -19,6 +19,9 @@ import { incomeBands, type BandCode } from "@/data/cooperative";
 
 export type Stage = "upcoming" | "ongoing" | "completed";
 
+/** A sales flag shown beside the stage badge. Set by hand per project. */
+export type Tag = "booking-open" | "premium";
+
 export type NearbyPlace = { name: string; distance: string };
 
 /** One configuration and what it starts at, as the client quotes it. */
@@ -89,6 +92,8 @@ export type Project = {
     slug: string;
     name: string;
     stage: Stage;
+    /** Sales flags, shown on the card and the project page. */
+    tags?: Tag[];
     corridor: string;
     imageLabel: string;
     /** Co-operative income band — keys into `incomeBands` in cooperative.ts. */
@@ -108,6 +113,8 @@ export type Project = {
     /** What `sizeRange` is measured on — carpet, super built-up, built-up. */
     areaBasis?: string;
     priceFrom?: string;
+    /** The price of the whole building, where it is sold as one. */
+    buildingPrice?: string;
     prices?: PriceBand[];
     possession?: string;
     handedOver?: string;
@@ -151,6 +158,11 @@ export const stageLabel: Record<Stage, string> = {
     completed: "Ready to move",
 };
 
+export const tagLabel: Record<Tag, string> = {
+    "booking-open": "Booking open",
+    premium: "Premium",
+};
+
 /* The set the client quotes on every one of their societies. Held once
    rather than copied into six projects, so correcting it corrects it
    everywhere — a project that differs simply carries its own list. */
@@ -167,6 +179,7 @@ export const projects: Project[] = [
         slug: "lig-co-operative",
         name: "LIG Co-operative Society",
         stage: "ongoing",
+        tags: ["booking-open"],
         band: "lig",
         plot: "CD-114",
         locality: "CD Block, Action Area I, New Town",
@@ -339,6 +352,7 @@ export const projects: Project[] = [
         slug: "pre-hold-individual-plot",
         name: "Pre Hold Individual Plot",
         stage: "ongoing",
+        tags: ["booking-open", "premium"],
         /* Not a co-operative. One four-bedroom home to a floor on a private
            plot, so it carries no income band and says what it is instead. */
         buildingType: "residence on an individual plot",
@@ -350,6 +364,7 @@ export const projects: Project[] = [
         sizeRange: "1,800 sq. ft.",
         areaBasis: "Super built-up",
         priceFrom: "₹1.6 Cr",
+        buildingPrice: "₹7 Cr",
         prices: [{ config: "4 BHK", from: "₹1.6 Cr" }],
         // A date still in the future is a possession date, not a handover —
         // `datedFact` labels it from the stage, and the rest of the catalogue
@@ -368,9 +383,9 @@ export const projects: Project[] = [
             ...societyStandard,
         ],
         nearby: [
-            { name: "Biswa Bangla Gate", distance: "1 km" },
-            { name: "Axis Mall", distance: "1 km" },
-            { name: "City Centre 2", distance: "3 km" },
+            { name: "Biswa Bangla Gate", distance: "500 m" },
+            { name: "Axis Mall", distance: "500 m" },
+            { name: "City Centre 2", distance: "1 km" },
         ],
         imageLabel: "Architect's render of the G+4 residence at AA Block, Street No. 68 — street corner elevation, four floors of balconies beside a slatted stair screen, with the shop shutter and entrance gate at ground level",
         image: "/projects/aa_68/left_side_view.jpg",
@@ -690,6 +705,7 @@ export function scheduleFacts(project: Project): { term: string; value: string }
         project.typology && { term: "Configuration", value: project.typology },
         project.sizeRange && { term: areaTerm(project), value: project.sizeRange },
         project.priceFrom && { term: "Starting at", value: project.priceFrom },
+        project.buildingPrice && { term: "Building price", value: project.buildingPrice },
         datedFact(project),
         project.floors && { term: "Structure", value: project.floors },
         project.totalFlats && { term: "Homes", value: project.totalFlats },
@@ -708,6 +724,7 @@ export function cardFacts(project: Project) {
         project.typology && { term: "Type", value: project.typology },
         project.sizeRange && { term: areaTerm(project), value: project.sizeRange },
         project.priceFrom && { term: "From", value: project.priceFrom },
+        project.buildingPrice && { term: "Building price", value: project.buildingPrice },
         datedFact(project),
         project.floors && { term: "Floors", value: project.floors },
         project.families && { term: "Families", value: project.families },

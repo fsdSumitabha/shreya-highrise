@@ -3,6 +3,7 @@ import ImageFrame from "@/components/ui/ImageFrame";
 import NearbyList from "@/components/ui/NearbyList";
 import SpecGrid from "@/components/ui/SpecGrid";
 import StageBadge from "@/components/ui/StageBadge";
+import TagBadge from "@/components/ui/TagBadge";
 import { cardFacts, whereLine, type Project } from "@/data/projects";
 
 /* One address, as a card, and the way through to its own page.
@@ -23,7 +24,10 @@ export default function ProjectCard({ project }: { project: Project }) {
             <div className="relative overflow-hidden">
                 <ImageFrame src={project.image} label={project.imageLabel} ratio="aspect-4/3" bordered={false}
                     sizes="(min-width: 1280px) 380px, (min-width: 640px) 45vw, 90vw" zoom />
-                <StageBadge stage={project.stage} className="absolute left-4 top-4 z-2" />
+                <div className="absolute left-4 right-4 top-4 z-2 flex flex-wrap items-start gap-2">
+                    <StageBadge stage={project.stage} />
+                    {project.tags?.map((tag) => <TagBadge key={tag} tag={tag} />)}
+                </div>
                 {/* Slides up over the image on hover. */}
                 <span aria-hidden="true"
                     className="absolute inset-x-0 bottom-0 z-2 line-clamp-1 translate-y-full bg-navy-950/85 px-6 py-3 font-display text-xs uppercase tracking-luxe text-champagne-300 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:translate-y-0">

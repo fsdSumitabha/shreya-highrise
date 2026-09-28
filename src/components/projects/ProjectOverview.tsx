@@ -2,6 +2,7 @@ import Container from "@/components/ui/Container";
 import ProjectGallery from "@/components/projects/ProjectGallery";
 import SpecGrid from "@/components/ui/SpecGrid";
 import StageBadge from "@/components/ui/StageBadge";
+import TagBadge from "@/components/ui/TagBadge";
 import ActionLink from "@/components/ui/ActionLink";
 import { scheduleFacts, type Project } from "@/data/projects";
 
@@ -36,6 +37,7 @@ export default function ProjectOverview({ project }: { project: Project }) {
                 <div className="flex flex-col gap-8">
                     <div data-reveal="up" className="flex flex-wrap items-center gap-3">
                         <StageBadge stage={project.stage} />
+                        {project.tags?.map((tag) => <TagBadge key={tag} tag={tag} />)}
                         {project.plot ? (
                             <span className="border border-slate-900/15 px-3 py-1.5 font-display text-xs uppercase tracking-luxe text-slate-600 dark:border-stone-100/15 dark:text-stone-100/65">
                                 Plot {project.plot}
